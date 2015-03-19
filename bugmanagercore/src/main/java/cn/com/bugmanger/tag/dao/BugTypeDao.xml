@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanger.tag.dao.BugTypeDao">
+
+    <insert id="addBugType" parameterType="cn.com.bugmanger.tag.model.TagType">
+
+    </insert>
+
+    <update id="updateBugType" parameterType="cn.com.bugmanger.tag.model.TagType">
+
+    </update>
+    <delete id="deleteBugTypeById" parameterType="int">
+
+    </delete>
+    <delete id="deleteBugTypeByTagName" parameterType="String">
+
+    </delete>
+    <select id="getBugTypeById" parameterType="int" resultType="cn.com.bugmanger.tag.model.BugType">
+
+    </select>
+    <select id="getBugTypeList" resultType="cn.com.bugmanger.tag.model.BugType">
+
+    </select>
+    <select id="getTagTypeListByTagId" parameterType="int" resultType="cn.com.bugmanger.tag.model.TagType">
+
+    </select>
+
+
+</mapper>
