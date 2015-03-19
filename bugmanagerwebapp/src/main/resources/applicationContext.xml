@@ -69,7 +69,7 @@
     <context:property-placeholder ignore-resource-not-found="true" location="classpath*:/application.properties"/>
 
 
-    <!-- 数据源配置 -->
+    <!-- 数据源配置 使用应用内的数据源配置-->
     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" >
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
