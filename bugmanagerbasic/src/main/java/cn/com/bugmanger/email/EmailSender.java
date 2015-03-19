@@ -27,6 +27,9 @@ public class EmailSender {
     // 邮件的文本内容
     private String content;
 
+
+
+
     /**
      * 获得邮件会话属性
      */
