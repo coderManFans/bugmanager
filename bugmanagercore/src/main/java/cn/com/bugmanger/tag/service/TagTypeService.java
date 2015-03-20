@@ -1,5 +1,6 @@
 package cn.com.bugmanger.tag.service;
 
+import cn.com.bugmanger.constant.Constant;
 import cn.com.bugmanger.tag.dao.TagTypeDao;
 import cn.com.bugmanger.tag.model.BugType;
 import cn.com.bugmanger.tag.model.TagType;
@@ -16,32 +17,25 @@ public class TagTypeService {
     @Autowired
     private TagTypeDao tagTypeDao;
 
-    /**
-     * @param tagTypeId
-     * @return
-     */
-    protected int getTagTypeByTagTypeId(int tagTypeId){
-        int affectNum = tagTypeDao.getTagTypeById(tagTypeId);
-        return  affectNum;
-    }
-
-    public  int addTagType(TagType tagType){
-        int affectedNum = tagTypeDao.addTagType(tagType);
-        return affectedNum;
+    public  boolean addTagType(TagType tagType){
+       int affectNUm = tagTypeDao.addTagType(tagType);
+        return Constant.AFFECTED_LINE_1 == affectNUm;
     }
     /**
      * @param tagTypeId
      */
-    public  void deleteTagTypeById(int tagTypeId){
-        tagTypeDao.deleteTagTypeByTagId(tagTypeId);
+    public  boolean deleteTagTypeById(int tagTypeId){
+        int affectNUm = tagTypeDao.deleteTagTypeByTagId(tagTypeId);
+        return  Constant.AFFECTED_LINE_1 == affectNUm;
     }
 
     /**
      * @param tagType
      * @return
      */
-    public  int updateTagType(TagType tagType){
-        return 0;
+    public  boolean updateTagType(TagType tagType){
+        int affectNum = tagTypeDao.updateTagType(tagType);
+        return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
     public  List<TagType> getTagTypeList(){
@@ -50,6 +44,14 @@ public class TagTypeService {
 
     public  List<BugType>  getBugTypeListByTagId(int tagId){
         return tagTypeDao.getBugTypeListByTagId(tagId);
+    }
+
+    /**
+     * @param tagId
+     * @return TagType
+     */
+    public TagType getTagTypeById(int tagId){
+        return tagTypeDao.getTagTypeById(tagId);
     }
 
 }

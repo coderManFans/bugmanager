@@ -2,30 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanger.tag.dao.BugTypeDao">
 
-    <insert id="addBugType" parameterType="cn.com.bugmanger.tag.model.TagType">
-        <!--insert into t_bugtype (tag_name) VALUES (#{bugType})-->
-        <!--<selectKey resultType="string" keyProperty="roleId">-->
-            <!--SELECT LAST_INSERT_ID()-->
-        <!--</selectKey>-->
+    <insert id="addBugType" >
+        insert into t_bugtype (bug_type,bug_introduce) VALUES (#{bugType},#{bugTypeIntroduce})
+        <selectKey resultType="int" keyProperty="bugTypeId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
-    <update id="updateBugType" parameterType="cn.com.bugmanger.tag.model.TagType">
-
+    <update id="updateBugType" >
+        UPDATE  t_bugtype set bug_type=#{bugType},bug_introduce = #{bugTypeIntroduce} where bug_type=#{oldbugType}
     </update>
-    <delete id="deleteBugTypeById" parameterType="int">
-
+    <delete id="deleteBugTypeById" >
+        DELETE  from t_bugtype WHERE  bug_typeid = #{bugTypId}
     </delete>
-    <delete id="deleteBugTypeByTagName" parameterType="String">
-
-    </delete>
-    <select id="getBugTypeById" parameterType="int" resultType="cn.com.bugmanger.tag.model.BugType">
-
+    <select id="getBugTypeById"  resultType="cn.com.bugmanger.tag.model.BugType">
+        select * from t_bugtype WHERE bug_typeid = #{bugTypeId}
     </select>
     <select id="getBugTypeList" resultType="cn.com.bugmanger.tag.model.BugType">
-
+        SELECT  * from t_bugtype
     </select>
-    <select id="getTagTypeListByTagId" parameterType="int" resultType="cn.com.bugmanger.tag.model.TagType">
-
+    <select id="getBugTypeSize" resultType="int">
+        SELECT  count(*) from t_bugtype
     </select>
 
 

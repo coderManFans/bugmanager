@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
+import static org.junit.Assert.assertEquals;
 import static  org.junit.Assert.assertTrue;
 @ContextConfiguration("/applicationContext-test.xml")
 public class TagTypeServiceTest extends SpringTransactionalTestCase {
@@ -28,10 +29,15 @@ public class TagTypeServiceTest extends SpringTransactionalTestCase {
     @Test
     public void testAddTagType(){
         TagType  tagType = getTagType();
-        int a=  tagTypeService.addTagType(tagType);
-        System.out.println("at = "+a);
+        boolean is = tagTypeService.addTagType(tagType);
+        assertTrue(is);
     }
 
+    @Test
+    public void testGetTagType(){
+        TagType tagType = tagTypeService.getTagTypeById(2);
+        assertTrue(tagType != null);;
+    }
 
 
 

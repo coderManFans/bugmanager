@@ -3,6 +3,7 @@ package cn.com.bugmanger.tag.dao;
 import cn.com.bugmanger.mybatis.annotation.mybatisRepository;
 import cn.com.bugmanger.tag.model.BugType;
 import cn.com.bugmanger.tag.model.TagType;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,10 +13,12 @@ import java.util.List;
 @mybatisRepository
 public interface TagTypeDao {
 
-    int getTagTypeById(int tagId);
-    int addTagType(TagType tagType);
-    void deleteTagTypeByTagId(int tagId);
-    int updateTagType(TagType tagType);
+    //方法参数中加入@Param注解可以在mybatis中不用设置方法参数类型
+    TagType getTagTypeById(@Param("tagId") int tagId);
+    int addTagType(@Param("tagType") TagType tagType);
+    int deleteTagTypeByTagId(@Param("taxgId") int taxgId);
+    int updateTagType(@Param("tagType") TagType tagType);
     List<TagType> getTagTypeList();
-    List<BugType> getBugTypeListByTagId(int tagId);
+    List<BugType> getBugTypeListByTagId(@Param("tagId") int tagId);
+    int getTagTypeSize();
 }

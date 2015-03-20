@@ -1,0 +1,36 @@
+/*CREATE TABLE `t_bugcontent` (
+  `bug_contentid` int(11) NOT NULL auto_increment,
+  `bug_reason` varchar(50) default NULL,
+  `bug_typeid` int(11) default NULL,
+  `bug_code` varchar(255) NOT NULL,
+  `bug_solutionid` int(11) default NULL,
+  PRIMARY KEY  (`bug_contentid`),
+  KEY `FK_t_bugcontent` (`bug_typeid`),
+  CONSTRAINT `FK_t_bugcontent` FOREIGN KEY (`bug_typeid`) REFERENCES `t_bugtype` (`bug_typeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+CREATE TABLE `t_bugtype` (
+  `bug_typeid` int(11) NOT NULL auto_increment,
+  `bug_type` varchar(40) NOT NULL,
+  `bug_introduce` varchar(40) NOT NULL,
+  PRIMARY KEY  (`bug_typeid`),
+  KEY `NewIndex1` (`bug_typeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `t_tagtype` (
+  `tag_id` int(11) NOT NULL auto_increment,
+  `tag_name` varchar(40) NOT NULL,
+  PRIMARY KEY  (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+CREATE TABLE `tag_bug_type` (
+  `tagbugid` int(11) NOT NULL auto_increment,
+  `tag_typeid` int(11) NOT NULL,
+  `bug_typeid` int(11) NOT NULL,
+  PRIMARY KEY  (`tagbugid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8*/
+

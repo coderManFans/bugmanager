@@ -3,6 +3,7 @@ package cn.com.bugmanger.tag.dao;
 import cn.com.bugmanger.mybatis.annotation.mybatisRepository;
 import cn.com.bugmanger.tag.model.BugType;
 import cn.com.bugmanger.tag.model.TagType;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,11 +12,11 @@ import java.util.List;
  */
 @mybatisRepository
 public interface BugTypeDao {
-    int addBugType(BugType  bugType);
-    int updateBugType(BugType bugType);
-    void deleteBugTypeById(int bugTypId);
-    void deleteBugTypeByTagName(String tagName);
-    BugType getBugTypeById(int bugTypeId);
+    int addBugType(@Param("bugType") BugType  bugType);
+    int updateBugType(@Param("bugType") BugType bugType, @Param("oldbugType") String oldbugType);
+    int deleteBugTypeById(@Param("bugTypId") int bugTypId);
+    BugType getBugTypeById(@Param("bugTypeId") int bugTypeId);
     List<BugType> getBugTypeList();
-    List<TagType> getTagTypeListByTagId(int tagId);
+
+    int getBugTypeSize();
 }
