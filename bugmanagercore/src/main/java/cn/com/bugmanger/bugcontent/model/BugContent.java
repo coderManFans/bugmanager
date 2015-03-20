@@ -4,6 +4,7 @@ package cn.com.bugmanger.bugcontent.model;
  * Created by fcs on 2015/3/20.
  */
 public class BugContent {
+
     private int bugContentId;
     private String bugReason;      //错误描述
     private String consoleError;   //控制台出现的错误

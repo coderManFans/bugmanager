@@ -23,6 +23,7 @@ public class BugContentService {
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
+
     public boolean updateBugContent(BugContent  bugContent){
         int affectNum = bugContentDao.updateBugContent(bugContent,1);
         return Constant.AFFECTED_LINE_1 == affectNum;

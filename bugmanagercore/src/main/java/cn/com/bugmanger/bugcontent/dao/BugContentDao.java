@@ -10,6 +10,7 @@ import java.util.List;
  */
 @mybatisRepository
 public interface BugContentDao {
+
     public  int addBugContent(BugContent  bugContent);
     public  int updateBugContent(BugContent bugContent,int bugContentId);
     public  int deleteBugContentById(int bugContentId);
