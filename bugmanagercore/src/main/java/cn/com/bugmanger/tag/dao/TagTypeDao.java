@@ -21,4 +21,5 @@ public interface TagTypeDao {
     List<TagType> getTagTypeList();
     List<BugType> getBugTypeListByTagId(@Param("tagId") int tagId);
     int getTagTypeSize();
+
 }

@@ -33,10 +33,11 @@ public class TagTypeServiceTest extends SpringTransactionalTestCase {
         assertTrue(is);
     }
 
+
     @Test
     public void testGetTagType(){
         TagType tagType = tagTypeService.getTagTypeById(2);
-        assertTrue(tagType != null);;
+        assertTrue(tagType != null);
     }
 
 

@@ -16,7 +16,7 @@
     <update id="updateTagType" >
       UPDATE t_tagtype SET  tag_name = #{tagName} where tag_id = #{tagType.tagId}
     </update>
-    <select id="getTagTypeList" >
+    <select id="getTagTypeList" resultType="cn.com.bugmanger.tag.model.TagType" >
         SELECT  * from t_tagtype
     </select>
     <select id="getBugTypeListByTagId" resultType="cn.com.bugmanger.tag.model.BugType">
@@ -25,6 +25,7 @@
     <select id="getTagTypeSize" resultType="int">
         SELECT  count(*) FROM  t_tagtype
     </select>
+
 
 
 </mapper>
