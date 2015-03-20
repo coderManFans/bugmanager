@@ -1,0 +1,62 @@
+package cn.com.bugmanger.bugcontenttest.service;
+
+import cn.com.bugmanger.bugcontent.model.BugContent;
+import cn.com.bugmanger.bugcontent.service.BugContentService;
+import cn.com.bugmanger.testcase.SpringTransactionalTestCase;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+
+
+import static org.junit.Assert.assertEquals;
+import static  org.junit.Assert.assertTrue;
+/**
+ * Created by fcs on 2015/3/20.
+ */
+@ContextConfiguration("/applicationContext-test.xml")
+public class BugContentServiceTest extends SpringTransactionalTestCase {
+    @Autowired
+    private BugContentService  bugContentService;
+
+    private BugContent getBugContent(){
+        BugContent bugContent = new BugContent();
+        bugContent.setBugCode("_bugcode");
+        bugContent.setBugReason("_bugreason");
+        bugContent.setBugTypeId(1);
+        bugContent.setConsoleError("_consoleerror");
+        bugContent.setBugSolutionId(1);
+        return  bugContent;
+    }
+    @Test
+    public void testAddBugContent(){
+        BugContent bugContent = getBugContent();
+        assertTrue(bugContentService.addBugContent(bugContent));
+    }
+
+    @Sql("sql/TestAddBugContent.sql")
+    @Test
+    public void testGetBugContent(){
+        BugContent bugContent = bugContentService.getBugContentById(1);
+        assertTrue(bugContent.getBugContentId() == 1);
+    }
+
+    @Sql("sql/TestAddBugContent.sql")
+    @Test
+    public void testDeleteBugContent(){
+       assertTrue(bugContentService.deleteBugContentById(1));
+    }
+
+    @Test
+    public void testUpdateBugContent(){
+
+    }
+
+    @Sql("sql/TestAddBugContent.sql")
+    @Test
+    public void testGetBugContentSize(){
+        int num =bugContentService.getBugContentListSize();
+        assertTrue(num == 1);
+    }
+
+}
