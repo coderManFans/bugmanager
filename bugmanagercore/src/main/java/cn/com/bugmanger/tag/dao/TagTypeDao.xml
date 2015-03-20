@@ -5,7 +5,10 @@
 
     </select>
     <insert id="addTagType" parameterType="cn.com.bugmanger.tag.model.TagType">
-
+         insert into t_tagtype (tag_name) values(#{tagName})
+        <selectKey resultType="int" keyProperty="tagId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
     <delete id="deleteTagTypeByTagId" parameterType="int">
 

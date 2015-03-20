@@ -20,15 +20,19 @@ public class TagTypeService {
      * @param tagTypeId
      * @return
      */
-    private  int getTagTypeByTagTypeId(int tagTypeId){
+    protected int getTagTypeByTagTypeId(int tagTypeId){
         int affectNum = tagTypeDao.getTagTypeById(tagTypeId);
         return  affectNum;
     }
 
+    public  int addTagType(TagType tagType){
+        int affectedNum = tagTypeDao.addTagType(tagType);
+        return affectedNum;
+    }
     /**
      * @param tagTypeId
      */
-    private void deleteTagTypeById(int tagTypeId){
+    public  void deleteTagTypeById(int tagTypeId){
         tagTypeDao.deleteTagTypeByTagId(tagTypeId);
     }
 
@@ -36,15 +40,15 @@ public class TagTypeService {
      * @param tagType
      * @return
      */
-    private int updateTagType(TagType tagType){
+    public  int updateTagType(TagType tagType){
         return 0;
     }
 
-    private List<TagType> getTagTypeList(){
+    public  List<TagType> getTagTypeList(){
         return tagTypeDao.getTagTypeList();
     }
 
-    private List<BugType>  getBugTypeListByTagId(int tagId){
+    public  List<BugType>  getBugTypeListByTagId(int tagId){
         return tagTypeDao.getBugTypeListByTagId(tagId);
     }
 

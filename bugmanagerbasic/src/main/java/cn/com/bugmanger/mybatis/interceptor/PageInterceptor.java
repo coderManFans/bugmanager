@@ -1,9 +1,10 @@
 package cn.com.bugmanger.mybatis.interceptor;
 
-import com.wonderland.sail.constant.Constant;
-import com.wonderland.sail.mybatis.model.Page;
-import com.wonderland.sail.util.ReflectUtil;
-import com.wonderland.sail.util.StringUtil;
+
+import cn.com.bugmanger.constant.Constant;
+import cn.com.bugmanger.mybatis.model.Page;
+import cn.com.bugmanger.util.ReflectUtil;
+import cn.com.bugmanger.util.StringUtil;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.executor.statement.BaseStatementHandler;

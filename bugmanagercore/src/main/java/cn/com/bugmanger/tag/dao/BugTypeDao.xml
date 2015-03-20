@@ -3,7 +3,10 @@
 <mapper namespace="cn.com.bugmanger.tag.dao.BugTypeDao">
 
     <insert id="addBugType" parameterType="cn.com.bugmanger.tag.model.TagType">
-
+        <!--insert into t_bugtype (tag_name) VALUES (#{bugType})-->
+        <!--<selectKey resultType="string" keyProperty="roleId">-->
+            <!--SELECT LAST_INSERT_ID()-->
+        <!--</selectKey>-->
     </insert>
 
     <update id="updateBugType" parameterType="cn.com.bugmanger.tag.model.TagType">

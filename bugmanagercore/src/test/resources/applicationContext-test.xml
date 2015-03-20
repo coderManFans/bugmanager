@@ -51,9 +51,9 @@
 
     <!-- 扫描basePackage下所有以@MyBatisRepository标识的接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.threegrand"/>
+        <property name="basePackage" value="cn.com"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory1"/>
-        <property name="annotationClass" value="com.wonderland.sail.mybatis.annotation.mybatisRepository"/>
+        <property name="annotationClass" value="cn.com.bugmanger.mybatis.annotation.mybatisRepository"/>
     </bean>
 
     <!-- hibernate validator -->

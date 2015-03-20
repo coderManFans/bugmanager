@@ -1,6 +1,7 @@
 package cn.com.bugmanger.ajax.response;
 
-import com.wonderland.sail.mybatis.model.Page;
+
+import cn.com.bugmanger.mybatis.model.Page;
 
 import java.util.List;
 

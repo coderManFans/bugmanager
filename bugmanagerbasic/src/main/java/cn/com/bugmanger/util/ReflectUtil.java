@@ -1,6 +1,6 @@
 package cn.com.bugmanger.util;
 
-import com.wonderland.sail.constant.Constant;
+import cn.com.bugmanger.constant.Constant;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
