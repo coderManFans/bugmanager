@@ -16,8 +16,8 @@ public interface TagTypeDao {
     //方法参数中加入@Param注解可以在mybatis中不用设置方法参数类型
     TagType getTagTypeById(@Param("tagId") int tagId);
     int addTagType(@Param("tagType") TagType tagType);
-    int deleteTagTypeByTagId(@Param("taxgId") int taxgId);
-    int updateTagType(@Param("tagType") TagType tagType);
+    int deleteTagTypeByTagId(@Param("tagId") int tagId);
+    int updateTagType(@Param("tagType") TagType  tagType);
     List<TagType> getTagTypeList();
     List<BugType> getBugTypeListByTagId(@Param("tagId") int tagId);
     int getTagTypeSize();

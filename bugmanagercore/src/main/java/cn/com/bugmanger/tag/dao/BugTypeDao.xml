@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanger.tag.dao.BugTypeDao">
     <insert id="addBugType" >
-        insert into t_bugtype (bug_type,bug_introduce) VALUES (#{bugType},#{bugTypeIntroduce})
+        insert into t_bugtype (bug_type,bug_introduce) VALUES (#{bugType.bugType},#{bugType.bugTypeIntroduce})
         <selectKey resultType="int" keyProperty="bugTypeId">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
     <update id="updateBugType" >
-        UPDATE  t_bugtype set bug_type=#{bugType},bug_introduce = #{bugTypeIntroduce} where bug_type=#{oldbugType}
+        UPDATE  t_bugtype set bug_type=#{bugType.bugType},bug_introduce = #{bugType.bugTypeIntroduce} where bug_type=#{oldbugType}
     </update>
     <delete id="deleteBugTypeById" >
         DELETE  from t_bugtype WHERE  bug_typeid = #{bugTypId}

@@ -4,8 +4,8 @@
     <select id="getTagTypeById" parameterType="int" resultType="cn.com.bugmanger.tag.model.TagType"  >
       SELECT  * from t_tagtype WHERE  tag_id=#{tagId}
     </select>
-    <insert id="addTagType" parameterType="cn.com.bugmanger.tag.model.TagType">
-         insert into t_tagtype (tag_name) values(#{tagName})
+    <insert id="addTagType" >
+         insert into t_tagtype (tag_name) values(#{tagType.tagName})
         <selectKey resultType="int" keyProperty="tagId">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -14,7 +14,7 @@
       DELETE  FROM  t_tagtype WHERE  tag_id = #{tagId}
     </delete>
     <update id="updateTagType" >
-      UPDATE t_tagtype SET  tag_name = #{tagName} where tag_id = #{tagType.tagId}
+      UPDATE t_tagtype SET  tag_name = #{tagType.tagName} where tag_id =#{tagType.tagId}
     </update>
     <select id="getTagTypeList" resultType="cn.com.bugmanger.tag.model.TagType" >
         SELECT  * from t_tagtype

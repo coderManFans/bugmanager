@@ -15,29 +15,45 @@ import java.util.List;
 public class BugTypeService {
     @Autowired
     private BugTypeDao bugTypeDao;
-    private  int addBugType(BugType  bugType){
+
+    /**
+     * @param bugType
+     * @return
+     */
+    public   boolean  addBugType(BugType  bugType){
         int affectNum = bugTypeDao.addBugType(bugType);
-        return affectNum;
+        return affectNum == 1;
     }
 
-    private int updateBugType(BugType bugType){
-        int affectNum = bugTypeDao.updateBugType(bugType);
-        return 0;
+    /**
+     * @param bugType
+     * @param oldBugtype
+     * @return
+     */
+    public  boolean updateBugType(BugType bugType,String oldBugtype){
+
+        int affectNum = bugTypeDao.updateBugType(bugType,oldBugtype);
+        return  affectNum == 1;
     }
 
-    private void deleteBugType(final int bugTypeid){
-        bugTypeDao.deleteBugTypeById(bugTypeid);
+    /**
+     * @param bugTypeid
+     */
+    public  boolean deleteBugType(final int bugTypeid){
+        int affectNum = bugTypeDao.deleteBugTypeById(bugTypeid);
+        return affectNum == 1;
     }
 
-    private List<BugType> getBugTypeList(){
+    public  List<BugType> getBugTypeList(){
         return bugTypeDao.getBugTypeList();
     }
 
-    private List<TagType> getTagTypeListByBugid(int bugTypeId){
-        return bugTypeDao.getTagTypeListByTagId(bugTypeId);
+
+    /**
+     * @param bugTypeId
+     * @return
+     */
+    public BugType  getBugTypeById(int bugTypeId){
+        return  bugTypeDao.getBugTypeById(bugTypeId);
     }
-
-
-
-
 }

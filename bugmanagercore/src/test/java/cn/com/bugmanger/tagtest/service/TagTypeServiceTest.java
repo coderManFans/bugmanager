@@ -10,6 +10,9 @@ import cn.com.bugmanger.testcase.SpringTransactionalTestCase;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static  org.junit.Assert.assertTrue;
@@ -21,7 +24,7 @@ public class TagTypeServiceTest extends SpringTransactionalTestCase {
 
     private TagType getTagType(){
         TagType tagType = new TagType();
-       // tagType.setTagId(1);
+        tagType.setTagId(1);
         tagType.setTagName("java");
         return tagType;
     }
@@ -33,14 +36,48 @@ public class TagTypeServiceTest extends SpringTransactionalTestCase {
         assertTrue(is);
     }
 
-
+    @Sql("sql/TestAddTagType.sql")
     @Test
-    public void testGetTagType(){
+    public void testDeleteTagType(){
+        testAddTagType();
+        assertTrue(tagTypeService.deleteTagTypeById(2));
+    }
+    @Test
+    public void testGettagtypeList(){
+        testAddTagType();
+    }
+    @Sql("sql/TestAddTagType.sql")
+    @Test
+    public void testGetTagTypeByTagId(){
+        testAddTagType();
         TagType tagType = tagTypeService.getTagTypeById(2);
-        assertTrue(tagType != null);
+        System.out.println("tag = "+tagType.getTagName());
+        assertTrue(tagType.getTagId() == 2);
     }
 
+    @Sql("sql/TestAddTagType.sql")
+    @Test
+    public void testUpdateTagTypeByTagName(){
+        TagType tagType = tagTypeService.getTagTypeById(2);
+        tagType.setTagName("python");
+        tagTypeService.updateTagType(tagType);
+        tagType = tagTypeService.getTagTypeById(2);
+        assertTrue(tagType.getTagName().equals("python"));
+    }
 
+    @Sql("sql/TestAddTagType.sql")
+    @Test
+    public void testGetTagListSize(){
+        int size = tagTypeService.getTagTypeListSize();
+        assertTrue(size == 1);
+    }
+
+    @Sql("sql/TestAddTagType.sql")
+    @Test
+    public void testGetTagList(){
+        List<TagType> tagList = tagTypeService.getTagTypeList();
+        assertTrue(tagList.size() == 1);
+    }
 
 
 }

@@ -17,6 +17,11 @@ public class TagTypeService {
     @Autowired
     private TagTypeDao tagTypeDao;
 
+
+    /**
+     * @param tagType
+     * @return
+     */
     public  boolean addTagType(TagType tagType){
        int affectNUm = tagTypeDao.addTagType(tagType);
         return Constant.AFFECTED_LINE_1 == affectNUm;
@@ -26,6 +31,7 @@ public class TagTypeService {
      */
     public  boolean deleteTagTypeById(int tagTypeId){
         int affectNUm = tagTypeDao.deleteTagTypeByTagId(tagTypeId);
+        System.out.println("a = "+affectNUm);
         return  Constant.AFFECTED_LINE_1 == affectNUm;
     }
 
@@ -54,4 +60,8 @@ public class TagTypeService {
         return tagTypeDao.getTagTypeById(tagId);
     }
 
+
+    public int getTagTypeListSize(){
+        return tagTypeDao.getTagTypeSize();
+    }
 }
