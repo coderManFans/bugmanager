@@ -11,12 +11,13 @@ public class BugContent {
     private String bugCode;        //项目或者练习中的错误代码
     private int bugTypeId;
     private int bugSolutionId;
-    public String getConsoleError() {
-        return consoleError;
+
+    public int getBugContentId() {
+        return bugContentId;
     }
 
-    public void setConsoleError(String consoleError) {
-        this.consoleError = consoleError;
+    public void setBugContentId(int bugContentId) {
+        this.bugContentId = bugContentId;
     }
 
     public String getBugReason() {
@@ -27,12 +28,12 @@ public class BugContent {
         this.bugReason = bugReason;
     }
 
-    public int getBugContentId() {
-        return bugContentId;
+    public String getConsoleError() {
+        return consoleError;
     }
 
-    public void setBugContentId(int bugContentId) {
-        this.bugContentId = bugContentId;
+    public void setConsoleError(String consoleError) {
+        this.consoleError = consoleError;
     }
 
     public String getBugCode() {

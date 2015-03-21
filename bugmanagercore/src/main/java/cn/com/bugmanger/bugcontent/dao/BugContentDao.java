@@ -14,9 +14,9 @@ public interface BugContentDao {
 
 
     public  int addBugContent(@Param("bugContent") BugContent  bugContent);
-    public  int updateBugContent(@Param("bugContent") BugContent bugContent, @Param("bugContentId") int bugContentId);
+    public  int updateBugContent(@Param("bugContent") BugContent bugContent);
     public  int deleteBugContentById(@Param("bugContentId") int bugContentId);
     public  List<BugContent> getBugContentList();
     public  int getBugContentSize();
-    public  BugContent  getBugContentById(int bugContentId);
+    public  BugContent  getBugContentById(@Param("bugContentId") int bugContentId);
 }

@@ -45,7 +45,7 @@ public class TagTypeService {
     }
 
     public  List<TagType> getTagTypeList(){
-        return tagTypeDao.getTagTypeList();
+        return tagTypeDao.getTagTypeListPage();
     }
 
     public  List<BugType>  getBugTypeListByTagId(int tagId){

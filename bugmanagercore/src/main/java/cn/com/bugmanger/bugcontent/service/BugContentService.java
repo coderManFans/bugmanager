@@ -31,7 +31,7 @@ public class BugContentService {
      * @return
      */
     public boolean updateBugContent(BugContent  bugContent){
-        int affectNum = bugContentDao.updateBugContent(bugContent,1);
+        int affectNum = bugContentDao.updateBugContent(bugContent);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
@@ -47,8 +47,12 @@ public class BugContentService {
     /**
      * @return  为分页
      */
-    public List<BugContent> getBugContentList(){
-        return null;
+    public List<BugContent> getBugContentListPage(){
+        List<BugContent>  bugContentList = bugContentDao.getBugContentList();
+        if(bugContentList != null){
+            return  bugContentList;
+        }
+        return  null;
     }
 
     /**

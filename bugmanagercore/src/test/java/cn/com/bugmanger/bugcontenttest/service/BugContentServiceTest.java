@@ -47,9 +47,19 @@ public class BugContentServiceTest extends SpringTransactionalTestCase {
        assertTrue(bugContentService.deleteBugContentById(1));
     }
 
+    @Sql("sql/TestAddBugContent.sql")
     @Test
     public void testUpdateBugContent(){
-
+        BugContent  bugContent = new BugContent();
+        bugContent.setBugReason("reason");
+        bugContent.setBugSolutionId(3);
+        bugContent.setConsoleError("console_error");
+        bugContent.setBugTypeId(2);
+        bugContent.setBugContentId(1);
+        bugContent.setBugCode("bug_code");
+        bugContentService.updateBugContent(bugContent);
+        bugContent = bugContentService.getBugContentById(1);
+        assertTrue(bugContent.getBugReason().equals("reason"));
     }
 
     @Sql("sql/TestAddBugContent.sql")
@@ -59,4 +69,10 @@ public class BugContentServiceTest extends SpringTransactionalTestCase {
         assertTrue(num == 1);
     }
 
+    @Sql("sql/TestAddBugContent.sql")
+    @Test
+    public void testGetBugContentList(){
+        int size = bugContentService.getBugContentListPage().size();
+        assertTrue(size == 1);
+    }
 }

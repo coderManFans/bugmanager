@@ -45,7 +45,7 @@ public class BugTypeService {
     }
 
     public  List<BugType> getBugTypeList(){
-        return bugTypeDao.getBugTypeList();
+        return bugTypeDao.getBugTypeListPage();
     }
 
 
