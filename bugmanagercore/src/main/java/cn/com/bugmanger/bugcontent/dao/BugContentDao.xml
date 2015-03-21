@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanger.bugcontent.dao.BugContentDao">
-    <insert id="addBugContent">
+    <insert id="addBugContentWithAnswer">
         insert into t_bugcontent (bug_reason,console_error,bug_code,bug_typeid,bug_solutionid)
          VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.bugTypeId},#{bugContent.bugSolutionId})
     </insert>
+
+    <insert id="addBugContentNoAnswer">
+
+    </insert>
+
+
     <select id="getBugContentSize" resultType="int">
         select count(*) from t_bugcontent
     </select>
@@ -21,5 +27,17 @@
     </delete>
     <select id="getBugContentById"  resultType="cn.com.bugmanger.bugcontent.model.BugContent">
           select * from t_bugcontent where bug_contentid=#{bugContentId}
+    </select>
+    <select id="getBugContentListPage" resultType="cn.com.bugmanger.bugcontent.model.BugContent">
+          select * from t_bugcontent where 1=1
+          <if test="bugContent.bugReason != null and bugContent.bugReason != ''">
+              AND  bug_reason LIKE  concat('%',#{bugContent.bugReason},'%'),
+          </if>
+          <if test="bugContent.consoleError != null and bugContent.consoleError != ''">
+              AND console_error LIKE concat('%',#{bugContent.consoleError},'%'),
+          </if>
+          <if test="bugContent.bugCode != null and bugContent.bugCode != ''">
+              AND bug_code LIKE concat('%',#{bugContent.bugCode},'%')
+        </if>
     </select>
 </mapper>

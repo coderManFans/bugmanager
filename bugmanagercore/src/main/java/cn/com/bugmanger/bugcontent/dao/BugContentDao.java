@@ -12,11 +12,14 @@ import java.util.List;
 @mybatisRepository
 public interface BugContentDao {
 
+      int addBugContentWithAnswer(@Param("bugContent") BugContent  bugContent);
+      int updateBugContent(@Param("bugContent") BugContent bugContent);
+      int deleteBugContentById(@Param("bugContentId") int bugContentId);
+      List<BugContent> getBugContentList();
+      int getBugContentSize();
+      BugContent  getBugContentById(@Param("bugContentId") int bugContentId);
+      List<BugContent> getBugContentListPage(@Param("bugContent") BugContent bugContent);
+      int addBugContentNoAnswer(@Param("bugContent") BugContent bugContent);
 
-    public  int addBugContent(@Param("bugContent") BugContent  bugContent);
-    public  int updateBugContent(@Param("bugContent") BugContent bugContent);
-    public  int deleteBugContentById(@Param("bugContentId") int bugContentId);
-    public  List<BugContent> getBugContentList();
-    public  int getBugContentSize();
-    public  BugContent  getBugContentById(@Param("bugContentId") int bugContentId);
+
 }
