@@ -44,8 +44,8 @@ public class TagTypeService {
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
-    public  List<TagType> getTagTypeList(){
-        return tagTypeDao.getTagTypeListPage();
+    public  List<TagType> getTagTypeList(TagType tagType){
+        return tagTypeDao.getTagTypeListPage(tagType);
     }
 
     public  List<BugType>  getBugTypeListByTagId(int tagId){

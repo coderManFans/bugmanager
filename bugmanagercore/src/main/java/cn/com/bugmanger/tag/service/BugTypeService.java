@@ -44,8 +44,8 @@ public class BugTypeService {
         return affectNum == 1;
     }
 
-    public  List<BugType> getBugTypeList(){
-        return bugTypeDao.getBugTypeListPage();
+    public  List<BugType> getBugTypeList(BugType bugType){
+        return bugTypeDao.getBugTypeListPage(bugType);
     }
 
 

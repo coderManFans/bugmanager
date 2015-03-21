@@ -8,6 +8,8 @@ public class BugAnswer {
     private String answerInfo;
     private String answerTime;
     private int answerUserId;
+    private boolean isRight;
+
 
     public int getBugAnswerId() {
         return bugAnswerId;
@@ -39,5 +41,13 @@ public class BugAnswer {
 
     public void setAnswerUserId(int answerUserId) {
         this.answerUserId = answerUserId;
+    }
+
+    public boolean isRight() {
+        return isRight;
+    }
+
+    public void setRight(boolean isRight) {
+        this.isRight = isRight;
     }
 }

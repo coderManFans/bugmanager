@@ -19,7 +19,7 @@ public class BugAnswerService {
      * @return
      */
     public boolean addBugAnswer(BugAnswer bugAnswer){
-       int affectNum = bugAnswerDao.addBugAnswer(bugAnswer);
+       int affectNum = bugAnswerDao.addAnswer(bugAnswer);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
@@ -28,7 +28,7 @@ public class BugAnswerService {
      * @return
      */
     public int deleteBugAnswer(int bugAnswerId){
-        return   bugAnswerDao.deleteBugAnswerById(bugAnswerId);
+        return   bugAnswerDao.deleteAnswerById(bugAnswerId);
 
     }
 
@@ -37,7 +37,7 @@ public class BugAnswerService {
      * @return
      */
     public int updateBugAnswer(BugAnswer  bugAnswer){
-        return  bugAnswerDao.updateBugAnswer(bugAnswer);
+        return  bugAnswerDao.updateAnswer(bugAnswer);
     }
 
     /**
@@ -45,7 +45,7 @@ public class BugAnswerService {
      * @return
      */
     public List<BugAnswer> getBugAnswerList(int bugContentId){
-        List<BugAnswer>  bugAnswerList = bugAnswerDao.getBugAnswerByBugId(bugContentId);
+        List<BugAnswer>  bugAnswerList = bugAnswerDao.getAnswerListByBugId(bugContentId);
        if(bugAnswerList != null && bugAnswerList.size() == 0){
            return bugAnswerList;
        }

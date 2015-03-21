@@ -1,5 +1,5 @@
 package cn.com.bugmanger.bugcontent.model;
-
+import  java.util.List;
 /**
  * Created by fcs on 2015/3/20.
  */
@@ -11,6 +11,8 @@ public class BugContent {
     private String bugCode;        //项目或者练习中的错误代码
     private int bugTypeId;
     private int bugSolutionId;
+    private List<BugAnswer>  bugAnswerList;
+
 
     public int getBugContentId() {
         return bugContentId;
@@ -58,5 +60,13 @@ public class BugContent {
 
     public void setBugSolutionId(int bugSolutionId) {
         this.bugSolutionId = bugSolutionId;
+    }
+
+    public List<BugAnswer> getBugAnswerList() {
+        return bugAnswerList;
+    }
+
+    public void setBugAnswerList(List<BugAnswer> bugAnswerList) {
+        this.bugAnswerList = bugAnswerList;
     }
 }

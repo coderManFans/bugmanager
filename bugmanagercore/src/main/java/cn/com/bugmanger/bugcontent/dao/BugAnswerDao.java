@@ -10,9 +10,9 @@ import java.util.List;
  */
 @mybatisRepository
 public interface BugAnswerDao {
-    int addBugAnswer(@Param("bugAnswer") BugAnswer bugAnswer);
-    int updateBugAnswer(@Param("bugAnswer") BugAnswer bugAnswer);
-    int deleteBugAnswerById(@Param("bugAnswerId") int bugAnswerId);
-    BugAnswer  getBugAnswerById(@Param("bugAnswerId") int bugAnswerId);
-    List<BugAnswer> getBugAnswerByBugId(@Param("bugContentId") int bugContentId);
+    int addAnswer(@Param("bugAnswer") BugAnswer bugAnswer);
+    int updateAnswer(@Param("bugAnswer") BugAnswer bugAnswer);
+    int deleteAnswerById(@Param("bugAnswerId") int bugAnswerId);
+    BugAnswer  getAnswerById(@Param("bugAnswerId") int bugAnswerId);
+    List<BugAnswer> getAnswerListByBugId(@Param("bugContentId") int bugContentId);
 }

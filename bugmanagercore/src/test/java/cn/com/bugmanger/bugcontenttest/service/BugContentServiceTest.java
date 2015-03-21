@@ -31,7 +31,7 @@ public class BugContentServiceTest extends SpringTransactionalTestCase {
     @Test
     public void testAddBugContent(){
         BugContent bugContent = getBugContent();
-        assertTrue(bugContentService.addBugContent(bugContent));
+        assertTrue(bugContentService.addBugContentWithAnswer(bugContent));
     }
 
     @Sql("sql/TestAddBugContent.sql")

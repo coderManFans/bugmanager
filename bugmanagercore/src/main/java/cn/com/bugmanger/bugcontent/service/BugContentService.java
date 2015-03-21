@@ -20,11 +20,10 @@ public class BugContentService {
      * @param bugContent
      * @return
      */
-    public boolean addBugContent(BugContent  bugContent){
-        int affectNum = bugContentDao.addBugContent(bugContent);
+    public boolean addBugContentWithAnswer(BugContent  bugContent){
+        int affectNum = bugContentDao.addBugContentWithAnswer(bugContent);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
-
 
     /**
      * @param bugContent

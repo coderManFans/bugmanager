@@ -61,7 +61,8 @@ public class BugTypeServiceTest extends SpringTransactionalTestCase {
     @Sql("sql/TestAddBugType.sql")
     @Test
     public void testGetList(){
-        List<BugType> list = bugTypeService.getBugTypeList();
+        BugType bugType = getBugType();
+        List<BugType> list = bugTypeService.getBugTypeList(bugType);
         assertTrue(list.size() == 1);
     }
 }

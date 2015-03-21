@@ -75,7 +75,8 @@ public class TagTypeServiceTest extends SpringTransactionalTestCase {
     @Sql("sql/TestAddTagType.sql")
     @Test
     public void testGetTagList(){
-        List<TagType> tagList = tagTypeService.getTagTypeList();
+        TagType tagType = getTagType();
+        List<TagType> tagList = tagTypeService.getTagTypeList(tagType);
         assertTrue(tagList.size() == 1);
     }
 
