@@ -16,6 +16,6 @@ public interface BugTypeDao {
     int updateBugType(@Param("bugType") BugType bugType, @Param("oldbugType") String oldbugType);
     int deleteBugTypeById(@Param("bugTypId") int bugTypId);
     BugType getBugTypeById(@Param("bugTypeId") int bugTypeId);
-    List<BugType> getBugTypeList();
+    List<BugType> getBugTypeListPage();
     int getBugTypeSize();
 }

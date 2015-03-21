@@ -11,7 +11,6 @@ public class BugContent {
     private String bugCode;        //项目或者练习中的错误代码
     private int bugTypeId;
     private int bugSolutionId;
-
     public String getConsoleError() {
         return consoleError;
     }

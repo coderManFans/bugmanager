@@ -17,7 +17,7 @@
     <select id="getBugTypeById"  resultType="cn.com.bugmanger.tag.model.BugType">
         select * from t_bugtype WHERE bug_typeid = #{bugTypeId}
     </select>
-    <select id="getBugTypeList" resultType="cn.com.bugmanger.tag.model.BugType">
+    <select id="getBugTypeListPage" resultType="cn.com.bugmanger.tag.model.BugType">
         SELECT  * from t_bugtype
     </select>
     <select id="getBugTypeSize" resultType="int">

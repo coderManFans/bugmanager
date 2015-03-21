@@ -12,6 +12,7 @@ import java.util.List;
 @mybatisRepository
 public interface BugContentDao {
 
+
     public  int addBugContent(@Param("bugContent") BugContent  bugContent);
     public  int updateBugContent(@Param("bugContent") BugContent bugContent, @Param("bugContentId") int bugContentId);
     public  int deleteBugContentById(@Param("bugContentId") int bugContentId);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanger.bugcontent.dao.BugContentDao">
+    <insert id="addBugContent">
+        insert into t_bugcontent (bug_reason,console_error,bug_code,bug_typeid,bug_solutionid)
+         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.bugTypeId},#{bugContent.bugSolutionId})
+    </insert>
+    <select id="getBugContentSize" resultType="int">
+        select count(*) from t_bugcontent
+    </select>
+    <update id="updateBugContent">
+        update t_bugcontent set bug_reason=#{bugContent.bugReason},console_error = #{bugContent.consoleError},
+        bug_code=#{bugContent.bugCode},bug_typeid=#{bugContent.bug_typeid},bug_solutionid=#{bugContent.bugSolutionId}
+        where bug_contentid = #{bugContentId}
+    </update>
+    <select id="getBugContentList" resultType="cn.com.bugmanger.bugcontent.model.BugContent">
+          SELECT  * FROM  t_bugcontent
+    </select>
+    <delete id="deleteBugContentById" >
+          DELETE  from t_bugcontent where bug_contentid=#{bugContentId}
+    </delete>
+    <select id="getBugContentById" resultType="cn.com.bugmanger.bugcontent.model.BugContent">
+          select * from t_bugcontent where bug_contentid=#{bugContentId}
+    </select>
+</mapper>
