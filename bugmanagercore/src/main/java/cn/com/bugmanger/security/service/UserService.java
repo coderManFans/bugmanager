@@ -15,7 +15,6 @@ public class UserService {
     @Autowired
     private UserDao  userDao;
 
-
     private User getUserById(final  int userId){
         return userDao.getUserById(userId);
     }
@@ -25,7 +24,7 @@ public class UserService {
     }
 
     private List<User> getListUser(){
-        List<User>  userList = userDao.getListUser();
+        List<User>  userList = userDao.getUserList();
         return   userList == null ? null : userList ;
     }
 

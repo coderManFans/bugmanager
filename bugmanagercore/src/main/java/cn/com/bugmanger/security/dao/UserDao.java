@@ -12,12 +12,13 @@ import java.util.List;
 @mybatisRepository
 public interface UserDao {
 
-    /**
-     * @param userId
-     * @return
-     */
-   User getUserById(@Param("userId") int userId);
-   List<User> getListUser();
-   int  deleteUserById(int userId);
-   int  updateUser(User user);
+        /**
+         * @param userId
+         * @return
+         */
+       User getUserById(@Param("userId") int userId);
+       List<User> getUserList();
+       int  deleteUserById(@Param("userId") int userId);
+       int  updateUser(@Param("user") User user);
+
 }

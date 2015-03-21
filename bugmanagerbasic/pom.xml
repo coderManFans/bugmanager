@@ -19,9 +19,12 @@
         <logback.version>1.1.2</logback.version>
         <slf4j.version>1.7.6</slf4j.version>
         <poi.version>3.9</poi.version>
-<!--
-        <shiro.version>1.2.3</shiro.version>
--->
+        <lucene.version>5.0.0</lucene.version>
+        <solr.version>5.0.0</solr.version>
+
+        <!--
+                <shiro.version>1.2.3</shiro.version>
+        -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -231,6 +234,7 @@
             <scope>runtime</scope>
         </dependency>
         <!-- AOP end -->
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -241,8 +245,6 @@
             <artifactId>javax.servlet.jsp-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
-
 
     </dependencies>
 </project>
