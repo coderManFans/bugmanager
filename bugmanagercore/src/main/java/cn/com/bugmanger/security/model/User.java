@@ -11,6 +11,7 @@ public class User implements Serializable{
     private String userState;
     private int    userId;
     private String email;
+    private boolean remenberMe;
 
     public User(){
 
@@ -56,5 +57,13 @@ public class User implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isRemenberMe() {
+        return remenberMe;
+    }
+
+    public void setRemenberMe(boolean remenberMe) {
+        this.remenberMe = remenberMe;
     }
 }

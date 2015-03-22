@@ -10,10 +10,10 @@
 
     <update id="updateBugType" >
         UPDATE  t_bugtype set
-        <if test="bugType != null">
+        <if test="bugType.bugType != null and bugType.bugType != ''">
             bug_type=#{bugType.bugType},
         </if>
-        <if test="bugTypeIntroduce">
+        <if test="bugType.bugTypeIntroduce != nulll and bugType.bugIntroduce != ''">
             bug_introduce = #{bugType.bugTypeIntroduce},
         </if>
          where bug_type=#{oldbugType}
