@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanger.security.dao.UserDao">
 
+    <insert id="addUser">
+        insert into t_buguser(user_name,user_pass,user_state,email)
+          values(#{user.userName},#{user.userPass},#{user.userState},#{user.email})
+    </insert>
+
     <select  id="getUserById" resultType="cn.com.bugmanger.security.model.User" parameterType="int">
         SELECT * from  t_buguser  WHERE  user_id = #{userId}
     </select>
@@ -9,9 +14,11 @@
     <select id="getUserList" resultType="cn.com.bugmanger.security.model.User">
           select * from t_buguser
     </select>
+
     <delete id="deleteUserById">
           DELETE  FROM  t_buguser WHERE user_id=#{userId}
     </delete>
+
     <update id="updateUser" >
         UPDATE  t_buguser SET
         <if test="user.userName!= null and user.userName != ''">
@@ -29,18 +36,20 @@
           SELECT  * FROM  t_buguser
           WHERE 1=1
           <if test="user.userName != null and user.userName != ''">
-                AND  user_name=#{user.userName},
+                AND  user_name LIKE  concat('%',#{user.userName},'%')
           </if>
-          <if test="user.email != null and user.email!=''">
-              AND   email = #{user.email},
+          <if test="user.email != null and user.email !=''">
+              AND   email LIKE  concat('%',#{user.email},'%')
           </if>
           <if test="user.userState != null and user.userState !=''">
-                AND user_state = #{user.userState}
+                AND user_state LIKE concat('%', #{user.userState},'%')
         </if>
     </select>
+
     <select id="getUserCount" resultType="int">
         SELECT count(*) FROM  t_buguser
     </select>
+
     <update id="updateUserState">
         UPDATE  t_buguser SET
         <if test="user.userState != null and user.userState != ''">
