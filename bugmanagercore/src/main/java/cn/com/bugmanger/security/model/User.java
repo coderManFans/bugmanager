@@ -1,11 +1,13 @@
 package cn.com.bugmanger.security.model;
 
+import cn.com.bugmanger.common.ajax.DataTablesPage;
+
 import java.io.Serializable;
 
 /**
  * Created by fcs on 2015/3/19.
  */
-public class User implements Serializable{
+public class User extends DataTablesPage{
     private String userName;
     private String userPass;
     private String userState;

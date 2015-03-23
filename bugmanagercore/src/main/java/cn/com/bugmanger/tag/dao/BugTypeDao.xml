@@ -16,7 +16,7 @@
         <if test="bugType.bugTypeIntroduce != nulll and bugType.bugIntroduce != ''">
             bug_introduce = #{bugType.bugTypeIntroduce},
         </if>
-         where bug_type=#{oldbugType}
+         where bug_typeid = #{bugType.bugTypeId}
     </update>
     <delete id="deleteBugTypeById" >
         DELETE  from t_bugtype WHERE  bug_typeid = #{bugTypId}

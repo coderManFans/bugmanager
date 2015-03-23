@@ -13,7 +13,7 @@ import java.util.List;
 @mybatisRepository
 public interface BugTypeDao {
     int addBugType(@Param("bugType") BugType  bugType);
-    int updateBugType(@Param("bugType") BugType bugType, @Param("oldbugType") String oldbugType);
+    int updateBugType(@Param("bugType") BugType bugType);
     int deleteBugTypeById(@Param("bugTypId") int bugTypId);
     BugType getBugTypeById(@Param("bugTypeId") int bugTypeId);
     List<BugType> getBugTypeListPage(@Param("bugType") BugType bugType);

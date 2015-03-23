@@ -1,11 +1,13 @@
 package cn.com.bugmanger.tag.model;
 
+import cn.com.bugmanger.common.ajax.DataTablesPage;
+
 import java.util.List;
 
 /**
  * Created by fcs on 2015/3/19.
  */
-public class BugType {
+public class BugType extends DataTablesPage{
     private int bugTypeId;
     private String bugType;
     private String bugTypeIntroduce;

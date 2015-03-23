@@ -1,9 +1,11 @@
 package cn.com.bugmanger.bugcontent.model;
 
+import cn.com.bugmanger.common.ajax.DataTablesPage;
+
 /**
  * Created by fcs on 2015/3/21.
  */
-public class BugAnswer {
+public class BugAnswer extends DataTablesPage{
     private int bugAnswerId;
     private String answerInfo;
     private String answerTime;

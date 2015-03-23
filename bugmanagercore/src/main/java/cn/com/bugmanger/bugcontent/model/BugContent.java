@@ -1,9 +1,11 @@
 package cn.com.bugmanger.bugcontent.model;
+import cn.com.bugmanger.common.ajax.DataTablesPage;
+
 import  java.util.List;
 /**
  * Created by fcs on 2015/3/20.
  */
-public class BugContent {
+public class BugContent extends DataTablesPage{
 
     private int bugContentId;
     private String bugReason;      //错误描述

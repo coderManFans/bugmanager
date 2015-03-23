@@ -1,9 +1,11 @@
 package cn.com.bugmanger.security.model;
+import cn.com.bugmanger.common.ajax.DataTablesPage;
+
 import java.util.List;
 /**
  * Created by fcs on 2015/3/21.
  */
-public class Role {
+public class Role extends DataTablesPage{
     private int roleId;
     private String roleName;   //目前只有超级管理员和系统用户
     private String description;

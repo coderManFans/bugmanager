@@ -1,5 +1,6 @@
 package cn.com.bugmanger.tag.service;
 
+import cn.com.bugmanger.constant.Constant;
 import cn.com.bugmanger.tag.dao.BugTypeDao;
 import cn.com.bugmanger.tag.model.BugType;
 import cn.com.bugmanger.tag.model.TagType;
@@ -22,18 +23,17 @@ public class BugTypeService {
      */
     public   boolean  addBugType(BugType  bugType){
         int affectNum = bugTypeDao.addBugType(bugType);
-        return affectNum == 1;
+        return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
     /**
      * @param bugType
-     * @param oldBugtype
      * @return
      */
-    public  boolean updateBugType(BugType bugType,String oldBugtype){
+    public  boolean updateBugType(BugType bugType){
 
-        int affectNum = bugTypeDao.updateBugType(bugType,oldBugtype);
-        return  affectNum == 1;
+        int affectNum = bugTypeDao.updateBugType(bugType);
+        return  Constant.AFFECTED_LINE_1 == affectNum;
     }
 
     /**
@@ -44,7 +44,7 @@ public class BugTypeService {
         return affectNum == 1;
     }
 
-    public  List<BugType> getBugTypeList(BugType bugType){
+    public  List<BugType> getBugTypeListPage(BugType bugType){
         return bugTypeDao.getBugTypeListPage(bugType);
     }
 
