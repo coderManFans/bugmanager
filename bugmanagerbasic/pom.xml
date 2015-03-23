@@ -21,16 +21,14 @@
         <poi.version>3.9</poi.version>
         <lucene.version>5.0.0</lucene.version>
         <solr.version>5.0.0</solr.version>
+        <shiro.version>1.2.3</shiro.version>
 
-        <!--
-                <shiro.version>1.2.3</shiro.version>
-        -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
         <!-- shiro相关-->
-      <!--  <dependency>
+       <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-core</artifactId>
             <version>${shiro.version}</version>
@@ -44,7 +42,7 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-ehcache</artifactId>
             <version>${shiro.version}</version>
-        </dependency>-->
+        </dependency>
         <!-- ehcache -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
