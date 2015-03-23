@@ -7,7 +7,8 @@
     </insert>
 
     <insert id="addBugContentNoAnswer">
-
+        insert into t_bugcontent (bug_reason,console_error,bug_code,bug_typeid)
+         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.bugTypeId})
     </insert>
 
 

@@ -25,6 +25,16 @@ public class BugContentService {
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
+
+    /**
+     * @param bugContent
+     * @return
+     */
+    public boolean addBugContentWithNoAnswer(BugContent bugContent){
+        int affectNum = bugContentDao.addBugContentNoAnswer(bugContent);
+        return Constant.AFFECTED_LINE_1 == affectNum;
+    }
+
     /**
      * @param bugContent
      * @return

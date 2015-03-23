@@ -27,9 +27,9 @@ public class BugAnswerService {
      * @param bugAnswerId
      * @return
      */
-    public int deleteBugAnswer(int bugAnswerId){
-        return   bugAnswerDao.deleteAnswerById(bugAnswerId);
-
+    public boolean deleteBugAnswer(int bugAnswerId){
+        int affectNum = bugAnswerDao.deleteAnswerById(bugAnswerId);
+        return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
     /**
