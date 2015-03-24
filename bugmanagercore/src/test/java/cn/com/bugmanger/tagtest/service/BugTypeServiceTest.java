@@ -47,7 +47,7 @@ public class BugTypeServiceTest extends SpringTransactionalTestCase {
         BugType  bugType = new BugType();
         bugType.setBugType("运行时错误");
         bugType.setBugTypeIntroduce("运行韩版");
-        boolean b = bugTypeService.updateBugType(bugType,"编译错误");
+        boolean b = bugTypeService.updateBugType(bugType);
         bugType = bugTypeService.getBugTypeById(1);
         System.out.println(bugType.getBugType().toString()+"---");
     }
@@ -62,7 +62,7 @@ public class BugTypeServiceTest extends SpringTransactionalTestCase {
     @Test
     public void testGetList(){
         BugType bugType = getBugType();
-        List<BugType> list = bugTypeService.getBugTypeList(bugType);
+        List<BugType> list = bugTypeService.getBugTypeListPage(bugType);
         assertTrue(list.size() == 1);
     }
 }

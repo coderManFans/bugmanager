@@ -22,6 +22,7 @@
         <lucene.version>5.0.0</lucene.version>
         <solr.version>5.0.0</solr.version>
         <shiro.version>1.2.3</shiro.version>
+        <fastjson.version>1.2.4</fastjson.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -124,6 +125,14 @@
             <version>${jackson.version}</version>
         </dependency>
         <!-- JSON end -->
+
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>cglib</groupId>

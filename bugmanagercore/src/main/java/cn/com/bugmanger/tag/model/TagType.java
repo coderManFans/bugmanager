@@ -12,6 +12,19 @@ public class TagType extends DataTablesPage{
     private String tagName;
     private List<BugType> bugTypeList;
 
+
+    public TagType() {
+    }
+
+    public TagType(int tagId) {
+        this.tagId = tagId;
+    }
+
+    public static TagType getInstanceOfTest(){
+        return new TagType();
+    }
+
+
     public int getTagId() {
         return tagId;
     }
