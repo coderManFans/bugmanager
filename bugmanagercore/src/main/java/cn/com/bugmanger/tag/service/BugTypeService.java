@@ -12,16 +12,21 @@ import java.util.List;
 /**
  * Created by fcs on 2015/3/19.
  */
-@Service("bugTypeService")
+@Service
 public class BugTypeService {
+
     @Autowired
     private BugTypeDao bugTypeDao;
+
+    public void setBugTypeDao(BugTypeDao bugTypeDao) {
+        this.bugTypeDao = bugTypeDao;
+    }
 
     /**
      * @param bugType
      * @return
      */
-    public   boolean  addBugType(BugType  bugType){
+    public   boolean  addBugType(BugType bugType){
         int affectNum = bugTypeDao.addBugType(bugType);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
@@ -44,7 +49,7 @@ public class BugTypeService {
         return affectNum == 1;
     }
 
-    public  List<BugType> getBugTypeListPage(BugType bugType){
+    public List<BugType> getBugTypeListPage(BugType bugType){
         return bugTypeDao.getBugTypeListPage(bugType);
     }
 

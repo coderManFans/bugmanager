@@ -8,10 +8,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>bugmanagerbasic</artifactId>
-    <packaging>jar</packaging>
 
     <name>bugmanagerbasic</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <!--注意没有添加shiro额版本号-->
@@ -218,11 +216,6 @@
             <version>1.4.7</version>
         </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

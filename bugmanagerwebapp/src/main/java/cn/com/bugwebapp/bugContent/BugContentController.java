@@ -22,6 +22,7 @@ import java.util.List;
 @RequestMapping("/buginfo/bugcontent")
 public class BugContentController {
     @Autowired
+
     private BugContentService  bugContentService;
 
     /**

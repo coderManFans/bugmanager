@@ -7,6 +7,7 @@ import cn.com.bugmanger.common.ajax.DataTablesPage;
 import cn.com.bugmanger.common.ajax.DataTablesResponse;
 import cn.com.bugmanger.constant.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ import java.util.List;
 @RequestMapping("/bug/buganswer")
 public class BugAnswerController {
     @Autowired
-    private BugAnswerService  bugAnswerService;
+    protected BugAnswerService  bugAnswerService;
 
     @RequestMapping(method = {RequestMethod.GET})
     public String bugAnswer(){
@@ -33,14 +34,14 @@ public class BugAnswerController {
 
     /**
      * @param bugId
-     * @param request
+     * @param bugAnswer
      * @return
      */
-    @RequestMapping(method = {RequestMethod.POST})
+    @RequestMapping(value = "/{bugId}",method = {RequestMethod.POST})
     @ResponseBody
-    public DataTablesResponse  getBugAnswerListPage(@PathVariable @Valid int bugId,HttpServletRequest  request){
+    public DataTablesResponse  getBugAnswerListPage(@PathVariable @Valid int bugId,@RequestBody BugAnswer  bugAnswer){
         List<BugAnswer>  bugAnswerList = bugAnswerService.getBugAnswerList(bugId);
-        return  new DataTablesResponse(null,bugAnswerList);
+        return  new DataTablesResponse(bugAnswer,bugAnswerList);
     }
 
     /**
@@ -50,6 +51,7 @@ public class BugAnswerController {
      * @return
      */
     @RequestMapping(method = {RequestMethod.POST})
+    @ResponseBody
     public AjaxResponse addBugAnswer(@RequestBody  @Valid BugAnswer bugAnswer,BindingResult  result,HttpServletRequest request){
         if(result.hasErrors()){
             return new AjaxResponse(result);
@@ -59,6 +61,7 @@ public class BugAnswerController {
 
 
     @RequestMapping(method = {RequestMethod.PUT})
+    @ResponseBody
     public AjaxResponse updateBugAnswer(@RequestBody  @Valid BugAnswer  bugAnswer,BindingResult result ,HttpServletRequest request){
         if(result.hasErrors()){
             return  new AjaxResponse(result);
@@ -68,7 +71,7 @@ public class BugAnswerController {
 
     @RequestMapping(value = "/{bugAnswerId}",method = {RequestMethod.DELETE})
     @ResponseBody
-    public AjaxResponse  deleteBugAnswer(@PathVariable  int bugAnswerId){
+    public AjaxResponse  deleteBugAnswer(@PathVariable @Valid int bugAnswerId){
         return AjaxResponse.getInstanceByResult(bugAnswerService.deleteBugAnswer(bugAnswerId));
     }
 }

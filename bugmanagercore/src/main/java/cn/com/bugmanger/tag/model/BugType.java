@@ -13,6 +13,23 @@ public class BugType extends DataTablesPage{
     private String bugTypeIntroduce;
     private List<TagType> tagTypeList;
 
+    public BugType(int bugTypeId) {
+        this.bugTypeId = bugTypeId;
+    }
+
+    public BugType(String bugType, String bugTypeIntroduce) {
+        this.bugType = bugType;
+        this.bugTypeIntroduce = bugTypeIntroduce;
+    }
+
+    public BugType() {
+    }
+
+    public static BugType  getBugTypeTestOfInstance(){
+        return new BugType("_bugTypename","_bugTypeIn");
+    }
+
+
     public int getBugTypeId() {
         return bugTypeId;
     }

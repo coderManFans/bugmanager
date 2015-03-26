@@ -5,21 +5,22 @@ import cn.com.bugmanger.bugcontent.model.BugAnswer;
 import cn.com.bugmanger.constant.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 import java.util.List;
 /**
  * Created by fcs on 2015/3/21.
  */
-@Service("bugAnswerService")
+@Service
 public class BugAnswerService {
     @Autowired
     private BugAnswerDao bugAnswerDao;
-
     /**
      * @param bugAnswer
      * @return
      */
     public boolean addBugAnswer(BugAnswer bugAnswer){
-       int affectNum = bugAnswerDao.addAnswer(bugAnswer);
+        int affectNum = bugAnswerDao.addAnswer(bugAnswer);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
@@ -46,12 +47,11 @@ public class BugAnswerService {
      */
     public List<BugAnswer> getBugAnswerList(int bugContentId){
         List<BugAnswer>  bugAnswerList = bugAnswerDao.getAnswerListByBugId(bugContentId);
-       if(bugAnswerList != null && bugAnswerList.size() == 0){
-           return bugAnswerList;
-       }
+        if(bugAnswerList != null && bugAnswerList.size() == 0){
+            return bugAnswerList;
+        }
         return  null;
     }
-
 
 
 }

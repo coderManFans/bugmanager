@@ -15,6 +15,30 @@ public class BugContent extends DataTablesPage{
     private int bugSolutionId;
     private List<BugAnswer>  bugAnswerList;
 
+    public BugContent() {
+    }
+
+    public BugContent(String bugReason, String consoleError, String bugCode, int bugTypeId, int bugSolutionId) {
+        this.bugReason = bugReason;
+        this.consoleError = consoleError;
+        this.bugCode = bugCode;
+        this.bugTypeId = bugTypeId;
+        this.bugSolutionId = bugSolutionId;
+    }
+
+
+    public BugContent(String bugReason, String consoleError, String bugCode, int bugTypeId) {
+        this.bugReason = bugReason;
+        this.consoleError = consoleError;
+        this.bugCode = bugCode;
+        this.bugTypeId = bugTypeId;
+    }
+    public static BugContent  getBugcontentTestOfInstance(){
+        return new BugContent("_bugreason","consoleError","_bugconde",1);
+    }
+
+
+
 
     public int getBugContentId() {
         return bugContentId;
@@ -70,5 +94,18 @@ public class BugContent extends DataTablesPage{
 
     public void setBugAnswerList(List<BugAnswer> bugAnswerList) {
         this.bugAnswerList = bugAnswerList;
+    }
+
+    @Override
+    public String toString() {
+        return "BugContent{" +
+                "bugContentId=" + bugContentId +
+                ", bugReason='" + bugReason + '\'' +
+                ", consoleError='" + consoleError + '\'' +
+                ", bugCode='" + bugCode + '\'' +
+                ", bugTypeId=" + bugTypeId +
+                ", bugSolutionId=" + bugSolutionId +
+                ", bugAnswerList=" + bugAnswerList +
+                '}';
     }
 }

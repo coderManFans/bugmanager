@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by fcs on 2015/3/23.
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("security/user")
 public class UserController {
     private UserService userService;
 

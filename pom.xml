@@ -13,8 +13,10 @@
     <packaging>pom</packaging>
 
   <name>bugmanager</name>
-  <url>http://maven.apache.org</url>
-
+    <organization>
+        <name>threegrand</name>
+        <url>http://www.siruisheng.com/</url>
+    </organization>
   <properties>
       <war.name>bugmanager</war.name>
       <ourdir>${project.basedir}</ourdir>
@@ -80,6 +82,7 @@
               <optional>true</optional>
           </dependency>
 
+          <!--spring 测试相关包-->
           <dependency>
               <groupId>org.springframework</groupId>
               <artifactId>spring-test</artifactId>

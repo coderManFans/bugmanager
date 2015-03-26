@@ -11,20 +11,15 @@ import java.util.List;
 /**
  * Created by fcs on 2015/3/19.
  */
-@Service("userService")
+@Service
 public class UserService {
     @Autowired
-    private UserDao  userDao;
+    private UserDao userDao;
 
-    public  User getUserById(final  int userId){
+    public User getUserById(final  int userId){
         return userDao.getUserById(userId);
     }
 
-
-    /**
-     * @param user
-     * @return
-     */
     public  boolean updateUser(User user){
         int affectNum = userDao.updateUser(user);
         return Constant.AFFECTED_LINE_1 == affectNum;
@@ -33,7 +28,7 @@ public class UserService {
     /**
      * @return
      */
-    public  List<User> getListUser(){
+    public List<User> getListUser(){
         List<User>  userList = userDao.getUserList();
         return   userList == null ? null : userList ;
     }
@@ -60,6 +55,5 @@ public class UserService {
         int affectNum = userDao.addUser(user);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
-
 
 }

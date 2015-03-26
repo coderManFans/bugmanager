@@ -16,12 +16,16 @@ public class TagType extends DataTablesPage{
     public TagType() {
     }
 
+    public TagType(String tagName) {
+        this.tagName = tagName;
+    }
+
     public TagType(int tagId) {
         this.tagId = tagId;
     }
 
     public static TagType getInstanceOfTest(){
-        return new TagType();
+        return new TagType("_tagName");
     }
 
 

@@ -3,8 +3,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
 
-
-    <!-- Invoke 'Generate' action to add tags or functions -->
     <display-name>Archetype Created Web Application</display-name>
 
     <context-param>

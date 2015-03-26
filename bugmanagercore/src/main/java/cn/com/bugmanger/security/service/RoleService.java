@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 /**
  * Created by fcs on 2015/3/21.
  */
-@Service("roleService")
+@Service
 public class RoleService {
+
     @Autowired
     private RoleDao roleDao;
     public  boolean addRole(Role role){
@@ -27,5 +28,4 @@ public class RoleService {
         int affectNum = roleDao.deleteRoleById(roleId);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
-
 }

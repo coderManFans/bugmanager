@@ -6,6 +6,7 @@ import cn.com.bugmanger.constant.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,13 +15,12 @@ import java.util.List;
 @Service("bugContentService")
 public class BugContentService {
     @Autowired
-   private BugContentDao bugContentDao;
-
+    private BugContentDao bugContentDao;
     /**
      * @param bugContent
      * @return
      */
-    public boolean addBugContentWithAnswer(BugContent  bugContent){
+    public boolean addBugContentWithAnswer(BugContent bugContent){
         int affectNum = bugContentDao.addBugContentWithAnswer(bugContent);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
