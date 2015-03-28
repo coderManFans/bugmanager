@@ -22,15 +22,17 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method={RequestMethod.GET})
+   @RequestMapping(method={RequestMethod.GET})
     public String login(){
         return "login";
     }
 
     @RequestMapping(method = {RequestMethod.POST})
-    public String loginPost(User user,RedirectAttributes redirectAttributes,HttpServletRequest request,HttpServletResponse  response){
-        System.out.println("------hello login.jsp-----");
-        return "redirect:login.jsp";
+    public String login(RedirectAttributes redirectAttributes,HttpServletRequest request,HttpServletResponse  response){
+        String username = request.getParameter("userName");
+        String userpass = request.getParameter("password");
+        System.out.println(username+"---"+userpass);
+        return "index";
     }
 
 }
