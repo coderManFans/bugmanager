@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanager.tag.dao.BugTypeDao">
+    <insert id="addBugType" >
+        insert into t_bugtype (bug_type,bug_introduce) VALUES (#{bugType.bugType},#{bugType.bugTypeIntroduce})
+        <selectKey resultType="int" keyProperty="bugTypeId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="updateBugType" >
+        UPDATE  t_bugtype set
+        <if test="bugType.bugType != null and bugType.bugType != ''">
+            bug_type=#{bugType.bugType},
+        </if>
+        <if test="bugType.bugTypeIntroduce != nulll and bugType.bugIntroduce != ''">
+            bug_introduce = #{bugType.bugTypeIntroduce},
+        </if>
+         where bug_typeid = #{bugType.bugTypeId}
+    </update>
+    <delete id="deleteBugTypeById" >
+        DELETE  from t_bugtype WHERE  bug_typeid = #{bugTypId}
+    </delete>
+
+    <select id="getBugTypeById"  resultType="cn.com.bugmanager.tag.model.BugType">
+        select * from t_bugtype WHERE bug_typeid = #{bugTypeId}
+    </select>
+
+    <select id="getBugTypeListPage" resultType="cn.com.bugmanager.tag.model.BugType">
+        SELECT  bug_typeid,bug_type,bug_introduce   from t_bugtype
+         <where>
+             <if test="bugType.bugType != null and bugType.bugType != '' ">
+                AND bugType.bugType LIKE  concat('%',#{bugType.bugType},'%')
+             </if>
+             <if test="bugType.bugIntroduce != null and bugType.bugType != ''">
+                 AND bugType.bugIntroduce LIKE concat('%',#{bugType.bugIntroduce}，'%')
+             </if>
+        </where>
+    </select>
+    <select id="getBugTypeSize" resultType="int">
+        SELECT  count(*) from t_bugtype
+    </select>
+    <select id="getBugTypeList" resultType="cn.com.bugmanager.tag.model.BugType">
+        SELECT  * from t_bugtype
+    </select>
+
+</mapper>

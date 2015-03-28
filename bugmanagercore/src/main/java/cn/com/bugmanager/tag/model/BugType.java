@@ -1,0 +1,64 @@
+package cn.com.bugmanager.tag.model;
+
+import cn.com.bugmanager.common.ajax.DataTablesPage;
+
+import java.util.List;
+
+/**
+ * Created by fcs on 2015/3/19.
+ */
+public class BugType extends DataTablesPage{
+    private int bugTypeId;
+    private String bugType;
+    private String bugTypeIntroduce;
+    private List<TagType> tagTypeList;
+
+    public BugType(int bugTypeId) {
+        this.bugTypeId = bugTypeId;
+    }
+
+    public BugType(String bugType, String bugTypeIntroduce) {
+        this.bugType = bugType;
+        this.bugTypeIntroduce = bugTypeIntroduce;
+    }
+
+    public BugType() {
+    }
+
+    public static BugType  getBugTypeTestOfInstance(){
+        return new BugType("_bugTypename","_bugTypeIn");
+    }
+
+
+    public int getBugTypeId() {
+        return bugTypeId;
+    }
+
+    public void setBugTypeId(int bugTypeId) {
+        this.bugTypeId = bugTypeId;
+    }
+
+    public String getBugType() {
+        return bugType;
+    }
+
+    public void setBugType(String bugType) {
+        this.bugType = bugType;
+    }
+
+    public String getBugTypeIntroduce() {
+        return bugTypeIntroduce;
+    }
+
+    public void setBugTypeIntroduce(String bugTypeIntroduce) {
+        this.bugTypeIntroduce = bugTypeIntroduce;
+    }
+
+    public List<TagType> getTagTypeList() {
+        return tagTypeList;
+    }
+
+    public void setTagTypeList(List<TagType> tagTypeList) {
+        this.tagTypeList = tagTypeList;
+    }
+}

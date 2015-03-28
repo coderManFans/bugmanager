@@ -11,7 +11,7 @@
     <description>Spring公共配置</description>
 
     <!-- 使用annotation 自动注册bean,并检查@Required,@Autowired的属性已被注入 -->
-    <context:component-scan base-package="cn.com.bugmanger,cn.com.bugwebapp">
+    <context:component-scan base-package="cn.com.bugmanager,cn.com.bugwebapp">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
@@ -20,7 +20,7 @@
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <aop:config>
-        <aop:pointcut id="serviceTransactionProxy" expression="execution(* cn.com.bugmanger..service.*.*(..))"/>
+        <aop:pointcut id="serviceTransactionProxy" expression="execution(* cn.com.bugmanager..service.*.*(..))"/>
         <aop:advisor pointcut-ref="serviceTransactionProxy" advice-ref="defaultTxAdvice"/>
     </aop:config>
 
@@ -53,7 +53,7 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="cn.com"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory1"/>
-        <property name="annotationClass" value="cn.com.bugmanger.mybatis.annotation.mybatisRepository"/>
+        <property name="annotationClass" value="cn.com.bugmanager.mybatis.annotation.mybatisRepository"/>
     </bean>
 
     <!-- hibernate validator -->
