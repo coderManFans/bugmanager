@@ -64,10 +64,11 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!--国际化资源绑定-->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
           p:basename="ViewMessages">
         <!--开发时将cacheSeconds调整为0，则每次访问springMessage都会更新，不需要重启。-->
-        <property name="cacheSeconds" value="-1"/>
+        <property name="cacheSeconds" value="0"/>
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>

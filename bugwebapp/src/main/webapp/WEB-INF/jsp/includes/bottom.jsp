@@ -12,8 +12,6 @@
 </div>
 <!--end-Footer-part-->
 <script src="<c:url value="/js/jquery.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.ui.custom.js"/>"></script>
 <script src="<c:url value="/js/bootstrap.min.js"/>"></script>
-<script src="<c:url value="/js/maruti.html"/>"></script>
 </body>
 </html>
