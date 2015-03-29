@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import java.util.List;
@@ -27,8 +28,6 @@ import java.util.List;
 public class TagTypeController {
     @Autowired
     private TagTypeService tagTypeService;
-
-
     /**
      * get方式访问的时候默认返回该路径
      * @return
@@ -37,7 +36,7 @@ public class TagTypeController {
     @RequestMapping(method = {RequestMethod.GET})
     public String tagType() throws  Exception{
         System.out.println("----------------hello -----");
-        return  "tag/tagtype";
+        return  "bugtag/tagtype";
     }
 
     /**
@@ -53,22 +52,12 @@ public class TagTypeController {
     }
 
 
-    /**
-     * 添加方法的时候要注意，模型对象上加上@RequestBody @valid两个注解描述，进行模型绑定
-     * @param tagType
-     * @param result
-     * @param request
-     * @return
-     */
+
     @RequestMapping(method = {RequestMethod.POST})
-    @ResponseBody
-    public AjaxResponse addTagType(@RequestBody @Valid TagType tagType,BindingResult  result,HttpServletRequest request){
-        if(result.hasErrors()){
-            System.out.println("00000000000");
-            return new AjaxResponse(result);
-        }
-        System.out.println("---------");
-        return AjaxResponse.getInstanceByResult( tagTypeService.addTagType(tagType));
+    public String addTagType(HttpServletRequest request,HttpServletResponse  response){
+       String tag = request.getParameter("tagName");
+        System.out.println(tag+"--------");
+               return  null;
     }
 
     /**

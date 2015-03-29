@@ -65,14 +65,28 @@
     <listener>
         <listener-class>cn.com.bugmanager.common.listener.StartUpListener</listener-class>
     </listener>
+
     <!--该servlet为tomcat,jetty等容器提供，将静态资源映射从/改为资源目录-->
-     <servlet-mapping>
-           <servlet-name>default</servlet-name>
-           <url-pattern>*.css</url-pattern>
-           <url-pattern>*.gif</url-pattern>
-           <url-pattern>*.jpg</url-pattern>
-           <url-pattern>*.js</url-pattern>
-       </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>default</servlet-name>-->
+        <!--<url-pattern>*.css</url-pattern>-->
+        <!--<url-pattern>*.gif</url-pattern>-->
+        <!--<url-pattern>*.jpg</url-pattern>-->
+        <!--<url-pattern>*.js</url-pattern>-->
+        <!--<url-pattern>*.html</url-pattern>-->
+        <!--<url-pattern>*.htm</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/asserts/*</url-pattern>
+        <url-pattern>/static/css/*</url-pattern>
+        <url-pattern>/static/img/*</url-pattern>
+        <url-pattern>/static/js/*</url-pattern>
+        <url-pattern>*.html</url-pattern>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>bugmanagerapp</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -80,11 +94,11 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath*:/spring-mvc.xml</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <load-on-startup>2</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>bugmanagerapp</servlet-name>
-        <url-pattern>*.bug</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 
@@ -93,7 +107,7 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>WEB-INF/jsp/index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

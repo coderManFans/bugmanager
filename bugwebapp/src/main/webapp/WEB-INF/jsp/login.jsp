@@ -1,18 +1,25 @@
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<!--<![endif]-->
 <head>
-    <title>登陆</title>
-    <link href="<c:url value="/static/css/bootstrap.min.css"/>" ref="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap.min.css"/>">
     <script type="application/javascript" src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
+    <script type="application/javascript" src="<c:url value="/static/js/jquery-2.0.0.min.js"/>"></script>
 </head>
 <body>
     <div class="container">
-        <form class="form-horizontal" id="loginform" action="<c:url value="/login.bug"/>" method="post">
+        <form class="form-horizontal" id="loginform" action="<c:url value="/login"/>" method="post">
             <div class="control-group">
                 <label class="control-label" for="inputusername">用户名</label>
-                <div class="controls">
+                <div class="controls ">
                     <input id="inputusername" type="text" name="userName">
                 </div>
             </div>
@@ -32,11 +39,5 @@
             </div>
         </form>
     </div>
-<script type="application/javascript" src="<c:url value="/static/js/system/login.js"/>"></script>
-<script >
-    function loginAction(){
-        login.init();
-    }
-</script>
 </body>
 </html>
