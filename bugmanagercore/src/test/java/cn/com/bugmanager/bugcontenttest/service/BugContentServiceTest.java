@@ -23,9 +23,7 @@ public class BugContentServiceTest extends SpringTransactionalTestCase {
         BugContent bugContent = new BugContent();
         bugContent.setBugCode("_bugcode");
         bugContent.setBugReason("_bugreason");
-        bugContent.setBugTypeId(1);
         bugContent.setConsoleError("_consoleerror");
-        bugContent.setBugSolutionId(1);
         return  bugContent;
     }
     @Test
@@ -52,9 +50,7 @@ public class BugContentServiceTest extends SpringTransactionalTestCase {
     public void testUpdateBugContent(){
         BugContent  bugContent = new BugContent();
         bugContent.setBugReason("reason");
-        bugContent.setBugSolutionId(3);
         bugContent.setConsoleError("console_error");
-        bugContent.setBugTypeId(2);
         bugContent.setBugContentId(1);
         bugContent.setBugCode("bug_code");
         bugContentService.updateBugContent(bugContent);

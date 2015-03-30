@@ -55,9 +55,12 @@ public class TagTypeController {
 
     @RequestMapping(method = {RequestMethod.POST})
     public String addTagType(HttpServletRequest request,HttpServletResponse  response){
-       String tag = request.getParameter("tagName");
-        System.out.println(tag+"--------");
-               return  null;
+        String tagName = request.getParameter("tagName");
+        TagType tagType = new TagType();
+        tagType.setTagName(tagName);
+        tagTypeService.addTagType(tagType);
+
+        return "/index";
     }
 
     /**

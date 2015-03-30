@@ -18,16 +18,17 @@
     <div class="navbar-fixed-form" id="tagform">
         <form class="form-actions" action="<c:url value="/tag/tagtype"/>" method="post">
                 标签名称:<input type="text" name="tagName" id="tagName"><br />
-            <button id="btnsubmit" class="btn btn-success" type="submit" value="提交" ></button>
+            <button id="btnsubmit" onclick="" class="btn btn-success" type="submit" value="提交" ></button>
         </form>
     </div>
 </div>
 <script  type="application/javascript" src="<c:url value="/static/js/jquery.min.js"/> "></script>
+<script type="application/javascript" src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 <script type="application/javascript" src="<c:url value="/static/js/system/tag.js"/>"></script>
-<script type="application/javascript" src="<c:url value="/static/js/bootstrap.min.js"/>"></script><%--
-<script type="application/javascript">
+
+<%--<script type="application/javascript">
     $(function(){
-        submit.init();
+        submitForm.init();
     });
 </script>--%>
 </body>

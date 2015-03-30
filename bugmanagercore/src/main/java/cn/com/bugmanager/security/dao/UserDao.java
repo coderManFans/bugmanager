@@ -12,7 +12,6 @@ import java.util.List;
 @mybatisRepository
 public interface UserDao {
 
-
     User getUserById(@Param("userId") int userId);
     List<User> getUserList();
     int  deleteUserById(@Param("userId") int userId);

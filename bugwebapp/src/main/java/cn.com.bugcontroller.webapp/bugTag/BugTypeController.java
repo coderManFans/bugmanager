@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class BugTypeController {
 
     @RequestMapping(method = {RequestMethod.GET})
     public String bugType() throws  Exception{
-        return "tag/bugtype";
+        return "bugtag/bugtype";
     }
 
     @RequestMapping("/getBugTypeListPage")
@@ -34,19 +35,15 @@ public class BugTypeController {
         return new DataTablesPage();
     }
 
-    /**
-     * @param bugType
-     * @param result
-     * @param request
-     * @return
-     */
-    @RequestMapping(method = {RequestMethod.POST})
-    @ResponseBody
-    public AjaxResponse  addBugType(@RequestBody @Valid BugType bugType,BindingResult result,HttpServletRequest request){
-        if(result.hasErrors()){
-            return new AjaxResponse(result);
-        }
-        return AjaxResponse.getInstanceByResult(bugTypeService.addBugType(bugType));
+    @RequestMapping(value = {"/add"},method = {RequestMethod.POST})
+    public String  addBugType(HttpServletRequest request,HttpServletResponse response){
+        String  bugType  = request.getParameter("bugType");
+        String bugTypeIntroduce = request.getParameter("bugTypeIntroduce");
+        BugType  bugType1 = new BugType();
+        bugType1.setBugType(bugType);
+        bugType1.setBugTypeIntroduce(bugTypeIntroduce);
+        bugTypeService.addBugType(bugType1);
+        return "/index";
     }
 
     @RequestMapping(method = {RequestMethod.PUT})

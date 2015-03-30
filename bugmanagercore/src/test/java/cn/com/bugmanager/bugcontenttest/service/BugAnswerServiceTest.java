@@ -40,9 +40,7 @@ public class BugAnswerServiceTest extends SpringTransactionalTestCase{
         BugContent bugContent = new BugContent();
         bugContent.setBugCode("bug_code");
         bugContent.setConsoleError("console_error");
-        bugContent.setBugTypeId(1);
         bugContent.setBugReason("bug_reason");
-        bugContent.setBugSolutionId(1);
         bugContent.setBugContentId(1);
         return  bugContent;
     }
