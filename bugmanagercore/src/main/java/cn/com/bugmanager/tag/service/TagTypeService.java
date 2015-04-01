@@ -42,6 +42,8 @@ public class TagTypeService {
         return tagTypeDao.getBugTypeListByTagId(tagId);
     }
 
+
+
     /**
      * @param tagId
      * @return TagType
@@ -55,4 +57,7 @@ public class TagTypeService {
         return tagTypeDao.getTagTypeSize();
     }
 
+    public List<TagType> getTagTypeList(){
+        return tagTypeDao.getTagTypeList();
+    }
 }

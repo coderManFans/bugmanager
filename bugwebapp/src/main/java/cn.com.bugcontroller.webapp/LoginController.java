@@ -27,7 +27,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping(method = {RequestMethod.POST})
+    @RequestMapping(value={"/tologin"},method = {RequestMethod.POST})
     public String login(RedirectAttributes redirectAttributes,HttpServletRequest request,HttpServletResponse  response){
         String username = request.getParameter("userName");
         String userpass = request.getParameter("password");

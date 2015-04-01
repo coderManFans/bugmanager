@@ -29,7 +29,7 @@ public class BugContentController {
      */
     @RequestMapping(method = {RequestMethod.GET})
     public String bugContent(){
-        return "/buginfo/bugcontent";
+        return "bugcontent/bugcontent";
     }
 
 
@@ -49,7 +49,7 @@ public class BugContentController {
      * @param request
      * @return
      */
-    @RequestMapping(method = {RequestMethod.POST})
+    @RequestMapping(value="/add",method = {RequestMethod.POST})
     @ResponseBody
     public AjaxResponse addBugContentNoAnwser(@RequestBody @Valid BugContent  bugContent, BindingResult result,HttpServletRequest  request){
         if(result.hasErrors()){

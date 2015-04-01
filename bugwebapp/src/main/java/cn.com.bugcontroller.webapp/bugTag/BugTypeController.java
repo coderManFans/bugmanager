@@ -35,6 +35,17 @@ public class BugTypeController {
         return new DataTablesPage();
     }
 
+
+    @RequestMapping("/getBugTypeListJson")
+    @ResponseBody
+    public List<BugType>  getBugTypeListJson(){
+        List <BugType>  bugTypeList = bugTypeService.getBugTypeList();
+        System.out.println(bugTypeList.size()+"----");
+        return bugTypeList;
+    }
+
+
+
     @RequestMapping(value = {"/add"},method = {RequestMethod.POST})
     public String  addBugType(HttpServletRequest request,HttpServletResponse response){
         String  bugType  = request.getParameter("bugType");

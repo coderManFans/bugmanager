@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanager.bugcontent.dao.BugContentDao">
     <insert id="addBugContentWithAnswer">
-        insert into t_bugcontent (bug_reason,console_error,bug_code,bug_typeid,bug_solutionid)
-         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.bugTypeId},#{bugContent.bugSolutionId})
+        insert into t_bugcontent (bug_reason,console_error,bug_code,has_solved)
+         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved})
     </insert>
 
     <insert id="addBugContentNoAnswer">
-        insert into t_bugcontent (bug_reason,console_error,bug_code,bug_typeid)
-         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.bugTypeId})
+        insert into t_bugcontent (bug_reason,console_error,bug_code,has_solved)
+         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.has_solved})
     </insert>
 
 
@@ -17,7 +17,7 @@
     </select>
     <update id="updateBugContent">
         update t_bugcontent set bug_reason=#{bugContent.bugReason},console_error = #{bugContent.consoleError},
-        bug_code=#{bugContent.bugCode},bug_typeid=#{bugContent.bugTypeId},bug_solutionid=#{bugContent.bugSolutionId}
+        bug_code=#{bugContent.bugCode}
         where bug_contentid = #{bugContent.bugContentId}
     </update>
     <select id="getBugContentList" resultType="cn.com.bugmanager.bugcontent.model.BugContent">

@@ -60,4 +60,10 @@ public class BugTypeService {
     public BugType  getBugTypeById(int bugTypeId){
         return  bugTypeDao.getBugTypeById(bugTypeId);
     }
+
+    public List<BugType> getBugTypeList(){
+        List<BugType> bugTypeList = bugTypeDao.getBugTypeList();
+        return bugTypeList;
+    }
+
 }
