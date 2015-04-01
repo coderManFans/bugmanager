@@ -16,13 +16,13 @@
 <body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <img src="media/image/logo-big.png" alt="" />
+    <img src="<c:url value="/static/image/logo-big.png"/>" alt="登陆logo" />
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form class="form-vertical login-form" action="index.html">
+    <form class="form-vertical login-form" action="<c:url value="/login/tologin"/>"  method="post">
         <h3 class="form-title">Login to your account</h3>
         <div class="alert alert-error hide">
             <button class="close" data-dismiss="alert"></button>
@@ -153,33 +153,9 @@
     <!-- END REGISTRATION FORM -->
 </div>
 <!-- END LOGIN -->
-<!-- BEGIN COPYRIGHT -->
-<div class="copyright">
-    2013 &copy; Metronic. Admin Dashboard Template.
-</div>
-<!-- END COPYRIGHT -->
-<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-<!-- BEGIN CORE PLUGINS -->
-<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-<script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
-<!--[if lt IE 9]>
-<script src="media/js/excanvas.min.js"></script>
-<script src="media/js/respond.min.js"></script>
-<![endif]-->
-<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>
-<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
-<script src="media/js/jquery.uniform.min.js" type="text/javascript" ></script>
-<!-- END CORE PLUGINS -->
-<!-- BEGIN PAGE LEVEL PLUGINS -->
-<script src="media/js/jquery.validate.min.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL PLUGINS -->
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="media/js/app.js" type="text/javascript"></script>
-<script src="media/js/login.js" type="text/javascript"></script>
+<%@include file="../jsp/includes/footer.jsp"%>
+<%@include file="../jsp/includes/bottomscript.jsp"%>
+<script src="<c:url value="/static/js/login.js"/>" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function() {

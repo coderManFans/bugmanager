@@ -1,5 +1,6 @@
 var Login = function () {
-    
+    var basePath = "http://localhost:8089/bugweb/jsp/";
+    var baseControllerPath = "http://localhost:8089/bugweb";
     return {
         //main function to initiate the module
         init: function () {
@@ -48,14 +49,14 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "index.jsp";
+	                window.location.href = baseControllerPath+"/login/tologin";
 	            }
 	        });
 
 	        $('.login-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.login-form').validate().form()) {
-	                    window.location.href = "index.jsp";
+	                    window.location.href = baseControllerPath+"/login/tologin";
 	                }
 	                return false;
 	            }
@@ -98,14 +99,14 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "index.jsp";
+	                window.location.href = basePath+"/login/tologin";
 	            }
 	        });
 
 	        $('.forget-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.forget-form').validate().form()) {
-	                    window.location.href = "index.jsp";
+	                    window.location.href = basePath+"login/tologin";
 	                }
 	                return false;
 	            }
@@ -174,7 +175,7 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "index.jsp";
+	                window.location.href = basePath+"index.jsp";
 	            }
 	        });
 

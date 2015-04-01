@@ -1,10 +1,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<!-- BEGIN COPYRIGHT -->
+<div class="copyright">
+    2013 &copy; Metronic. Admin Dashboard Template.
+</div>
+<!-- END COPYRIGHT -->
 
-</body>
-</html>
