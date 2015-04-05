@@ -1,125 +1,112 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bug类型</title>
-
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap.min.css"/>">
-
-    <link href="<c:url value="/static/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css"/>
-    <link href="<c:url value="/static/css/style-metro.css"/>" rel="stylesheet" type="text/css"/>
-    <link href="<c:url value="/static/css/style.css"/>" rel="stylesheet" type="text/css"/>
-    <link href="<c:url value="/static/css/style-responsive.css"/>" rel="stylesheet" type="text/css"/>
-    <link href="<c:url value="/static/css/default.css"/>" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="<c:url value="/static/css/uniform.default.css"/>" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/chosen.css"/>" />
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/select2_metro.css"/>" />
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/jquery.tagsinput.css"/>" />
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/multi-select-metro.css"/>" />
+    <%@include file="../../jsp/includes/head.jsp" %>
 </head>
 <body>
-<div class="container control-group" >
-    <form class="form-actions form-horizontal" action="<c:url value="/buginfo/bugcontent/add"/>" method="post">
-        <div class="control-group">
+<div class="container" >
+    <form class="form-view form-horizontal" id="submitBugContent" action="<c:url value="/buginfo/bugcontent/add"/>" method="post">
+        <div class="control-group error">
             <label class="control-label">选择错误类型</label>
             <div class="controls">
-                <select id="bugTypeSelect" data-placeholder="Your Favorite Football Teams" class="chosen span6" multiple="multiple" tabindex="6">
-                    <option value=""></option>
-                        <option>Dallas Cowboys</option>
-                        <option>New York Giants</option>
-                        <option>Philadelphia Eagles</option>
-                        <option>Washington Redskins</option>
-                        <option selected>Chicago Bears</option>
-                        <option>Detroit Lions</option>
-                        <option>Green Bay Packers</option>
-                        <option>Minnesota Vikings</option>
+                <select id="bugTypeSelect" name="bugIdList" class="chosen span6" multiple="multiple" tabindex="6">
+                    <c:forEach items="${bugTypeList}" var="bugType">
+                        <option value="${bugType.bugTypeId}">${bugType.bugType}</option>
+                    </c:forEach>
                 </select>
             </div>
         </div>
 
-        <div class="control-group">
+        <div class="control-group error">
             <label class="control-label">选择错误标签</label>
+            <input type="hidden" id="12345">
             <div class="controls">
-                <select id="bugTypeSelect" data-placeholder="Your Favorite Football Teams" class="chosen span6" multiple="multiple" tabindex="6">
-                    <option value=""></option>
-                    <option>Dallas Cowboys</option>
-                    <option>New York Giants</option>
-                    <option>Philadelphia Eagles</option>
-                    <option>Washington Redskins</option>
-                    <option selected>Chicago Bears</option>
-                    <option>Detroit Lions</option>
-                    <option>Green Bay Packers</option>
-                    <option>Minnesota Vikings</option>
+                <select id="tagTypeSelect" name="tagIdList" data-placeholder="the bug tag" class="chosen span6 chzn-select" multiple="multiple" tabindex="6">
+                        <c:forEach items="${tagTypeList}" var="tagType">
+                            <option value="${tagType.tagId}">${tagType.tagName}</option>
+                        </c:forEach>
                 </select>
             </div>
         </div>
 
-        <div class="control-group" id="tagform">
+
+        <div class="control-group error" id="tagform">
             <label  class="control-label"> 错误描述:</label>
-           <textarea name="bugReason" class="form-horizontal" rows="8" placeholder="错误描述"></textarea><br />
+           <textarea name="bugReason" id="bugReasonId" class="form-horizontal" rows="8" placeholder="错误描述"></textarea><br />
         </div>
 
-        <div class="control-group">
+        <div class="control-group error">
             <label  class="control-label"> 出错代码段：</label>
             <div class="controls">
-                <textarea name="bugCode" class="form-horizontal" rows="8" cols="20" placeholder="错误代码段"></textarea><br/>
+                <textarea name="bugCode" id="bugCodeId" class="form-horizontal" rows="8" cols="20" placeholder="错误代码段"></textarea><br/>
             </div>
         </div>
-        <div class="control-group">
+
+        <div class="control-group error">
             <label  class="control-label"> 控制台主要异常:</label>
             <div class="controls">
-                <textarea class="ckeditors" name="consoleError" class="form-horizontal" rows="8" cols="60"></textarea>
+                <textarea class="ckeditors" id="consoleErrorId" name="consoleError" class="form-horizontal" rows="8" cols="60"></textarea>
             </div>
         </div>
-        <div class="control-group">
+
+        <div class="control-group ">
             <label  class="control-label">解决方案：</label>
             <div class="controls">
                 <div data-toggle="buttons-radio" class="btn-group">
                     <button class="btn btn-primary" value="0" name="hasSolved" type="button">没有</button>
-                    <button class="btn btn-primary" value="1" name="hasSolved" type="button">一个</button>
-                    <button class="btn btn-primary" value="1" name="hasSolved" type="button">多个</button>
+                    <button class="btn btn-primary" value="1" name="hasSolved" type="button" data-toggle="modal" data-target="#answerModal">一个</button>
+
                 </div>
             </div>
         </div>
-        <button id="btnsubmit" class="btn btn-success" type="submit" value="提交" ></button>
+
+        <!--modal anwser-->
+        <div class="modal fade" id="answerModal" tabindex="-1" role="dialog" aria-labelledby="answerModalBody"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="true" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="modalAnswerTitle">
+                                添加解决方案
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                           <textarea name="bugAnswer" id="bugAnswerId" class="form-control" rows="3" placeholder="解决方案"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary">提交</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <button type="button" id="submitBtn" class="btn blue pull-right"><i class="m-icon-swapright m-icon-white"></i></button>
     </form>
 </div>
-<script  type="application/javascript" src="<c:url value="/static/js/jquery-2.0.0.min.js"/> "></script>
-<script type="application/javascript" src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
-<script type="application/javascript" src="<c:url value="/static/js/system/bugcontent/bugcontent.js"/>"></script>
-
-<script src="<c:url value="/static/js/jquery-migrate-1.2.1.min.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/static/js/jquery-ui-1.10.1.custom.min.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/static/js/jquery.slimscroll.min.js"/>" type="text/javascript"></script>
-<script src="<c:url value="/static/js/jquery.blockui.min.js"/>" type="text/javascript"></script>
-<script type="text/javascript" src="<c:url value="/static/js/chosen.jquery.min.js"/>"  ></script>
-<script type="text/javascript" src="<c:url value="/static/js/select2.min.js"/>" ></script>
-
-<script type="text/javascript" src="<c:url value="/static/js/jquery.tagsinput.min.js"/>" ></script>
-
-<script type="text/javascript" src="<c:url value="/static/js/jquery.inputmask.bundle.min.js"/> "></script>
-
-<script type="text/javascript" src="<c:url value="/static/js/jquery.multi-select.js"/> "></script>
-<script type="text/javascript" src="<c:url value="/static/js/form-components.js"/> "></script>
-
-<script src="<c:url value="/static/js/app.js"/> "></script>
-
+<%@include file="../../jsp/includes/bottomscript.jsp"%>
 <!-- END PAGE LEVEL SCRIPTS -->
+
+<script type="text/javascript" src="<c:url value="/static/js/system/bugcontent/bugcontent.js"/>"></script>
+
 <script>
-    jQuery(document).ready(function() {
-        // initiate layout and plugins
+    $(function() {
+        var editor = null;
+        window.onload= function(){
+            editor = CKEDITOR.replace("consoleError");
+        }
+
+        bugtagList.init();
+
         App.init();
         FormComponents.init();
-    });
-
-    $(function(){
-        bugtagList.init();
+        $(".chosen").chosen();
     });
 </script>
 </body>

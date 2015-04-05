@@ -89,4 +89,27 @@ public class BugContent extends DataTablesPage{
     public void setBugAnswerList(List<BugAnswer> bugAnswerList) {
         this.bugAnswerList = bugAnswerList;
     }
+
+    public String getUpDate() {
+        return upDate;
+    }
+
+    public void setUpDate(String upDate) {
+        this.upDate = upDate;
+    }
+
+    @Override
+    public String toString() {
+        return "BugContent{" +
+                "bugContentId=" + bugContentId +
+                ", bugReason='" + bugReason + '\'' +
+                ", consoleError='" + consoleError + '\'' +
+                ", bugCode='" + bugCode + '\'' +
+                ", hasSolved=" + hasSolved +
+                ", upDate='" + upDate + '\'' +
+                ", bugTypeList=" + bugTypeList +
+                ", tagTypeList=" + tagTypeList +
+                ", bugAnswerList=" + bugAnswerList +
+                '}';
+    }
 }

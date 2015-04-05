@@ -38,7 +38,7 @@ public class BugTypeController {
 
     @RequestMapping("/getBugTypeListJson")
     @ResponseBody
-    public List<BugType>  getBugTypeListJson(){
+    public List<BugType>  getBugTypeListJson(HttpServletRequest  request){
         List <BugType>  bugTypeList = bugTypeService.getBugTypeList();
         System.out.println(bugTypeList.size()+"----");
         return bugTypeList;

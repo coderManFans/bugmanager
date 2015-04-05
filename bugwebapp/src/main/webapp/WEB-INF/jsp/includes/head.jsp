@@ -9,17 +9,26 @@
 <meta content="" name="description"/>
 <meta content="" name="author"/>
 <!-- BEGIN GLOBAL MANDATORY STYLES -->
-<link href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css"/>
-<link href="<c:url value="/static/css/bootstrap-responsive.min.css"/>" rel="stylesheet" type="text/css"/>
-<link href="<c:url value="/static/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css"/>
-<link href="<c:url value="/static/css/style-metro.css"/>" rel="stylesheet" type="text/css"/>
-<link href="<c:url value="/static/css/style.css"/>" rel="stylesheet" type="text/css"/>
-<link href="<c:url value="/static/css/style-responsive.css"/>" rel="stylesheet" type="text/css"/>
-<link href="<c:url value="/static/css/default.css"/>" rel="stylesheet" type="text/css" id="style_color"/>
-<link href="<c:url value="/static/css/uniform.default.css"/>" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap.min.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap-responsive.min.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/font-awesome.min.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/style-metro.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/style.css"/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/style-responsive.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/default.css"/>" id="style_color"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/uniform.default.css"/>" />
 <!-- END GLOBAL MANDATORY STYLES -->
+<link href="<c:url value="/static/css/components.css"/>" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/ckeditor/contents.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/select2.min.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/chosen.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/select2_metro.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/jquery.tagsinput.css"/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/multi-select-metro.css"/>" />
+
 <!-- BEGIN PAGE LEVEL STYLES -->
-<link href="<c:url value="/static/css/login.css"/>" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/static/css/login.css"/>" />
 <base href="<%=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()%><c:url value="/"/>"/>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 

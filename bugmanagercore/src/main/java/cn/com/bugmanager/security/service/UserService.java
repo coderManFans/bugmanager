@@ -56,4 +56,14 @@ public class UserService {
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 
+    /**
+     *
+     * @param loginUser
+     * @return
+     */
+    public User  loginAuth(User loginUser){
+       User user  = userDao.loginAuth(loginUser);
+       return user == null ? null : user;
+    }
+
 }

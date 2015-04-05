@@ -34,7 +34,7 @@
             <div class="controls">
                 <div class="input-icon left">
                     <i class="icon-user"></i>
-                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="userName"/>
                 </div>
             </div>
         </div>
@@ -93,7 +93,7 @@
     </form>
     <!-- END FORGOT PASSWORD FORM -->
     <!-- BEGIN REGISTRATION FORM -->
-    <form class="form-vertical register-form" action="index.html">
+    <form class="form-vertical register-form" action="<c:url value="/user/registe"/>" method="post">
         <h3 class="">Sign Up</h3>
         <p>Enter your account details below:</p>
         <div class="control-group">

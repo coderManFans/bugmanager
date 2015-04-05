@@ -20,5 +20,6 @@ public interface UserDao {
     int getUserCount();
     int updateUserState(User user);
     int addUser(@Param("user") User user );
+    User loginAuth(@Param("user") User user );
 
 }

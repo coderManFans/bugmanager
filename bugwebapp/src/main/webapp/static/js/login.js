@@ -1,6 +1,6 @@
 var Login = function () {
-    var basePath = "http://localhost:8089/bugweb/jsp/";
-    var baseControllerPath = "http://localhost:8089/bugweb";
+    var basePath = "http://localhost:8080/bugweb/jsp/";
+    var baseControllerPath = "http://localhost:8080/bugweb";
     return {
         //main function to initiate the module
         init: function () {
@@ -9,6 +9,8 @@ var Login = function () {
 	            errorElement: 'label', //default input error message container
 	            errorClass: 'help-inline', // default input error message class
 	            focusInvalid: false, // do not focus the last invalid input
+                type:'post',
+                url: baseControllerPath+"/login/tologin",
 	            rules: {
 	                username: {
 	                    required: true
@@ -49,7 +51,8 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = baseControllerPath+"/login/tologin";
+                    form.submit();   //注意下面的是客户端跳转不能跳到Controller层。
+	               // window.location.href = baseControllerPath+"/login/tologin";
 	            }
 	        });
 
@@ -175,7 +178,8 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = basePath+"index.jsp";
+	                //window.location.href = baseControllerPath+"/user/registe";
+                    form.submit();
 	            }
 	        });
 

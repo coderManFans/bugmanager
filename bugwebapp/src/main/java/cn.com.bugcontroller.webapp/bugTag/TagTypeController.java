@@ -57,7 +57,9 @@ public class TagTypeController {
 
     @RequestMapping("/getTagTypeListJson")
     @ResponseBody
-    public List<TagType> getTagTypeListJson(PrintWriter printWriter){
+    public List<TagType> getTagTypeListJson(HttpServletRequest  request){
+        String tagType = request.getParameter("tagType");
+        System.out.println("------"+tagType);
         List<TagType>  tagTypeList = tagTypeService.getTagTypeList();
         System.out.println(tagTypeList.size()+"  000");
         return tagTypeList;

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -31,8 +32,17 @@ public class LoginController {
     public String login(RedirectAttributes redirectAttributes,HttpServletRequest request,HttpServletResponse  response){
         String username = request.getParameter("userName");
         String userpass = request.getParameter("password");
-        System.out.println(username+"---"+userpass);
-        return "index";
+        User user1 = new User();
+        user1.setUserName(username);
+        user1.setUserPass(userpass);
+        HttpSession session = request.getSession();
+        User user  = userService.loginAuth(user1);
+        if(user == null){
+            return  "login";
+        }else{
+            session.setAttribute("user",user);
+            return "index";
+        }
     }
 
 }

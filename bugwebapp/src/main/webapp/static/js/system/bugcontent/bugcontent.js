@@ -4,73 +4,60 @@
 
 var bugtagList = function(){
      var basePath = "http://localhost:8089/bugweb";
-    /**
-     * 请求tagtype，返回数据
-     */
-    var handleBugTag = function(){
-        $.ajax({
-            async:false,      //默认为true,改为false，则为同步请求，可以保证，同时进行如下两个请求，前面一个不会被后面的覆盖掉
-            url: basePath+"/tag/tagtype/getTagTypeListJson",
-            type: "get",
-            timeout:2000,
-            dataType: 'json',
-            error: erroryFunction,
-            success: successFunction
-        })
-        function erroryFunction(){
-            alert("数据加载tagtypeList失败，请检查传输格式等");
-        }
-        function successFunction(responseData){
-            var json = eval(responseData);
-            alert("bugType"+"---"+json);
-            $.each(json,function(bugTypeId,bugType){
-                if(bugTypeId == "1" || bugTypeId == "2"){
-                    $("#bugTypeSelect").append("<option value="+bugTypeId+">"+bugType+"</option>").attr("selected",true);;
-                }else{
-                    $("#bugTypeSelect").append("<option value="+bugTypeId+">"+bugType+"</option>");
-                }
-            });
-        }
-    };
+
+    /* function submitBugcontent(){
+         var $submitForm  = $("#submitBugContent");
+             $submitForm.submit();
+     }*/
+     var handleForm = function(){
+         $('').validate({
+           rules: {
+               tagTypeSelect: {
+                   required: true
+               },
+               bugTypeSelect: {
+                   required: true
+               }
+           },
+             messages: {
+                 tagTypeSelect: {
+                     required : "请选择标签"
+                 },
+                 bugTypeSelect: {
+                     required: "请选择错误类型"
+                 }
+             },
+
+             invalidHandler: function(){
+
+             }
+         });
+     }
 
 
-    /**
-     * 请求bugtype，返回数据
-     * medium
-     */
-    var handleBugType = function (){
+    $("#submitBtn").on("click",function(){
         $.ajax({
-            async:false,      //默认为true,改为false，则为同步请求
-            url: basePath+"/tag/bugtype/getBugTypeListJson",
-            type: "get",
-            timeout:2000,
-            dataType: 'json',
-            error: erroryFunction,
-            success:successFunction
-        })
-        function erroryFunction(){
-            alert("加载数据bugTypeList失败，请检查传输格式等");
-        }
-        function successFunction(responseData){
-            var json = eval(responseData);
-            function successFunction(responseData){
-                var json = eval(responseData);
-                alert("tagType"+"---"+json);
-                $.each(json,function(tagId,tagName){
-                    if(tagId == "1" || tagId == "2"){
-                        $("#bugTypeSelect").append("<option value="+tagId+">"+tagName+"</option>").attr("selected",true);
-                    }else{
-                        $("#bugTypeSelect").append("<option value="+tagId+">"+tagName+"</option>");
-                    }
-                });
+            url: "/buginfo/bugcontent/add",
+            data: JSON.stringify({
+                bugReason: $("#bugReasonId").val(),
+                bugCode: $("#bugCodeId").val(),
+                consoleError : $("#consoleErrorId").val(),
+                hasSolved: false,
+                upDate: new Date().toString(),
+                bugTypeList: $("#bugTypeSelect").val(),
+                tagTypeList: $("#tagTypeSelect").val(),
+                bugAnswerList: $("#bugAnswerId").val()
+            }),
+            contentType: "application/json; charset=utf-8",
+            type: "post",
+            success: function (data) {
+               alert("data = "+data);
             }
-        }
-    };
+        });
+    });
 
     return {
         init:function(){
-            handleBugTag();
-            handleBugType();
         }
-    };
+    }
 }();

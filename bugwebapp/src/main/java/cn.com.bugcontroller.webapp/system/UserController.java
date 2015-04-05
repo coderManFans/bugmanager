@@ -29,8 +29,8 @@ public class UserController {
     @RequestMapping(value = "/registe",method = {RequestMethod.POST})
     public String   register(HttpServletRequest  request,HttpServletResponse response){
         System.out.println("--------------registe---------");
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("userPass");
+        String userName = request.getParameter("username");
+        String password = request.getParameter("password");
         String email = request.getParameter("email");
         System.out.println(userName + "---------"+password+"-------"+email);
         User user = new User();

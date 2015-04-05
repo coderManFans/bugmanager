@@ -1,5 +1,6 @@
 var FormComponents = function () {
 
+    var handleIPAddressInput;
     var handleWysihtml5 = function () {
         if (!jQuery().wysihtml5) {
             return;
@@ -229,7 +230,7 @@ var FormComponents = function () {
     //
     //}
 
-    var handleDatetimePicker = function () {        
+    /*var handleDatetimePicker = function () {
 
           $(".form_datetime").datetimepicker({
               format: "dd MM yyyy - hh:ii",
@@ -286,7 +287,7 @@ var FormComponents = function () {
             format: 'H:mm'
         }).clockface('show', '14:30');
     }
-
+*/
     var handleColorPicker = function () {
         if (!jQuery().colorpicker) {
             return;
@@ -416,7 +417,7 @@ var FormComponents = function () {
         $('#my_multi_select1').multiSelect();
         $('#my_multi_select2').multiSelect({
             selectableOptgroup: true
-        });        
+        });
     }
 
     var handleInputMasks = function () {
@@ -424,7 +425,7 @@ var FormComponents = function () {
             'autounmask': true
         });
 
-        $("#mask_date").inputmask("d/m/y", {autoUnmask: true});  //direct mask        
+        $("#mask_date").inputmask("d/m/y", {autoUnmask: true});  //direct mask
         $("#mask_date1").inputmask("d/m/y",{ "placeholder": "*"}); //change the placeholder
         $("#mask_date2").inputmask("d/m/y",{ "placeholder": "dd/mm/yyyy" }); //multi-char placeholder
         $("#mask_phone").inputmask("mask", {"mask": "(999) 999-9999"}); //specifying fn & options
@@ -432,15 +433,15 @@ var FormComponents = function () {
         $("#mask_number").inputmask({ "mask": "9", "repeat": 10, "greedy": false });  // ~ mask "9" or mask "99" or ... mask "9999999999"
         $("#mask_decimal").inputmask('decimal', { rightAlignNumerics: false }); //disables the right alignment of the decimal input
         $("#mask_currency").inputmask('€ 999.999.999,99', { numericInput: true });  //123456  =>  € ___.__1.234,56
-       
+
         $("#mask_currency2").inputmask('€ 999,999,999.99', { numericInput: true, rightAlignNumerics: false, greedy: false}); //123456  =>  € ___.__1.234,56
         $("#mask_ssn").inputmask("999-99-9999", {placeholder:" ", clearMaskOnLostFocus: true }); //default
     }
 
-    var handleIPAddressInput = function () {
+  /*  handleIPAddressInput = function () {
         $('#input_ipv4').ipAddress();
-        $('#input_ipv6').ipAddress({v:6});
-    }
+        $('#input_ipv6').ipAddress({v: 6});
+    };*/
 
     return {
         //main function to initiate the module
@@ -450,14 +451,14 @@ var FormComponents = function () {
             handleTagsInput();
             handlejQueryUIDatePickers();
             handleDatePickers();
-            handleTimePickers();
-            handleDatetimePicker();
-            handleDateRangePickers();
-            handleClockfaceTimePickers();
+           // handleTimePickers();
+          //  handleDatetimePicker();
+          //  handleDateRangePickers();
+           // handleClockfaceTimePickers();
             handleColorPicker();
             handleSelec2();
             handleInputMasks();
-            handleIPAddressInput();
+          //  handleIPAddressInput();
             handleMultiSelect();
 
             App.addResponsiveHandler(function(){
