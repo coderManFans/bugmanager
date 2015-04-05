@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class BugContentController {
     /**
      * @return
      */
-    @RequestMapping(method = {RequestMethod.GET})
+    @RequestMapping(value={"/toadd"},method = {RequestMethod.GET})
     public String bugContent(ModelMap modelMap){
         List<BugType>  bugTypeList = bugTypeService.getBugTypeList();
         modelMap.addAttribute("bugTypeList",bugTypeList);
@@ -62,21 +63,38 @@ public class BugContentController {
     }
 
 
-   /* @RequestMapping(value="/add",method = {RequestMethod.POST})
+    @RequestMapping(value="/add",method = {RequestMethod.POST})
     public String addBugContentNoAnwser(HttpServletRequest  request,HttpServletResponse response) {
         String[] bugIdList = request.getParameterValues("bugIdList");
         String[] tagIdList = request.getParameterValues("tagIdList");
+
         String consoleError = request.getParameter("consoleError");
         String bugCode = request.getParameter("bugCode");
         String bugReason = request.getParameter("bugReason");
+        String bugAnswer = request.getParameter("bugAnswer");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         int userId = user.getUserId();
         String upTime =  CalendarUtils.getDateTime();   //使用该方法设置时间
-        System.out.println("userId = "+userId);
+        System.out.println("userId = "+userId+" ----"+bugAnswer);
+
+        BugContent bugContent = new BugContent();
+        bugContent.setConsoleError(consoleError);
+        bugContent.setBugCode(bugCode);
+        bugContent.setBugReason(bugReason);
+        bugContent.setUpDate(upTime);
+        bugContent.setHasSolved(false);
+        bugContent.setUserId(userId);
+        bugContentService.addBugContentWithNoAnswer(bugContent);
+        int bugContentId = bugContent.getBugContentId();
+        System.out.println("bugcontentId = "+bugContentId);
+        bugContentService.addBug_Tag(bugContentId,tagIdList);
+        bugContentService.addBug_Type(bugContentId,bugIdList);
+
         return "index";
-    }*/
-   @RequestMapping(value="/add",method = {RequestMethod.POST})
+    }
+
+  /* @RequestMapping(value="/add",method = {RequestMethod.POST})
    @ResponseBody
    public AjaxResponse addBugContentNoAnwser(@RequestBody BugContent  bugContent,HttpServletRequest  request) {
 
@@ -87,7 +105,7 @@ public class BugContentController {
        String upTime = CalendarUtils.getDateTime();   //使用该方法设置时间
        System.out.println("userId = " + userId);
        return AjaxResponse.getInstanceByResult(false);
-   }
+   }*/
 
 
        /**

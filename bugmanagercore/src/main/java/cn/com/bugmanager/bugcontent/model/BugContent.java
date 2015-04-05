@@ -10,6 +10,7 @@ import  java.util.List;
 public class BugContent extends DataTablesPage{
 
     private int bugContentId;
+    private int userId;           //提交用户Id
     private String bugReason;      //错误描述
     private String consoleError;   //控制台出现的错误
     private String bugCode;        //项目或者练习中的错误代码
@@ -18,6 +19,8 @@ public class BugContent extends DataTablesPage{
     private List<BugType>  bugTypeList;  //错误类型列表
     private List<TagType>  tagTypeList; //错误标签列表
     private List<BugAnswer>  bugAnswerList; //解决方案列表
+
+
 
     public BugContent() {
     }
@@ -98,10 +101,21 @@ public class BugContent extends DataTablesPage{
         this.upDate = upDate;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+
+
     @Override
     public String toString() {
         return "BugContent{" +
                 "bugContentId=" + bugContentId +
+                ", userId=" + userId +
                 ", bugReason='" + bugReason + '\'' +
                 ", consoleError='" + consoleError + '\'' +
                 ", bugCode='" + bugCode + '\'' +

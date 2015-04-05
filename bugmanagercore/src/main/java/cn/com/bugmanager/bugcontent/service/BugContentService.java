@@ -78,5 +78,11 @@ public class BugContentService {
         return bugContentDao.getBugContentById(bugContentId);
     }
 
+    public int addBug_Type(int bugContentId, String  [] bug_typeArray){
+        return bugContentDao.addbug_type(bugContentId,bug_typeArray);
+    }
 
+    public int addBug_Tag(int bugContentId, String [] bug_tagArray){
+        return bugContentDao.addbug_tag(bugContentId,bug_tagArray);
+    }
 }

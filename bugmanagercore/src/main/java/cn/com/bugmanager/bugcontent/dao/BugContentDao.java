@@ -2,6 +2,7 @@ package cn.com.bugmanager.bugcontent.dao;
 
 import cn.com.bugmanager.bugcontent.model.BugContent;
 import cn.com.bugmanager.mybatis.annotation.mybatisRepository;
+import cn.com.bugmanager.tag.model.BugType;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -21,5 +22,8 @@ public interface BugContentDao {
       List<BugContent> getBugContentListPage(@Param("bugContent") BugContent bugContent);
       int addBugContentNoAnswer(@Param("bugContent") BugContent bugContent);
 
+      //bugtag ---bugcontent --- bugtype
+      int addbug_type(@Param("bugContentId") int bugContentId, @Param("bugTypeArray") String [] bugTypeArray);
 
+      int addbug_tag(@Param("bugContentId") int bugContentId, @Param("tagIdArray") String [] tagIdArray);
 }

@@ -103,7 +103,6 @@
         }
 
         bugtagList.init();
-
         App.init();
         FormComponents.init();
         $(".chosen").chosen();

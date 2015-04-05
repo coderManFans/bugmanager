@@ -7,28 +7,53 @@
     </insert>
 
     <insert id="addBugContentNoAnswer">
-        insert into t_bugcontent (bug_reason,console_error,bug_code,has_solved)
-         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.has_solved})
+        insert into t_bugcontent (bug_reason,console_error,bug_code,has_solved,add_date,user_id)
+         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode}
+            ,#{bugContent.hasSolved},#{bugContent.upDate},#{bugContent.userId})
+        <selectKey resultType="int" keyProperty="bugContentId" order="AFTER">
+            SELECT LAST_INSERT_ID()m as bugContentId
+        </selectKey>
     </insert>
 
 
     <select id="getBugContentSize" resultType="int">
         select count(*) from t_bugcontent
     </select>
+
+    <!--批量插入关联关系-->
+    <insert id="addbug_type">
+        insert into t_bug_type(bug_id,type_id) values
+        <foreach collection="bugTypeArray" item="item" index="index" separator=",">
+            (#{bugContentId},#{item})
+        </foreach>
+    </insert>
+
+    <insert id="addbug_tag">
+        insert into t_bug_tag(bug_id,tag_id) values
+        <foreach collection="tagIdArray" item="item" index="index" separator=",">
+            (#{bugContentId},#{item})
+        </foreach>
+    </insert>
+
+
     <update id="updateBugContent">
         update t_bugcontent set bug_reason=#{bugContent.bugReason},console_error = #{bugContent.consoleError},
         bug_code=#{bugContent.bugCode}
         where bug_contentid = #{bugContent.bugContentId}
     </update>
+
     <select id="getBugContentList" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
           SELECT  * FROM  t_bugcontent
     </select>
+
     <delete id="deleteBugContentById" >
           DELETE  from t_bugcontent where bug_contentid=#{bugContentId}
     </delete>
+
     <select id="getBugContentById"  resultType="cn.com.bugmanager.bugcontent.model.BugContent">
           select * from t_bugcontent where bug_contentid=#{bugContentId}
     </select>
+
     <select id="getBugContentListPage" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
           select * from t_bugcontent where 1=1
           <if test="bugContent.bugReason != null and bugContent.bugReason != ''">
