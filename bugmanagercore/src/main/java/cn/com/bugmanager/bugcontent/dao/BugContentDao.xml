@@ -6,13 +6,10 @@
          VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved})
     </insert>
 
-    <insert id="addBugContentNoAnswer">
-        insert into t_bugcontent (bug_reason,console_error,bug_code,has_solved,add_date,user_id)
-         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode}
+    <insert id="addBugContentNoAnswer" >
+        insert into t_bugcontent (bug_contentid,bug_reason,console_error,bug_code,has_solved,add_date,user_id)
+         VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode}
             ,#{bugContent.hasSolved},#{bugContent.upDate},#{bugContent.userId})
-        <selectKey resultType="int" keyProperty="bugContentId" order="AFTER">
-            SELECT LAST_INSERT_ID()m as bugContentId
-        </selectKey>
     </insert>
 
 
@@ -27,6 +24,10 @@
             (#{bugContentId},#{item})
         </foreach>
     </insert>
+
+    <select id="getBugContentId" resultType="string">
+        select bug_contentid from t_bugcontent  where bug_code = #{bugcode} and bug_reason = #{bugReason}
+    </select>
 
     <insert id="addbug_tag">
         insert into t_bug_tag(bug_id,tag_id) values

@@ -83,11 +83,19 @@ public class BugContentController {
         bugContent.setBugCode(bugCode);
         bugContent.setBugReason(bugReason);
         bugContent.setUpDate(upTime);
-        bugContent.setHasSolved(false);
-        bugContent.setUserId(userId);
-        bugContentService.addBugContentWithNoAnswer(bugContent);
-        int bugContentId = bugContent.getBugContentId();
+        String bugContentId = CalendarUtils.getDateUUID();
         System.out.println("bugcontentId = "+bugContentId);
+
+        if(bugAnswer != null || "".equals(bugAnswer)){
+            bugContent.setHasSolved(true);
+        }else{
+            bugContent.setHasSolved(false);
+        }
+
+        bugContent.setUserId(userId);
+        bugContent.setBugcontentid(bugContentId);
+        bugContentService.addBugContentWithNoAnswer(bugContent);
+
         bugContentService.addBug_Tag(bugContentId,tagIdList);
         bugContentService.addBug_Type(bugContentId,bugIdList);
 
@@ -112,9 +120,9 @@ public class BugContentController {
         * @param bugContentId
         * @return
         */
-    @RequestMapping(value = "{/bugContentId}",method = {RequestMethod.DELETE})
+    @RequestMapping(value = "{/bugcontentid}",method = {RequestMethod.DELETE})
     @ResponseBody
-    public AjaxResponse  deleteBugContent(@PathVariable int bugContentId){
+    public AjaxResponse  deleteBugContent(@PathVariable String bugContentId){
         return AjaxResponse.getInstanceByResult(bugContentService.deleteBugContentById(bugContentId));
     }
 

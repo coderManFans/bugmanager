@@ -44,7 +44,7 @@ public class BugAnswerService {
      * @param bugContentId
      * @return
      */
-    public List<BugAnswer> getBugAnswerList(int bugContentId){
+    public List<BugAnswer> getBugAnswerList(String bugContentId){
         List<BugAnswer>  bugAnswerList = bugAnswerDao.getAnswerListByBugId(bugContentId);
         if(bugAnswerList != null && bugAnswerList.size() == 0){
             return bugAnswerList;

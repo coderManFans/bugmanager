@@ -37,7 +37,7 @@ public class BugAnswerController {
      */
     @RequestMapping(value = "/{bugId}",method = {RequestMethod.POST})
     @ResponseBody
-    public DataTablesResponse  getBugAnswerListPage(@PathVariable @Valid int bugId,@RequestBody BugAnswer  bugAnswer){
+    public DataTablesResponse  getBugAnswerListPage(@PathVariable @Valid String bugId,@RequestBody BugAnswer  bugAnswer){
         List<BugAnswer>  bugAnswerList = bugAnswerService.getBugAnswerList(bugId);
         return  new DataTablesResponse(bugAnswer,bugAnswerList);
     }

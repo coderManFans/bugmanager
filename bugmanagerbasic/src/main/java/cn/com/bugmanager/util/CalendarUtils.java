@@ -3,6 +3,7 @@ package cn.com.bugmanager.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * 日期操作的工具类
@@ -172,7 +173,6 @@ public class CalendarUtils {
 	    	for (int i = 0; i < time2.length; i++) {
 	    		System.out.println(time2[i]);
 			}
-	    	
 	    }
 	    
 	    public static  void mathRandomDemo(){
@@ -180,6 +180,22 @@ public class CalendarUtils {
 	    		System.out.println((int)(Math.random()*10000));
 			}
 	    }
+
+        public static String getDateUUID(){
+            String [] array = {
+                    "A","a","B","b","C","c","D","d","E"
+                    ,"e","F","f","N","n","g","x","w","z","m","q","t","y","u"};
+            Random random = new Random();
+            StringBuilder stringBuilder = new StringBuilder();
+            for(int i =0;i< 5;i++){
+                int nums = random.nextInt(array.length-1);
+                stringBuilder.append(array[nums]);
+            }
+            long stime = System.currentTimeMillis();
+            String strtime = (stime+"").substring(5,(stime+"").length()-1);
+            stringBuilder.append(strtime);
+            return stringBuilder.toString();
+        }
 	    
 	    /**
 	     * 

@@ -14,5 +14,5 @@ public interface BugAnswerDao {
     int updateAnswer(@Param("bugAnswer") BugAnswer bugAnswer);
     int deleteAnswerById(@Param("bugAnswerId") int bugAnswerId);
     BugAnswer  getAnswerById(@Param("bugAnswerId") int bugAnswerId);
-    List<BugAnswer> getAnswerListByBugId(@Param("bugContentId") int bugContentId);
+    List<BugAnswer> getAnswerListByBugId(@Param("bugContentId") String bugContentId);
 }

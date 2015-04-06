@@ -41,7 +41,7 @@ public class BugAnswerServiceTest extends SpringTransactionalTestCase{
         bugContent.setBugCode("bug_code");
         bugContent.setConsoleError("console_error");
         bugContent.setBugReason("bug_reason");
-        bugContent.setBugContentId(1);
+        bugContent.setBugcontentid(1+"");
         return  bugContent;
     }
 
@@ -78,7 +78,7 @@ public class BugAnswerServiceTest extends SpringTransactionalTestCase{
     public void testGetList(){
         BugContent bugContent = getBugContent();
         bugContentService.addBugContentWithAnswer(bugContent);
-        List<BugAnswer>  list = bugAnswerDao.getAnswerListByBugId(bugContent.getBugContentId());
+        List<BugAnswer>  list = bugAnswerDao.getAnswerListByBugId(bugContent.getBugcontentid());
         assertTrue(list.size() == 1);
 
     }

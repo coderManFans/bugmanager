@@ -47,7 +47,7 @@ public class BugContentService {
      * @param bugContentId
      * @return
      */
-    public boolean deleteBugContentById(int bugContentId){
+    public boolean deleteBugContentById(String bugContentId){
         int affectNum = bugContentDao.deleteBugContentById(bugContentId);
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
@@ -74,15 +74,22 @@ public class BugContentService {
      * @param bugContentId
      * @return
      */
-    public BugContent getBugContentById(int bugContentId){
+    public BugContent getBugContentById(String bugContentId){
         return bugContentDao.getBugContentById(bugContentId);
     }
 
-    public int addBug_Type(int bugContentId, String  [] bug_typeArray){
+
+    public String   getBugContentId(String bugCode,String bugReason){
+
+       return  bugContentDao.getBugContentId(bugCode, bugReason);
+    }
+
+
+    public int addBug_Type(String bugContentId, String  [] bug_typeArray){
         return bugContentDao.addbug_type(bugContentId,bug_typeArray);
     }
 
-    public int addBug_Tag(int bugContentId, String [] bug_tagArray){
+    public int addBug_Tag(String bugContentId, String [] bug_tagArray){
         return bugContentDao.addbug_tag(bugContentId,bug_tagArray);
     }
 }

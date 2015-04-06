@@ -9,7 +9,7 @@ import  java.util.List;
  */
 public class BugContent extends DataTablesPage{
 
-    private int bugContentId;
+    private String bugcontentid;
     private int userId;           //提交用户Id
     private String bugReason;      //错误描述
     private String consoleError;   //控制台出现的错误
@@ -25,24 +25,20 @@ public class BugContent extends DataTablesPage{
     public BugContent() {
     }
 
-    public BugContent(int bugContentId) {
-        this.bugContentId = bugContentId;
+    public String getBugcontentid() {
+        return bugcontentid;
     }
 
-    public int getBugContentId() {
-        return bugContentId;
+    public void setBugcontentid(String bugcontentid) {
+        this.bugcontentid = bugcontentid;
     }
 
-    public void setBugContentId(int bugContentId) {
-        this.bugContentId = bugContentId;
+    public int getUserId() {
+        return userId;
     }
 
-    public String getConsoleError() {
-        return consoleError;
-    }
-
-    public void setConsoleError(String consoleError) {
-        this.consoleError = consoleError;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getBugReason() {
@@ -51,6 +47,14 @@ public class BugContent extends DataTablesPage{
 
     public void setBugReason(String bugReason) {
         this.bugReason = bugReason;
+    }
+
+    public String getConsoleError() {
+        return consoleError;
+    }
+
+    public void setConsoleError(String consoleError) {
+        this.consoleError = consoleError;
     }
 
     public String getBugCode() {
@@ -67,6 +71,14 @@ public class BugContent extends DataTablesPage{
 
     public void setHasSolved(boolean hasSolved) {
         this.hasSolved = hasSolved;
+    }
+
+    public String getUpDate() {
+        return upDate;
+    }
+
+    public void setUpDate(String upDate) {
+        this.upDate = upDate;
     }
 
     public List<BugType> getBugTypeList() {
@@ -93,28 +105,10 @@ public class BugContent extends DataTablesPage{
         this.bugAnswerList = bugAnswerList;
     }
 
-    public String getUpDate() {
-        return upDate;
-    }
-
-    public void setUpDate(String upDate) {
-        this.upDate = upDate;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-
-
     @Override
     public String toString() {
         return "BugContent{" +
-                "bugContentId=" + bugContentId +
+                "bugcontentid=" + bugcontentid +
                 ", userId=" + userId +
                 ", bugReason='" + bugReason + '\'' +
                 ", consoleError='" + consoleError + '\'' +
