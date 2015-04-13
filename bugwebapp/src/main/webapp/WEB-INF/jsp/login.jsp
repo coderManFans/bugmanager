@@ -1,22 +1,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
     <title>Metronic | Login Page</title>
-    <%@include file="../jsp/includes/head.jsp" %>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+    <%@include file="../jsp/includes/globalcss.jsp"%>
+
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL STYLES -->
+
+    <link href="<c:url value="/static/media/css/login.css"/>" rel="stylesheet" type="text/css"/>
+
     <!-- END PAGE LEVEL STYLES -->
-    <link rel="shortcut icon" href="media/image/favicon.ico" />
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <img src="<c:url value="/static/image/logo-big.png"/>" alt="登陆logo" />
+    <img src="<c:url value="/static/media/image/logo-big.png"/>" alt="登陆logo" />
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
@@ -153,9 +159,17 @@
     <!-- END REGISTRATION FORM -->
 </div>
 <!-- END LOGIN -->
-<%@include file="../jsp/includes/footer.jsp"%>
-<%@include file="../jsp/includes/bottomscript.jsp"%>
-<script src="<c:url value="/static/js/login.js"/>" type="text/javascript"></script>
+<%@include file="../jsp/includes/bottom.jsp"%>
+
+
+<%@include file="../jsp/includes/jquerycore.jsp" %>
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+<script src="<c:url value="/static/media/js/jquery.validate.min.js"/>" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL PLUGINS -->
+<script src="<c:url value="/static/media/js/login.js"/>" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function() {

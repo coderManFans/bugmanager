@@ -59,11 +59,14 @@
               <artifactId>joda-time</artifactId>
               <version>1.6</version>
           </dependency>
+		  <!-- jstl expression start-->
           <dependency>
               <groupId>jstl</groupId>
               <artifactId>jstl</artifactId>
               <version>1.2</version>
           </dependency>
+		  <!-- jstl expression end-->
+		  
           <dependency>
               <groupId>org.quartz-scheduler</groupId>
               <artifactId>quartz</artifactId>
@@ -81,13 +84,14 @@
               <optional>true</optional>
           </dependency>
 
-          <!--spring 测试相关包-->
+          <!--spring test package start -->
           <dependency>
               <groupId>org.springframework</groupId>
               <artifactId>spring-test</artifactId>
               <version>${spring.version}</version>
               <scope>test</scope>
           </dependency>
+		  <!--spring test package end-->
 
           <dependency>
               <groupId>org.hibernate</groupId>

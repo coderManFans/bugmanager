@@ -35,6 +35,10 @@
         select * from t_tagtype
     </select>
 
+    <select id="getBugContentBytagId" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
+        SELECT  tbc.* FROM  t_tagtype AS ttt ,t_bug_tag AS tbt, t_bugcontent  AS tbc WHERE
+        ttt.tag_id = tbt.tag_id AND tbt.bug_id = tbc.bug_contentid AND ttt.tag_id = #{tagId}
+    </select>
 
 
 </mapper>

@@ -12,8 +12,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户设置</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap.min.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap-fileupload.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/media/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/media/css/bootstrap-fileupload.css"/>">
     <link rel="stylesheet" href="<c:url value="/static/Jcrop/css/main.css"/>" type="text/css" />
     <link rel="stylesheet" href="<c:url value="/static/Jcrop/css/demos.css"/>" type="text/css" />
     <link rel="stylesheet" href="<c:url value="/static/Jcrop/css/jquery.Jcrop.min.css"/>" type="text/css" />
@@ -240,11 +240,7 @@
 
 
 
-<%@include file="../includes/footer.jsp"%>
 <!--注意先引入jQuery然后再引入bootstrap-->
-<script type="application/javascript" src="<c:url value="/static/js/jquery-2.0.0.min.js"/>"></script>
-<script type="application/javascript" src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/static/js/bootstrap-fileupload.js"/>"></script>
 <script src="<c:url value="/static/Jcrop/js/jquery.Jcrop.min.js"/>" type="application/javascript"></script>
 <script src="<c:url value="/static/Jcrop/js/jquery.color.js"/>" type="application/javascript"></script>
 

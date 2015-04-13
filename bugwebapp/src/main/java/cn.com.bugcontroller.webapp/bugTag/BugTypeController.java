@@ -25,7 +25,7 @@ public class BugTypeController {
 
     @RequestMapping(method = {RequestMethod.GET})
     public String bugType() throws  Exception{
-        return "bugtag/bugtype";
+        return "tag/bug_type";
     }
 
     @RequestMapping("/getBugTypeListPage")
@@ -52,7 +52,7 @@ public class BugTypeController {
         String bugTypeIntroduce = request.getParameter("bugTypeIntroduce");
         BugType  bugType1 = new BugType();
         bugType1.setBugType(bugType);
-        bugType1.setBugTypeIntroduce(bugTypeIntroduce);
+        bugType1.setBugintroduce(bugTypeIntroduce);
         bugTypeService.addBugType(bugType1);
         return "/index";
     }
@@ -72,6 +72,13 @@ public class BugTypeController {
     @RequestMapping(value = "/{bugTypeId}",method = {RequestMethod.DELETE})
     public AjaxResponse  deleteBugType(@PathVariable  int bugTypeId){
         return  AjaxResponse.getInstanceByResult(bugTypeService.deleteBugType(bugTypeId));
+    }
+
+
+    @RequestMapping(value="/{/bugTypeId}",method={RequestMethod.GET})
+    public String getBugContentByBugid(){
+
+        return  null;
     }
 
 

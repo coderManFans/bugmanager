@@ -10,32 +10,21 @@ import java.util.List;
 public class BugType extends DataTablesPage{
     private int bugTypeId;
     private String bugType;
-    private String bugTypeIntroduce;
-    private List<TagType> tagTypeList;
+    private String bugintroduce;
+
+    public BugType(){}
 
     public BugType(int bugTypeId) {
         this.bugTypeId = bugTypeId;
     }
 
-    public BugType(String bugType, String bugTypeIntroduce) {
-        this.bugType = bugType;
-        this.bugTypeIntroduce = bugTypeIntroduce;
+
+    public String getBugintroduce() {
+        return bugintroduce;
     }
 
-    public BugType() {
-    }
-
-    public static BugType  getBugTypeTestOfInstance(){
-        return new BugType("_bugTypename","_bugTypeIn");
-    }
-
-
-    public int getBugTypeId() {
-        return bugTypeId;
-    }
-
-    public void setBugTypeId(int bugTypeId) {
-        this.bugTypeId = bugTypeId;
+    public void setBugintroduce(String bugintroduce) {
+        this.bugintroduce = bugintroduce;
     }
 
     public String getBugType() {
@@ -46,19 +35,20 @@ public class BugType extends DataTablesPage{
         this.bugType = bugType;
     }
 
-    public String getBugTypeIntroduce() {
-        return bugTypeIntroduce;
+    public int getBugTypeId() {
+        return bugTypeId;
     }
 
-    public void setBugTypeIntroduce(String bugTypeIntroduce) {
-        this.bugTypeIntroduce = bugTypeIntroduce;
+    public void setBugTypeId(int bugTypeId) {
+        this.bugTypeId = bugTypeId;
     }
 
-    public List<TagType> getTagTypeList() {
-        return tagTypeList;
-    }
-
-    public void setTagTypeList(List<TagType> tagTypeList) {
-        this.tagTypeList = tagTypeList;
+    @Override
+    public String toString() {
+        return "BugType{" +
+                "bugTypeId=" + bugTypeId +
+                ", bugType='" + bugType + '\'' +
+                ", bugintroduce='" + bugintroduce + '\'' +
+                '}';
     }
 }

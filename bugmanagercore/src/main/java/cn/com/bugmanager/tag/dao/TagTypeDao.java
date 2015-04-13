@@ -1,5 +1,6 @@
 package cn.com.bugmanager.tag.dao;
 
+import cn.com.bugmanager.bugcontent.model.BugContent;
 import cn.com.bugmanager.mybatis.annotation.mybatisRepository;
 import cn.com.bugmanager.tag.model.BugType;
 import cn.com.bugmanager.tag.model.TagType;
@@ -22,4 +23,6 @@ public interface TagTypeDao {
     List<BugType> getBugTypeListByTagId(@Param("tagId") int tagId);
     int getTagTypeSize();
     List<TagType> getTagTypeList();
+
+    List<BugContent>  getBugContentBytagId(@Param("tagId") int tagId);
 }

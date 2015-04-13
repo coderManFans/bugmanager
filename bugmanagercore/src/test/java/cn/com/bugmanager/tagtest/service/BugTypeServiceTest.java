@@ -24,7 +24,7 @@ public class BugTypeServiceTest extends SpringTransactionalTestCase {
     public BugType getBugType(){
         BugType  bugType = new BugType();
         bugType.setBugType("运行时错误");
-        bugType.setBugTypeIntroduce("java虚拟机在运行java字节码文件的时候出现的错误，在编译的时候并不能发现");
+        bugType.setBugintroduce("java虚拟机在运行java字节码文件的时候出现的错误，在编译的时候并不能发现");
         //bugType.setBugTypeId(1);
         return bugType;
     }
@@ -46,7 +46,7 @@ public class BugTypeServiceTest extends SpringTransactionalTestCase {
     public void testUpdateByName(){
         BugType  bugType = new BugType();
         bugType.setBugType("运行时错误");
-        bugType.setBugTypeIntroduce("运行韩版");
+        bugType.setBugintroduce("运行韩版");
         boolean b = bugTypeService.updateBugType(bugType);
         bugType = bugTypeService.getBugTypeById(1);
         System.out.println(bugType.getBugType().toString()+"---");

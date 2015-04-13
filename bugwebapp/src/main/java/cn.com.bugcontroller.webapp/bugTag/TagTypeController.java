@@ -39,7 +39,7 @@ public class TagTypeController {
     @RequestMapping(method = {RequestMethod.GET})
     public String tagType() throws  Exception{
         System.out.println("----------------hello -----");
-        return  "bugtag/tagtype";
+        return  "tag/bug_tag";
     }
 
     /**
@@ -103,6 +103,12 @@ public class TagTypeController {
                 return new AjaxResponse(result);
             }
         return   AjaxResponse.getInstanceByResult(tagTypeService.updateTagType(tagType));
+    }
+
+    @RequestMapping(value="/{tagId}",method={RequestMethod.GET})
+    public String getBugContentByTagId(@PathVariable @Valid int tagId,HttpServletRequest request){
+        System.out.println("tagId = "+tagId);
+        return null;
     }
 
 

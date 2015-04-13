@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-
+    /**
+     * 主页默认设置为前台
+     * @param request
+     * @return
+     */
     @RequestMapping("/")
     public String index(HttpServletRequest request ){
         return "/index";

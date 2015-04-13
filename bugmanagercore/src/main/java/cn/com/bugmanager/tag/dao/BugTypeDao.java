@@ -1,5 +1,6 @@
 package cn.com.bugmanager.tag.dao;
 
+import cn.com.bugmanager.bugcontent.model.BugContent;
 import cn.com.bugmanager.mybatis.annotation.mybatisRepository;
 import cn.com.bugmanager.tag.model.BugType;
 import org.apache.ibatis.annotations.Param;
@@ -18,5 +19,7 @@ public interface BugTypeDao {
     List<BugType> getBugTypeListPage(@Param("bugType") BugType bugType);
     int getBugTypeSize();
     List<BugType>  getBugTypeList();
+
+    List<BugContent> getBugContentByTypeId(@Param("bugTypeId") int bugTypeId);
 
 }
