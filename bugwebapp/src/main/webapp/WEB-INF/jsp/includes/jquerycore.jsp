@@ -23,9 +23,14 @@
 <script src="<c:url value="/static/media/js/jquery.cookie.min.js"/>" type="text/javascript"></script>
 
 <script src="<c:url value="/static/media/js/jquery.uniform.min.js"/>" type="text/javascript" ></script>
-
+<script src="<c:url value="/static/js/bower_components/jquery-validation/dist/jquery.validate.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/static/js/bower_components/jquery-validation/src/localization/messages_zh.js"/>" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="<c:url value="/static/media/js/app.js"/>" type="text/javascript"></script>
+
+<script src="<c:url value="/static/js/global/scripts/global.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/static/js/global/scripts/util.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/static/js/global/scripts/toast.js"/>"></script>
 

@@ -7,11 +7,9 @@ import java.util.List;
 /**
  * Created by fcs on 2015/3/19.
  */
-public class TagType extends DataTablesPage{
+public class TagType extends DataTablesPage {
     private int tagId;
     private String tagName;
-    private List<BugType> bugTypeList;
-
 
     public TagType() {
     }
@@ -24,7 +22,7 @@ public class TagType extends DataTablesPage{
         this.tagId = tagId;
     }
 
-    public static TagType getInstanceOfTest(){
+    public static TagType getInstanceOfTest() {
         return new TagType("_tagName");
     }
 
@@ -45,11 +43,4 @@ public class TagType extends DataTablesPage{
         this.tagName = tagName;
     }
 
-    public List<BugType> getBugTypeList() {
-        return bugTypeList;
-    }
-
-    public void setBugTypeList(List<BugType> bugTypeList) {
-        this.bugTypeList = bugTypeList;
-    }
 }

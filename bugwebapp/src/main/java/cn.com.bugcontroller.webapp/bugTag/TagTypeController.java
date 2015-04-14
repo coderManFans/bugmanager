@@ -65,14 +65,13 @@ public class TagTypeController {
         return tagTypeList;
     }
 
-    @RequestMapping(method = {RequestMethod.POST})
-    public String addTagType(HttpServletRequest request,HttpServletResponse  response){
-        String tagName = request.getParameter("tagName");
-        TagType tagType = new TagType();
-        tagType.setTagName(tagName);
-        tagTypeService.addTagType(tagType);
-
-        return "/index";
+    @RequestMapping(value="/add",method = {RequestMethod.POST})
+    @ResponseBody
+    public AjaxResponse addTagType(@RequestBody @Valid TagType tagType, BindingResult  result,HttpServletRequest request,HttpServletResponse  response){
+        if(result.hasErrors()){
+            return new AjaxResponse(result);
+        }
+        return   AjaxResponse.getInstanceByResult(tagTypeService.updateTagType(tagType));
     }
 
     /**
