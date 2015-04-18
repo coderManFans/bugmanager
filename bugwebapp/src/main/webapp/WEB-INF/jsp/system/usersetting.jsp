@@ -238,8 +238,6 @@
     </div>
 </div>
 
-
-
 <!--注意先引入jQuery然后再引入bootstrap-->
 <script src="<c:url value="/static/Jcrop/js/jquery.Jcrop.min.js"/>" type="application/javascript"></script>
 <script src="<c:url value="/static/Jcrop/js/jquery.color.js"/>" type="application/javascript"></script>

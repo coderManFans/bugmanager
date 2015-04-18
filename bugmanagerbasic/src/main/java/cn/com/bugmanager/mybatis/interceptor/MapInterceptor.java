@@ -17,7 +17,7 @@ import java.sql.Statement;
 import java.util.*;
 
 /**
- * @author gaoxinyu
+ * @author fcs
  */
 @Intercepts(@Signature(method = "handleResultSets", type = ResultSetHandler.class, args = {Statement.class}))
 public class MapInterceptor implements Interceptor {

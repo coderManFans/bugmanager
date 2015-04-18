@@ -69,7 +69,7 @@
 
                 <li >
 
-                    <a href="<c:url value="/tag/tagtype"/>">
+                    <a href="<c:url value="/tags/tagtype"/>">
 
                         标签管理</a>
 
@@ -77,7 +77,7 @@
 
                 <li >
 
-                    <a href="<c:url value="/tag/bugtype"/>">
+                    <a href="<c:url value="/tags/bugtype"/>">
 
                         类型管理</a>
 

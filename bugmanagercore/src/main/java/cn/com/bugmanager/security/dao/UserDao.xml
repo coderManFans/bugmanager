@@ -32,7 +32,7 @@
         </if>
           where user_id =#{user.userId}
     </update>
-    <select id="getUserListPage" resultType="cn.com.bugmanager.security.model.User">
+    <select id="getUserPageList" resultType="cn.com.bugmanager.security.model.User">
           SELECT  * FROM  t_buguser
           WHERE 1=1
           <if test="user.userName != null and user.userName != ''">

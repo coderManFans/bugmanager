@@ -16,7 +16,7 @@ public interface UserDao {
     List<User> getUserList();
     int  deleteUserById(@Param("userId") int userId);
     int  updateUser(@Param("user") User user);
-    List<User> getUserListPage(@Param("user") User user);
+    List<User> getUserPageList(@Param("user") User user);
     int getUserCount();
     int updateUserState(User user);
     int addUser(@Param("user") User user );

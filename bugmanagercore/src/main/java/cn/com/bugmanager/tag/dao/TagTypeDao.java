@@ -15,14 +15,14 @@ import java.util.List;
 public interface TagTypeDao {
 
     //方法参数中加入@Param注解可以在mybatis中不用设置方法参数类型
-    TagType getTagTypeById(@Param("tagId") int tagId);
-    int addTagType(@Param("tagType") TagType tagType);
-    int deleteTagTypeByTagId(@Param("tagId") int tagId);
-    int updateTagType(@Param("tagType") TagType  tagType);
-    List<TagType> getTagTypeListPage(@Param("tagType") TagType tagType);
+    TagType getTagTypeById( @Param("tagId") int tagId);
+    int addTagType( @Param("tagType") TagType tagType);
+    int deleteTagTypeByTagId( @Param("tagId") int tagId);
+    int updateTagType( @Param("tagType") TagType  tagType);
+    List<TagType> getTagTypePageList( @Param("tagType") TagType tagType);
     List<BugType> getBugTypeListByTagId(@Param("tagId") int tagId);
     int getTagTypeSize();
     List<TagType> getTagTypeList();
 
-    List<BugContent>  getBugContentBytagId(@Param("tagId") int tagId);
+    List<BugContent>  getBugContentBytagId( @Param("tagId") int tagId);
 }

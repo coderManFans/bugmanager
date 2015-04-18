@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Ajax返回值
  *
- * @author gaoxinyu
+ * @author fcs
  */
 public class AjaxResponse {
 

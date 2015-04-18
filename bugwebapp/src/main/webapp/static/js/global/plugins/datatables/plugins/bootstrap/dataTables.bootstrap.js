@@ -240,7 +240,7 @@ $.extend($.fn.dataTableExt.oPagination, {
                 for (j = iStart; j <= iEnd; j++) {
                     sClass = (j == oPaging.iPage + 1) ? 'class="active"' : '';
                     $('<li ' + sClass + '><a href="#">' + j + '</a></li>')
-                        .insertBefore($('li.next:first', an[i])[0])
+                        .insertBefore($("li.next:first", an[i])[0])
                         .bind('click', function (e) {
                             e.preventDefault();
                             oSettings._iDisplayStart = (parseInt($('a', this).text(), 10) - 1) * oPaging.iLength;

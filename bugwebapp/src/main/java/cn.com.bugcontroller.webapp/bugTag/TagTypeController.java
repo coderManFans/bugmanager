@@ -27,7 +27,7 @@ import java.util.List;
  *
  */
 @Controller
-@RequestMapping("tag/tagtype")
+@RequestMapping("tags/tagtype")
 public class TagTypeController {
     @Autowired
     private TagTypeService tagTypeService;
@@ -38,7 +38,6 @@ public class TagTypeController {
      */
     @RequestMapping(method = {RequestMethod.GET})
     public String tagType() throws  Exception{
-        System.out.println("----------------hello -----");
         return  "tag/bug_tag";
     }
 
@@ -47,22 +46,12 @@ public class TagTypeController {
      * @param request
      * @return
      */
-    @RequestMapping("/getTagTypeListPage")
+    @RequestMapping(value="/getTagTypeListPage",method={RequestMethod.POST})
     @ResponseBody
     public DataTablesResponse getTagTypeList(TagType tagType,HttpServletRequest  request){
         List<TagType>  tagTypeList = tagTypeService.getTagTypeList(tagType);
+        System.out.println("-------------------sd------------");
         return new DataTablesResponse(tagType,tagTypeList);
-    }
-
-
-    @RequestMapping("/getTagTypeListJson")
-    @ResponseBody
-    public List<TagType> getTagTypeListJson(HttpServletRequest  request){
-        String tagType = request.getParameter("tagType");
-        System.out.println("------"+tagType);
-        List<TagType>  tagTypeList = tagTypeService.getTagTypeList();
-        System.out.println(tagTypeList.size()+"  000");
-        return tagTypeList;
     }
 
     @RequestMapping(value="/add",method = {RequestMethod.POST})

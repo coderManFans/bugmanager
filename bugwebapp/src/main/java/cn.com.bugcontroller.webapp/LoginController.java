@@ -51,8 +51,7 @@ public class LoginController {
             return  "login";
         }else{
             session.setAttribute("user",user);
-            System.out.println("-----------------------000000------------------------");
-            return "redirect:admin_index";
+            return "admin_index";
         }
     }
 }

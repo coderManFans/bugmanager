@@ -6,7 +6,7 @@ var Index = function () {
         //main function to initiate the module
         init: function () {
 
-            App.addResponsiveHandler(function () {
+            Layout.addResponsiveHandler(function () {
                 Index.initCalendar();
                 jQuery('.vmaps').each(function () {
                     var map = jQuery(this);

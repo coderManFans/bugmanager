@@ -185,7 +185,7 @@ IE8 fix for form input height in fluid rows
 }
 
 /***
-Fix grid offset used for reponsive layout handling(refer app.js=>handleResponsive)
+Fix grid offset used for reponsive layout handling(refer layout.js=>handleResponsive)
 ***/
 .fix-offset {
   margin-left: 0px !important;

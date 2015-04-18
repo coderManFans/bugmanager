@@ -80,5 +80,4 @@ public class TagTypeServiceTest extends SpringTransactionalTestCase {
         assertTrue(tagList.size() == 1);
     }
 
-
 }
