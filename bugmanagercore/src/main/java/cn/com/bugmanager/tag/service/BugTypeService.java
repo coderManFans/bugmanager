@@ -48,8 +48,10 @@ public class BugTypeService {
         return affectNum == 1;
     }
 
+
+
     public List<BugType> getBugTypeListPage(BugType bugType){
-        return bugTypeDao.getBugTypeListPage(bugType);
+        return bugTypeDao.getBugTypePageList(bugType);
     }
 
 

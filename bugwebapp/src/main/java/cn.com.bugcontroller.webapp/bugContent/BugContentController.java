@@ -44,10 +44,10 @@ public class BugContentController {
      */
     @RequestMapping(value={"/toadd"},method = {RequestMethod.GET})
     public String bugContent(ModelMap modelMap){
-        List<BugType>  bugTypeList = bugTypeService.getBugTypeList();
+     /*   List<BugType>  bugTypeList = bugTypeService.getBugTypeList();
         modelMap.addAttribute("bugTypeList",bugTypeList);
         List<TagType>  tagTypeList = tagTypeService.getTagTypeList();
-        modelMap.addAttribute("tagTypeList",tagTypeList);
+        modelMap.addAttribute("tagTypeList",tagTypeList);*/
         return "bugcontent/bugcontent";
     }
 

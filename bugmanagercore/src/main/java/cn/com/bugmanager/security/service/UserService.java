@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public List<User> getListUserPage(User user){
-        List<User> userListPage = userDao.getUserListPage(user);
+        List<User> userListPage = userDao.getUserPageList(user);
         return userListPage;
     }
 

@@ -26,14 +26,11 @@
         </where>
 
     </select>
-    <select id="getBugTypeListByTagId" resultType="cn.com.bugmanager.tag.model.BugType">
+    <select id="getBugTypePageListByTagId" resultType="cn.com.bugmanager.tag.model.BugType">
          SELECT  * from t_bugtype where bug_typeid in (select bug_typeid from tag_bug_type tbt where tbt.tag_typeid = #{tagId})
     </select>
     <select id="getTagTypeSize" resultType="int">
         SELECT  count(*) FROM  t_tagtype
-    </select>
-    <select id="getTagTypeList" resultType="cn.com.bugmanager.tag.model.TagType">
-        select * from t_tagtype
     </select>
 
     <select id="getBugContentBytagId" resultType="cn.com.bugmanager.bugcontent.model.BugContent">

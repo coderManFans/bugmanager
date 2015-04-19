@@ -20,9 +20,9 @@ public interface TagTypeDao {
     int deleteTagTypeByTagId( @Param("tagId") int tagId);
     int updateTagType( @Param("tagType") TagType  tagType);
     List<TagType> getTagTypePageList( @Param("tagType") TagType tagType);
-    List<BugType> getBugTypeListByTagId(@Param("tagId") int tagId);
+    List<BugType> getBugTypePageListByTagId(@Param("tagId") int tagId);
     int getTagTypeSize();
-    List<TagType> getTagTypeList();
+
 
     List<BugContent>  getBugContentBytagId( @Param("tagId") int tagId);
 }

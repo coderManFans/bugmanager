@@ -39,7 +39,7 @@ public class TagTypeService {
     }
 
     public  List<BugType>  getBugTypeListByTagId(int tagId){
-        return tagTypeDao.getBugTypeListByTagId(tagId);
+        return tagTypeDao.getBugTypePageListByTagId(tagId);
     }
 
 
@@ -57,7 +57,4 @@ public class TagTypeService {
         return tagTypeDao.getTagTypeSize();
     }
 
-    public List<TagType> getTagTypeList(){
-        return tagTypeDao.getTagTypeList();
-    }
 }
