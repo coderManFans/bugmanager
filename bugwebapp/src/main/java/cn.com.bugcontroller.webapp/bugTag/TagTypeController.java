@@ -50,31 +50,27 @@ public class TagTypeController {
     @ResponseBody
     public DataTablesResponse getTagTypeList(TagType tagType,HttpServletRequest  request){
         List<TagType>  tagTypeList = tagTypeService.getTagTypeList(tagType);
-        System.out.println("-------------------sd------------");
         return new DataTablesResponse(tagType,tagTypeList);
     }
 
     @RequestMapping(value="/add",method = {RequestMethod.POST})
     @ResponseBody
-    public AjaxResponse addTagType(@RequestBody @Valid TagType tagType, BindingResult  result,HttpServletRequest request,HttpServletResponse  response){
+    public AjaxResponse addTagType(@RequestBody @Valid TagType tagType, BindingResult  result,HttpServletRequest request){
+        System.out.println(tagType.getTagName()+"-----------------------");
         if(result.hasErrors()){
             return new AjaxResponse(result);
         }
-        return   AjaxResponse.getInstanceByResult(tagTypeService.updateTagType(tagType));
+        return   AjaxResponse.getInstanceByResult(tagTypeService.addTagType(tagType));
     }
 
     /**
      * @param tagId
-     * @param result
-     * @param request
      * @return
      */
-    @RequestMapping(value = "/{tagId}",method={RequestMethod.DELETE})
+    @RequestMapping(value="/{tagId}",method={RequestMethod.DELETE})
     @ResponseBody
-    public AjaxResponse  deleteTagType(@PathVariable  int tagId, BindingResult  result ,HttpServletRequest  request){
-        if(result.hasErrors()){
-            return new AjaxResponse(result);
-        }
+    public AjaxResponse  deleteTagType(@PathVariable int tagId){
+
         return AjaxResponse.getInstanceByResult(tagTypeService.deleteTagTypeById(tagId));
     }
 

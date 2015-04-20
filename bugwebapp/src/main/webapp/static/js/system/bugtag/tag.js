@@ -1,30 +1,36 @@
 var tagListTable = function () {
-    var globalTable;
+    var tagTable;
     var $table = $("#dataTable");
     var handleRecords = function () {
-        globalTable = new Datatable();
-        globalTable.init({
+        tagTable = new Datatable();
+        tagTable.init({
             src: $table,
             onQuery: function (data) {
                 data.tagName = $("#tagNameQuery").val();
             },
+
             onSortColumn: function (sortColumn, sortDirection) {
                 switch (sortColumn) {
+                    case "tagId":
+                        sortColumn = "tag_id";
+                        break;
                     case "tagName":
                         sortColumn = "tag_name";
                         break;
                 }
                 return customGlobal.onSortColumnDefault(sortColumn, sortDirection);
             },
+
             dataTable: {
                 "ajax": {
                     "url": "tags/tagtype/getTagTypeListPage" // ajax source
                 },
                 "columns": [
+                    {data: 'tagId', orderable: true, searchable: true},
                     {data: 'tagName', orderable: true, searchable: true},
                     {data: 'operate', orderable: false,
                         render: function (data, type, full) {
-                            return '<a class="edit btn default btn-xs purple" tagName="' + full.tagName +'"><i class="fa fa-edit"></i>编辑</a>&nbsp;'
+                            return '<a class="edit btn default btn-xs purple"'+'" tagName="' + full.tagName +'"><i class="fa fa-edit"></i>编辑</a>&nbsp;'
                                 + '<a class="delete btn default btn-xs black" data-target="#confirmDialog" data-toggle="modal"><i class="fa fa-times"></i>删除</a>&nbsp;';
                         }
                     }
@@ -46,6 +52,8 @@ var tagListTable = function () {
         isEditable: true,
         showAddtag: function () {
             if (!handletagEvent.isEditable) {
+                alert(handletagEvent.isEditable);
+                console.log(handletagEvent.isEditable);
                 toast.error("请添加完当前添加项");
                 return;
             }
@@ -53,17 +61,17 @@ var tagListTable = function () {
             $("#addtagForm").show();
             handletagEvent.isEditable = false;
         },
+
         hideAddtag: function () {
             $("#addtagForm").hide();
             handletagEvent.isEditable = true;
         },
+
         addtag: function () {
             var data = {
-                paramName: $("#addParamName").val(),
-                paramValue: $("#addParamValue").val(),
-                paramDescription: $("#addParamDescription").val()
+                tagName: $("#addTagName").val()
             };
-            if (!validateError("^[0-9a-zA-Z\_]+$", data.paramName, "变量名称名称的数据只能包括字母数字下划线")) {
+            if (!validateError("^[0-9a-zA-Z\_]+$", data.tagName, "变量名称名称的数据只能包括字母数字下划线")) {
                 return;
             }
             $.ajax({
@@ -73,32 +81,32 @@ var tagListTable = function () {
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (customGlobal.ajaxCallback(data)) {
-                        globalTable.reloadTable(false);
+                        tagTable.reloadTable(false);
                         $("#addtagForm").hide();
                         handletagEvent.isEditable = true;
-                        $("#addParamName").val("");
-                        $("#addParamValue").val(""),
-                            $("#addParamDescription").val("")
+                        $("#addTagName").val("");
                     }
                 }
             });
         },
+
         deletetag: function (table) {
             var $this = table;
             $("#confirmBtn").off("click.deleteRow").on("click.deleteRow", function () {
                 $.ajax({
-                    url: "tags/tagtype" + $table.DataTable().row($this.parents('tr')[0]).data().paramName,
+                    url: "tags/tagtype/" + $table.DataTable().row($this.parents('tr')[0]).data().tagId,
                     dataType: "json",
                     type: "DELETE",
                     success: function (data) {
                         $("#confirmDialog").modal("hide");
                         if (customGlobal.ajaxCallback(data)) {
-                            globalTable.reloadTable(false);
+                            tagTable.reloadTable(false);
                         }
                     }
                 })
             })
         },
+
         showInput: function (table) {
             if (handletagEvent.isEditable == false) {
                 toast.error("请完成当前编辑");
@@ -107,24 +115,23 @@ var tagListTable = function () {
                 var nRow = table.parents('tr')[0];
                 var tag = $table.DataTable().row(nRow).data();
                 var jqTds = $('>td', nRow);
-                jqTds[0].innerHTML = '<input type="text" id="updateParamName" class="form-control input-sm" readonly="true" value="' + tag.paramName + '">';
-                jqTds[1].innerHTML = '<input type="text" id="updateParamValue" class="form-control input-sm" value="' + tag.paramValue + '">';
-                jqTds[2].innerHTML = '<input type="text" id="updateParamDescription" class="form-control input-sm" value="' + tag.paramDescription + '">';
-                jqTds[3].innerHTML = '<a class="update btn default btn-xs blue" href="javascript:;"><i class="fa fa-edit"></i>保存</a>&nbsp;' +
+                jqTds[0].innerHTML = '<input type="text" id="updateTagId" class="form-control input-sm" readonly="true" value="' + tag.tagId + '">';
+                jqTds[1].innerHTML = '<input type="text" id="updateTagName" class="form-control input-sm"  value="' + tag.tagName + '">';
+                jqTds[2].innerHTML = '<a class="update btn default btn-xs blue" href="javascript:;"><i class="fa fa-edit"></i>保存</a>&nbsp;' +
                 '<a class="cancel btn default btn-xs" href="javascript:;"><i class="fa fa-times"></i>取消</a>';
                 handletagEvent.isEditable = false;
             }
         },
+
         hideInput: function () {
-            globalTable.reloadTable(false);
+            tagTable.reloadTable(false);
             handletagEvent.isEditable = true;
         },
 
         updatetag: function () {
             var data = {
-                paramName: $("#updateParamName").val(),
-                paramValue: $("#updateParamValue").val(),
-                paramDescription: $("#updateParamDescription").val()
+                tagId: $("#updateTagId").val(),
+                tagName: $("#updateTagName").val()
             };
             $.ajax({
                 url:  "tags/tagtype",
@@ -134,7 +141,7 @@ var tagListTable = function () {
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (customGlobal.ajaxCallback(data)) {
-                        globalTable.reloadTable(true);
+                        tagTable.reloadTable(true);
                         handletagEvent.isEditable = true;
                     }
                 }

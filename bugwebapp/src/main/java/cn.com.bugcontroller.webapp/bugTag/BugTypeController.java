@@ -2,6 +2,7 @@ package cn.com.bugcontroller.webapp.bugTag;
 
 import cn.com.bugmanager.ajax.response.AjaxResponse;
 import cn.com.bugmanager.common.ajax.DataTablesPage;
+import cn.com.bugmanager.common.ajax.DataTablesResponse;
 import cn.com.bugmanager.tag.model.BugType;
 import cn.com.bugmanager.tag.service.BugTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by fcs on 2015/3/23.
  */
 @Controller
-@RequestMapping("tag/bugtype")
+@RequestMapping("tags/bugtype")
 public class BugTypeController {
     @Autowired
     private BugTypeService  bugTypeService;
@@ -28,11 +29,16 @@ public class BugTypeController {
         return "tag/bug_type";
     }
 
+    /**
+     * @param bugType
+     * @param request
+     * @return
+     */
     @RequestMapping("/getBugTypeListPage")
     @ResponseBody
-    public DataTablesPage  getBugTypeListPage(BugType bugType,HttpServletRequest  request){
+    public DataTablesResponse getBugTypeListPage(BugType bugType,HttpServletRequest  request){
         List<BugType>  bugTypeList = bugTypeService.getBugTypeListPage(bugType);
-        return new DataTablesPage();
+        return new DataTablesResponse(bugType,bugTypeList);
     }
 
 

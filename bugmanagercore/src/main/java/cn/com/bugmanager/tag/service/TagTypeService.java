@@ -25,7 +25,6 @@ public class TagTypeService {
 
     public  boolean deleteTagTypeById(int tagTypeId){
         int affectNUm = tagTypeDao.deleteTagTypeByTagId(tagTypeId);
-        System.out.println("a = "+affectNUm);
         return  Constant.AFFECTED_LINE_1 == affectNUm;
     }
 
