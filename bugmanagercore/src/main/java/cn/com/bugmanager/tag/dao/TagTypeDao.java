@@ -23,6 +23,6 @@ public interface TagTypeDao {
     List<BugType> getBugTypePageListByTagId(@Param("tagId") int tagId);
     int getTagTypeSize();
 
-
+    List<TagType> getTagTypeList();
     List<BugContent>  getBugContentBytagId( @Param("tagId") int tagId);
 }

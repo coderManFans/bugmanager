@@ -4,18 +4,22 @@
     <select id="getTagTypeById" parameterType="int" resultType="cn.com.bugmanager.tag.model.TagType"  >
       SELECT  * from t_tagtype WHERE  tag_id=#{tagId}
     </select>
+
     <insert id="addTagType" >
          insert into t_tagtype (tag_name) values(#{tagType.tagName})
         <selectKey resultType="int" keyProperty="tagId">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
+
     <delete id="deleteTagTypeByTagId" >
       DELETE  FROM  t_tagtype WHERE  tag_id = #{tagId}
     </delete>
+
     <update id="updateTagType" >
       UPDATE t_tagtype SET  tag_name = #{tagType.tagName} where tag_id =#{tagType.tagId}
     </update>
+
     <select id="getTagTypePageList" resultType="cn.com.bugmanager.tag.model.TagType" >
         SELECT  * from t_tagtype
         <where>
@@ -26,9 +30,17 @@
         </where>
 
     </select>
+
+    <select id="getTagTypeList" resultType="cn.com.bugmanager.tag.model.TagType">
+        SELECT  * from t_tagtype
+    </select>
+
     <select id="getBugTypePageListByTagId" resultType="cn.com.bugmanager.tag.model.BugType">
          SELECT  * from t_bugtype where bug_typeid in (select bug_typeid from tag_bug_type tbt where tbt.tag_typeid = #{tagId})
     </select>
+
+
+
     <select id="getTagTypeSize" resultType="int">
         SELECT  count(*) FROM  t_tagtype
     </select>

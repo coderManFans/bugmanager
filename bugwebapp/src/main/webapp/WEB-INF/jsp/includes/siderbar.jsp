@@ -85,7 +85,7 @@
 
                 <li >
 
-                    <a href="#">
+                    <a href="<c:url value="/buginfo/bugcontent"/>">
 
                         错误管理</a>
 

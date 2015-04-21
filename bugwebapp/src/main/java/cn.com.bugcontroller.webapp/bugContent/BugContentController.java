@@ -28,7 +28,7 @@ import java.util.List;
  * Created by fcs on 2015/3/23.
  */
 @Controller
-@RequestMapping("/buginfo/bugcontent")
+@RequestMapping("buginfo/bugcontent")
 public class BugContentController {
     @Autowired
     private BugContentService  bugContentService;
@@ -39,18 +39,15 @@ public class BugContentController {
     @Autowired
     private TagTypeService tagTypeService;
 
-    /**
-     * @return
-     */
-    @RequestMapping(value={"/toadd"},method = {RequestMethod.GET})
+
+    @RequestMapping(method = {RequestMethod.GET})
     public String bugContent(ModelMap modelMap){
-     /*   List<BugType>  bugTypeList = bugTypeService.getBugTypeList();
+        List<BugType>  bugTypeList = bugTypeService.getBugTypeList();
         modelMap.addAttribute("bugTypeList",bugTypeList);
         List<TagType>  tagTypeList = tagTypeService.getTagTypeList();
-        modelMap.addAttribute("tagTypeList",tagTypeList);*/
-        return "bugcontent/bugcontent";
+        modelMap.addAttribute("tagTypeList",tagTypeList);
+        return "bugcontent/bug_content";
     }
-
 
     /**
      * @param bugContent

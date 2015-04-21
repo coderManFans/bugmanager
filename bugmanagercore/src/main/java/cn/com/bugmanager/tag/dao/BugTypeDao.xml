@@ -33,7 +33,7 @@
              <if test="bugType.bugType != null and bugType.bugType != '' ">
                 AND bug_type LIKE  concat('%',#{bugType.bugType},'%')
              </if>
-             <if test="bugType.bugIntroduce != null and bugType.bugType != ''">
+             <if test="bugType.bugintroduce != null and bugType.bugintroduce != ''">
                  AND bug_introduce LIKE concat('%',#{bugType.bugintroduce}，'%')
              </if>
         </where>

@@ -41,31 +41,18 @@ public class BugTypeController {
         return new DataTablesResponse(bugType,bugTypeList);
     }
 
-
-    @RequestMapping("/getBugTypeListJson")
+    @RequestMapping(value = "/add",method = {RequestMethod.POST})
     @ResponseBody
-    public List<BugType>  getBugTypeListJson(HttpServletRequest  request){
-        List <BugType>  bugTypeList = bugTypeService.getBugTypeList();
-        System.out.println(bugTypeList.size()+"----");
-        return bugTypeList;
-    }
-
-
-
-    @RequestMapping(value = {"/add"},method = {RequestMethod.POST})
-    public String  addBugType(HttpServletRequest request,HttpServletResponse response){
-        String  bugType  = request.getParameter("bugType");
-        String bugTypeIntroduce = request.getParameter("bugTypeIntroduce");
-        BugType  bugType1 = new BugType();
-        bugType1.setBugType(bugType);
-        bugType1.setBugintroduce(bugTypeIntroduce);
-        bugTypeService.addBugType(bugType1);
-        return "/index";
+    public AjaxResponse  addBugType(@RequestBody @Valid BugType bugtype,BindingResult result,HttpServletRequest request){
+       if(result.hasErrors()){
+          return new  AjaxResponse(result);
+       }
+        return AjaxResponse.getInstanceByResult(bugTypeService.addBugType(bugtype));
     }
 
     @RequestMapping(method = {RequestMethod.PUT})
-    @ResponseBody
-    public AjaxResponse  updateBugType(@RequestBody @Valid BugType bugType,BindingResult result,HttpServletRequest request){
+    @ResponseBody  //put不用加request请求
+    public AjaxResponse  updateBugType(@RequestBody @Valid BugType bugType,BindingResult result){
         if(result.hasErrors()){
             return  new AjaxResponse(result);
         }
@@ -76,18 +63,9 @@ public class BugTypeController {
      * @return
      */
     @RequestMapping(value = "/{bugTypeId}",method = {RequestMethod.DELETE})
+    @ResponseBody
     public AjaxResponse  deleteBugType(@PathVariable  int bugTypeId){
         return  AjaxResponse.getInstanceByResult(bugTypeService.deleteBugType(bugTypeId));
     }
-
-
-    @RequestMapping(value="/{/bugTypeId}",method={RequestMethod.GET})
-    public String getBugContentByBugid(){
-
-        return  null;
-    }
-
-
-
 
 }
