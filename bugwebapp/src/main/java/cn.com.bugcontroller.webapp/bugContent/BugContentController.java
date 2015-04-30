@@ -1,7 +1,9 @@
 package cn.com.bugcontroller.webapp.bugContent;
 
 import cn.com.bugmanager.ajax.response.AjaxResponse;
+import cn.com.bugmanager.bugcontent.model.BugAnswer;
 import cn.com.bugmanager.bugcontent.model.BugContent;
+import cn.com.bugmanager.bugcontent.service.BugAnswerService;
 import cn.com.bugmanager.bugcontent.service.BugContentService;
 import cn.com.bugmanager.common.ajax.DataTablesResponse;
 import cn.com.bugmanager.security.model.User;
@@ -39,6 +41,8 @@ public class BugContentController {
     @Autowired
     private TagTypeService tagTypeService;
 
+    @Autowired
+    protected BugAnswerService bugAnswerService;
 
     @RequestMapping(method = {RequestMethod.GET})
     public String bugContent(ModelMap modelMap){
@@ -80,23 +84,32 @@ public class BugContentController {
         bugContent.setBugCode(bugCode);
         bugContent.setBugReason(bugReason);
         bugContent.setUpDate(upTime);
+
         String bugContentId = CalendarUtils.getDateUUID();
-        System.out.println("bugcontentId = "+bugContentId);
+        bugContent.setUserId(userId);
+        bugContent.setBugcontentid(bugContentId);
+
 
         if(bugAnswer != null || "".equals(bugAnswer)){
             bugContent.setHasSolved(true);
+            bugContentService.addBugContentWithAnswer(bugContent);
+            BugAnswer bugAnswerModel = new BugAnswer();
+            bugAnswerModel.setAnswerInfo(bugAnswer);
+            bugAnswerModel.setAnswerTime(CalendarUtils.getDateTime());
+            bugAnswerModel.setAnswerUserId(userId);
+            bugAnswerModel.setBugContentId(bugContentId);
+            bugAnswerModel.setRight(true);
+
+            bugAnswerService.addBugAnswer(bugAnswerModel);
+
         }else{
             bugContent.setHasSolved(false);
+            bugContentService.addBugContentWithNoAnswer(bugContent);
         }
-
-        bugContent.setUserId(userId);
-        bugContent.setBugcontentid(bugContentId);
-        bugContentService.addBugContentWithNoAnswer(bugContent);
-
         bugContentService.addBug_Tag(bugContentId,tagIdList);
         bugContentService.addBug_Type(bugContentId,bugIdList);
 
-        return "index";
+        return "admin_index";
     }
 
   /* @RequestMapping(value="/add",method = {RequestMethod.POST})

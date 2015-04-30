@@ -13,8 +13,8 @@
         <if test="bugType.bugType != null and bugType.bugType != ''">
             bug_type=#{bugType.bugType},
         </if>
-        <if test="bugType.bugTypeIntroduce != nulll and bugType.bugIntroduce != ''">
-            bug_introduce = #{bugType.bugintroduce},
+        <if test="bugType.bugintroduce != null and bugType.bugintroduce != '' ">
+            bug_introduce = #{bugType.bugintroduce}
         </if>
          where bug_typeid = #{bugType.bugTypeId}
     </update>

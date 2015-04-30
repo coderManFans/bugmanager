@@ -11,6 +11,7 @@ public class BugAnswer extends DataTablesPage{
     private String answerTime;
     private int answerUserId;
     private boolean isRight;
+    private String bugContentId;
 
     public BugAnswer() {
     }
@@ -70,6 +71,15 @@ public class BugAnswer extends DataTablesPage{
         this.isRight = isRight;
     }
 
+    public String getBugContentId() {
+        return bugContentId;
+    }
+
+    public void setBugContentId(String bugContentId) {
+        this.bugContentId = bugContentId;
+    }
+
+
     @Override
     public String toString() {
         return "BugAnswer{" +
@@ -78,6 +88,7 @@ public class BugAnswer extends DataTablesPage{
                 ", answerTime='" + answerTime + '\'' +
                 ", answerUserId=" + answerUserId +
                 ", isRight=" + isRight +
+                ", bugContentId='" + bugContentId + '\'' +
                 '}';
     }
 }

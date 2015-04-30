@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanager.bugcontent.dao.BugContentDao">
     <insert id="addBugContentWithAnswer">
-        insert into t_bugcontent (bug_reason,console_error,bug_code,has_solved)
-         VALUES (#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved})
+        insert into t_bugcontent (bug_contentid,bug_reason,console_error,bug_code,has_solved,add_date,user_id)
+         VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved},#{bugContent.upDate},#{bugContent.userId})
     </insert>
 
     <insert id="addBugContentNoAnswer" >
