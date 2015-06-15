@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanager.bugcontent.dao.BugContentDao">
+
+   <!-- <resultMap id="bugContentResultMap" type="cn.com.bugmanager.bugcontent.model.BugContent">
+        <id property="bugcontentid" column="bug_contentid" javaType="string" jdbcType="VARCHAR"/>
+        <result property="bugReason" column="bug_reason" javaType="string" jdbcType="VARCHAR" />
+        <result property="hasSolved" column="has_solved" javaType="boolean" jdbcType="VARCHAR" />
+        <result property="upDate" column="add_date" javaType="string" jdbcType="VARCHAR" />
+        <result property="userId" column="user_id" javaType="string" jdbcType="INTEGER" />
+
+        <collection property="bugTypeList" ofType="cn.com.bugmanager.tag.model.BugType" >
+            <id property="bugTypeId" column="bug_typeid" javaType="int" jdbcType="INTEGER" />
+            <result property="bugType" column="bug_type" javaType="string" jdbcType="VARCHAR" />
+        </collection>
+
+        <collection property="tagTypeList" ofType="cn.com.bugmanager.tag.model.TagType">
+            <id property="tagId" column="tag_id" javaType="int" jdbcType="INTEGER" />
+            <result property="tagName" column="tag_name" javaType="string" jdbcType="string" />
+        </collection>
+    </resultMap>-->
+
+
     <insert id="addBugContentWithAnswer">
         insert into t_bugcontent (bug_contentid,bug_reason,console_error,bug_code,has_solved,add_date,user_id)
          VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved},#{bugContent.upDate},#{bugContent.userId})
@@ -36,16 +56,15 @@
         </foreach>
     </insert>
 
+    <select id="getBugContentList" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
+        SELECT bug_contentid,bug_reason,has_solved,add_date,user_id FROM t_bugcontent
+    </select>
 
     <update id="updateBugContent">
         update t_bugcontent set bug_reason=#{bugContent.bugReason},console_error = #{bugContent.consoleError},
         bug_code=#{bugContent.bugCode}
         where bug_contentid = #{bugContent.bugContentId}
     </update>
-
-    <select id="getBugContentList" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
-          SELECT  * FROM  t_bugcontent
-    </select>
 
     <delete id="deleteBugContentById" >
           DELETE  from t_bugcontent where bug_contentid=#{bugContentId}
@@ -56,15 +75,17 @@
     </select>
 
     <select id="getBugContentListPage" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
-          select * from t_bugcontent where 1=1
-          <if test="bugContent.bugReason != null and bugContent.bugReason != ''">
-              AND  bug_reason LIKE  concat('%',#{bugContent.bugReason},'%'),
-          </if>
-          <if test="bugContent.consoleError != null and bugContent.consoleError != ''">
-              AND console_error LIKE concat('%',#{bugContent.consoleError},'%'),
-          </if>
-          <if test="bugContent.bugCode != null and bugContent.bugCode != ''">
-              AND bug_code LIKE concat('%',#{bugContent.bugCode},'%')
-        </if>
+        SELECT bug_contentid,bug_reason,has_solved,add_date,user_id FROM t_bugcontent
+        <where>
+            <if test="bugReason != null and bugReason != '' ">
+                AND bug_reason LIKE  concat('%',#{bugContent.bugReason},'%')
+            </if>
+            <if test="upDate != null and upDate != ''">
+                AND add_date LIKE concat('%',#{bugContent.upDate}'%')
+            </if>
+        </where>
+    </select>
+    <select id="getBugContentListPageNoSearch" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
+        SELECT bug_contentid,bug_reason,has_solved,add_date,user_id FROM t_bugcontent
     </select>
 </mapper>

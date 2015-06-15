@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanager.bugcontent.dao.BugAnswerDao">
+    <insert id="addAnswer">
+      INSERT INTO  t_buganswer(answer_info,answer_time,user_id,is_right,bug_contentid)
+          VALUES(#{bugAnswer.answerInfo},#{bugAnswer.answerTime},#{bugAnswer.answerUserId},#{bugAnswer.isRight},#{bugAnswer.bugContentId})
+    </insert>
+    <update id="updateAnswer">
+        UPDATE  t_buganswer set
+        <if test="bugAnswer.answerInfo != null and bugAnswer.answerInfo != '' ">
+            answer_info =#{bugAnswer.answerInfo},
+        </if>
+        <if test="bugAnswer.answerTime != null and bugAnswer.answerTime != ''">
+            answer_time = #{bugAnswer.answerTime},
+        </if>
+        is_right = #{bugAnswer.isRight}
+
+        where answerid=#{bugAnswer.bugAnswerId}
+
+    </update>
+    <delete id="deleteAnswerById">
+          DELETE  FROM  t_buganswer WHERE answerid=#{bugAnswerId}
+    </delete>
+    <select id="getAnswerById" resultType="cn.com.bugmanager.bugcontent.model.BugAnswer">
+          SELECT  * FROM t_buganswer WHERE  answerid=#{bugAnswerId}
+    </select>
+    <select id="getAnswerListByBugId" resultType="cn.com.bugmanager.bugcontent.model.BugAnswer">
+          SELECT  tba.* FROM  t_buganswer tba,t_bugcontent tbt WHERE tba.answerid = tbt.bug_solutionid AND  tbt.bug_contentid=#{bugContentId}
+    </select>
+
+
+</mapper>

@@ -68,7 +68,7 @@ public class BugContentServiceTest extends SpringTransactionalTestCase {
     @Sql("sql/TestAddBugContent.sql")
     @Test
     public void testGetBugContentList(){
-        int size = bugContentService.getBugContentListPage().size();
+        int size = bugContentService.getBugContentListPage(null).size();
         assertTrue(size == 1);
     }
 }

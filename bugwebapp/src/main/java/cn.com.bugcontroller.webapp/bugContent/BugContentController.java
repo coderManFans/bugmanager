@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,23 +42,13 @@ public class BugContentController {
     @Autowired
     protected BugAnswerService bugAnswerService;
 
-    @RequestMapping(method = {RequestMethod.GET})
+    @RequestMapping(value="/toadd",method = {RequestMethod.GET})
     public String bugContent(ModelMap modelMap){
         List<BugType>  bugTypeList = bugTypeService.getBugTypeList();
         modelMap.addAttribute("bugTypeList",bugTypeList);
         List<TagType>  tagTypeList = tagTypeService.getTagTypeList();
         modelMap.addAttribute("tagTypeList",tagTypeList);
         return "bugcontent/bug_content";
-    }
-
-    /**
-     * @param bugContent
-     * @return
-     */
-    @RequestMapping("/bugContentListPage")
-    public DataTablesResponse  getBugContentListPage(@RequestBody BugContent bugContent){
-        List<BugContent>  bugContentList = bugContentService.getBugContentListPage();
-        return new DataTablesResponse(bugContent,bugContentList);
     }
 
 
@@ -89,7 +77,6 @@ public class BugContentController {
         bugContent.setUserId(userId);
         bugContent.setBugcontentid(bugContentId);
 
-
         if(bugAnswer != null || "".equals(bugAnswer)){
             bugContent.setHasSolved(true);
             bugContentService.addBugContentWithAnswer(bugContent);
@@ -112,28 +99,15 @@ public class BugContentController {
         return "admin_index";
     }
 
-  /* @RequestMapping(value="/add",method = {RequestMethod.POST})
-   @ResponseBody
-   public AjaxResponse addBugContentNoAnwser(@RequestBody BugContent  bugContent,HttpServletRequest  request) {
-
-       HttpSession session = request.getSession();
-       User user = (User) session.getAttribute("user");
-       int userId = user.getUserId();
-       System.out.println("bug---"+bugContent.toString());
-       String upTime = CalendarUtils.getDateTime();   //使用该方法设置时间
-       System.out.println("userId = " + userId);
-       return AjaxResponse.getInstanceByResult(false);
-   }*/
-
-
        /**
-        * @param bugContentId
+        * @param bugcontentid
         * @return
         */
-    @RequestMapping(value = "{/bugcontentid}",method = {RequestMethod.DELETE})
+    @RequestMapping(value = "/{bugcontentid}",method = {RequestMethod.DELETE})
     @ResponseBody
-    public AjaxResponse  deleteBugContent(@PathVariable String bugContentId){
-        return AjaxResponse.getInstanceByResult(bugContentService.deleteBugContentById(bugContentId));
+    public AjaxResponse  deleteBugContent(@PathVariable @Valid int bugcontentid,HttpServletRequest  request){
+        System.out.println("--------------------sdfsf-------------------"+bugcontentid);
+        return AjaxResponse.getInstanceByResult(bugContentService.deleteBugContentById(String.valueOf(bugcontentid)));
     }
 
     /**
@@ -142,12 +116,25 @@ public class BugContentController {
      * @param request
      * @return
      */
-    @RequestMapping(method = {RequestMethod.PUT})
+    @RequestMapping(value="/update",method = {RequestMethod.PUT})
     @ResponseBody
-    public AjaxResponse  updateBugContent(@RequestBody BugContent  bugContent,BindingResult result ,HttpServletRequest request){
+    public AjaxResponse  updateBugContent(@RequestBody @Valid BugContent  bugContent,BindingResult result ,HttpServletRequest request){
+        System.out.println(bugContent.getUserId()+"");
+        System.out.println("----------------------sdfasdfasdfasdfasdfasdfasdfa-------");
+
         if(result.hasErrors()){
             return   new AjaxResponse(result);
         }
         return  AjaxResponse.getInstanceByResult(bugContentService.updateBugContent(bugContent));
     }
+
+    @RequestMapping(value="/getBugcontentListPage",method={RequestMethod.POST})
+    @ResponseBody
+    public DataTablesResponse getBugcontentListPage(BugContent bugContent,HttpServletRequest request){
+        System.out.println((bugContent == null) +"----------------------------"+bugContent.getPageSize());
+        List<BugContent> bugContentList = bugContentService.getBugContentListPage(bugContent);
+        System.out.println("-----------------------------");
+        return  new DataTablesResponse(bugContent,bugContentList);
+    }
+
 }

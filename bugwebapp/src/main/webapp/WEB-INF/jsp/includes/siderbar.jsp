@@ -85,17 +85,24 @@
 
                 <li >
 
-                    <a href="<c:url value="/buginfo/bugcontent"/>">
+                    <a href="<c:url value="/buginfo/bugcontent/toadd"/>">
 
-                        错误管理</a>
+                        添加bug</a>
 
                 </li>
 
                 <li >
 
-                    <a href="#">
+                    <a href="<c:url value="bugcontroller/bugcontr"/>">
 
-                        答案管理</a>
+                        查看bug</a>
+
+                </li>
+                <li >
+
+                    <a href="<c:url value="bugcontroller/bugcontr/getBugcontentListPage?pageNum=1"/>">
+
+                        查看bu2222g</a>
 
                 </li>
 

@@ -2,7 +2,6 @@ package cn.com.bugmanager.bugcontent.dao;
 
 import cn.com.bugmanager.bugcontent.model.BugContent;
 import cn.com.bugmanager.mybatis.annotation.mybatisRepository;
-import cn.com.bugmanager.tag.model.BugType;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,20 +12,21 @@ import java.util.List;
 @mybatisRepository
 public interface BugContentDao {
 
-      int addBugContentWithAnswer(@Param("bugContent") BugContent  bugContent);
+      int addBugContentWithAnswer(@Param("bugContent") BugContent bugContent);
       int updateBugContent(@Param("bugContent") BugContent bugContent);
       int deleteBugContentById(@Param("bugContentId") String bugContentId);
-      List<BugContent> getBugContentList();
       int getBugContentSize();
       BugContent  getBugContentById(@Param("bugContentId") String bugContentId);
-      List<BugContent> getBugContentListPage(@Param("bugContent") BugContent bugContent);
+      List<BugContent> getBugContentListPage(BugContent bugContent);
+      List<BugContent> getBugContentListPageNoSearch();
       int addBugContentNoAnswer(@Param("bugContent") BugContent bugContent);
 
       //bugtag ---bugcontent --- bugtype
-      int addbug_type(@Param("bugContentId") String bugContentId, @Param("bugTypeArray") String [] bugTypeArray);
+      int addbug_type(@Param("bugContentId") String bugContentId, @Param("bugTypeArray") String[] bugTypeArray);
 
-      int addbug_tag(@Param("bugContentId") String bugContentId, @Param("tagIdArray") String [] tagIdArray);
+      int addbug_tag(@Param("bugContentId") String bugContentId, @Param("tagIdArray") String[] tagIdArray);
 
       String getBugContentId(@Param("bugcode") String bugcode, @Param("bugReason") String bugReason);
 
+      List<BugContent>  getBugContentListPage();
 }

@@ -55,8 +55,8 @@ public class BugContentService {
     /**
      * @return  为分页
      */
-    public List<BugContent> getBugContentListPage(){
-        List<BugContent>  bugContentList = bugContentDao.getBugContentList();
+    public List<BugContent> getBugContentListPage(BugContent bugContent){
+        List<BugContent>  bugContentList = bugContentDao.getBugContentListPage(bugContent);
         if(bugContentList != null){
             return  bugContentList;
         }
@@ -91,5 +91,10 @@ public class BugContentService {
 
     public int addBug_Tag(String bugContentId, String [] bug_tagArray){
         return bugContentDao.addbug_tag(bugContentId,bug_tagArray);
+    }
+
+
+    public List<BugContent> getBugContentListPageNoSearch(){
+        return bugContentDao.getBugContentListPage();
     }
 }

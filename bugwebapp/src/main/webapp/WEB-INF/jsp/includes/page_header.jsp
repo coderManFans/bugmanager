@@ -38,7 +38,7 @@
 
                     <select class="layout-option m-wrap small">
 
-                        <option value="fluid" selected>Fluid</option>
+                        <option value="fluid" selected="selected">Fluid</option>
 
                         <option value="boxed">Boxed</option>
 

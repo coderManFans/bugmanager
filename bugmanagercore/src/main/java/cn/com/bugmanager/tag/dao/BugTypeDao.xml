@@ -27,14 +27,14 @@
         select * from t_bugtype WHERE bug_typeid = #{bugTypeId}
     </select>
 
-    <select id="getBugTypePageList" resultType="cn.com.bugmanager.tag.model.BugType">
+    <select id="getBugTypeListPage" resultType="cn.com.bugmanager.tag.model.BugType">
         SELECT  bug_typeid,bug_type,bug_introduce   from t_bugtype
          <where>
-             <if test="bugType.bugType != null and bugType.bugType != '' ">
-                AND bug_type LIKE  concat('%',#{bugType.bugType},'%')
+             <if test="bugType != null and bugType != '' ">
+                AND bug_type LIKE  concat('%',#{bugType},'%')
              </if>
-             <if test="bugType.bugintroduce != null and bugType.bugintroduce != ''">
-                 AND bug_introduce LIKE concat('%',#{bugType.bugintroduce}，'%')
+             <if test="bugintroduce != null and bugintroduce != ''">
+                 AND bug_introduce LIKE concat('%',#{bugintroduce}'%')
              </if>
         </where>
     </select>
@@ -49,6 +49,12 @@
 
     <select id="getBugContentByTypeId" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
 
+    </select>
+
+    <select id="getBugTypeByBugcontentId" resultType="cn.com.bugmanager.tag.model.BugType">
+        SELECT t_bugtype.bug_type FROM t_bugcontent,t_bugtype,t_bug_type
+WHERE t_bugcontent.bug_contentid = t_bug_type.bug_id AND t_bugtype.bug_typeid = t_bug_type.type_id
+AND t_bugcontent.bug_contentid = #{bugContentId}
     </select>
 
 </mapper>

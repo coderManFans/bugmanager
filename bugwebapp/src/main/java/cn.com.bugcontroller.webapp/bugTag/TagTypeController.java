@@ -4,18 +4,13 @@ import cn.com.bugmanager.ajax.response.AjaxResponse;
 import cn.com.bugmanager.common.ajax.DataTablesResponse;
 import cn.com.bugmanager.tag.model.TagType;
 import cn.com.bugmanager.tag.service.TagTypeService;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
-import java.io.PrintWriter;
 import java.util.List;
 /**
  * Created by fcs on 2015/3/23.
@@ -70,7 +65,6 @@ public class TagTypeController {
     @RequestMapping(value="/{tagId}",method={RequestMethod.DELETE})
     @ResponseBody
     public AjaxResponse  deleteTagType(@PathVariable int tagId){
-
         return AjaxResponse.getInstanceByResult(tagTypeService.deleteTagTypeById(tagId));
     }
 

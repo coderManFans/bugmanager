@@ -34,7 +34,7 @@ public class TagTypeService {
     }
 
     public List<TagType> getTagTypeList(TagType tagType){
-        return tagTypeDao.getTagTypePageList(tagType);
+        return tagTypeDao.getTagTypeListPage(tagType);
     }
 
     public  List<BugType>  getBugTypeListByTagId(int tagId){
@@ -55,8 +55,19 @@ public class TagTypeService {
     }
 
 
+    /**
+     * @return
+     */
     public int getTagTypeListSize(){
         return tagTypeDao.getTagTypeSize();
     }
 
+    /**
+     * @param bugContentId
+     * @return
+     */
+    public List<TagType> getTagTypeListByBugcontentId(String bugContentId){
+        List<TagType> tagTypeList = tagTypeDao.getTagTypeByBugcontentId(bugContentId);
+        return  tagTypeList;
+    }
 }

@@ -20,12 +20,12 @@
       UPDATE t_tagtype SET  tag_name = #{tagType.tagName} where tag_id =#{tagType.tagId}
     </update>
 
-    <select id="getTagTypePageList" resultType="cn.com.bugmanager.tag.model.TagType" >
+    <select id="getTagTypeListPage" resultType="cn.com.bugmanager.tag.model.TagType" >
         SELECT  * from t_tagtype
         <where>
             AND 1=1
-            <if test="tagType.tagName != null and tagType.tagName != ''">
-                AND  tag_name LIKE  concat('%',#{tagType.tagName},'%')
+            <if test="tagName != null and tagName != ''">
+                AND  tag_name LIKE  concat('%',#{tagName},'%')
             </if>
         </where>
 
@@ -48,6 +48,12 @@
     <select id="getBugContentBytagId" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
         SELECT  tbc.* FROM  t_tagtype AS ttt ,t_bug_tag AS tbt, t_bugcontent  AS tbc WHERE
         ttt.tag_id = tbt.tag_id AND tbt.bug_id = tbc.bug_contentid AND ttt.tag_id = #{tagId}
+    </select>
+
+    <select id="getTagTypeByBugcontentId" resultType="cn.com.bugmanager.tag.model.TagType">
+        SELECT t_tagtype.tag_name FROM t_bugcontent, t_tagtype, t_bug_tag WHERE
+t_bugcontent.bug_contentid = t_bug_tag.bug_id AND t_tagtype.tag_id = t_bug_tag.tag_id
+AND t_bugcontent.bug_contentid = #{bugContentId}
     </select>
 
 

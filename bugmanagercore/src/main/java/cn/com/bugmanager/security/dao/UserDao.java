@@ -19,7 +19,7 @@ public interface UserDao {
     List<User> getUserPageList(@Param("user") User user);
     int getUserCount();
     int updateUserState(User user);
-    int addUser(@Param("user") User user );
-    User loginAuth(@Param("user") User user );
+    int addUser(@Param("user") User user);
+    User loginAuth(@Param("user") User user);
 
 }

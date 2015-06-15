@@ -49,7 +49,7 @@ public class BugTypeService {
     }
 
     public List<BugType> getBugTypeListPage(BugType bugType){
-        return bugTypeDao.getBugTypePageList(bugType);
+        return bugTypeDao.getBugTypeListPage(bugType);
     }
 
 
@@ -63,6 +63,16 @@ public class BugTypeService {
 
     public List<BugType> getBugTypeList(){
         List<BugType> bugTypeList = bugTypeDao.getBugTypeList();
+        return bugTypeList;
+    }
+
+
+    /**
+     * @param bugContentId
+     * @return
+     */
+    public List<BugType> getBugTypeListByBugcontentId(String bugContentId){
+        List<BugType> bugTypeList = bugTypeDao.getBugTypeByBugcontentId(bugContentId);
         return bugTypeList;
     }
 
