@@ -6,7 +6,7 @@
         <id property="bugcontentid" column="bug_contentid" javaType="string" jdbcType="VARCHAR"/>
         <result property="bugReason" column="bug_reason" javaType="string" jdbcType="VARCHAR" />
         <result property="hasSolved" column="has_solved" javaType="boolean" jdbcType="VARCHAR" />
-        <result property="upDate" column="add_date" javaType="string" jdbcType="VARCHAR" />
+        <result property="addDate" column="add_date" javaType="string" jdbcType="VARCHAR" />
         <result property="userId" column="user_id" javaType="string" jdbcType="INTEGER" />
 
         <collection property="bugTypeList" ofType="cn.com.bugmanager.tag.model.BugType" >
@@ -23,13 +23,13 @@
 
     <insert id="addBugContentWithAnswer">
         insert into t_bugcontent (bug_contentid,bug_reason,console_error,bug_code,has_solved,add_date,user_id)
-         VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved},#{bugContent.upDate},#{bugContent.userId})
+         VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved},#{bugContent.addDate},#{bugContent.userId})
     </insert>
 
     <insert id="addBugContentNoAnswer" >
         insert into t_bugcontent (bug_contentid,bug_reason,console_error,bug_code,has_solved,add_date,user_id)
          VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode}
-            ,#{bugContent.hasSolved},#{bugContent.upDate},#{bugContent.userId})
+            ,#{bugContent.hasSolved},#{bugContent.addDate},#{bugContent.userId})
     </insert>
 
 
@@ -56,9 +56,6 @@
         </foreach>
     </insert>
 
-    <select id="getBugContentList" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
-        SELECT bug_contentid,bug_reason,has_solved,add_date,user_id FROM t_bugcontent
-    </select>
 
     <update id="updateBugContent">
         update t_bugcontent set bug_reason=#{bugContent.bugReason},console_error = #{bugContent.consoleError},
@@ -75,16 +72,28 @@
     </select>
 
     <select id="getBugContentListPage" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
-        SELECT bug_contentid,bug_reason,has_solved,add_date,user_id FROM t_bugcontent
+        SELECT bug_contentid,bug_reason,has_solved,add_date,user_id,console_error,bug_code FROM t_bugcontent
         <where>
             <if test="bugReason != null and bugReason != '' ">
                 AND bug_reason LIKE  concat('%',#{bugContent.bugReason},'%')
             </if>
-            <if test="upDate != null and upDate != ''">
-                AND add_date LIKE concat('%',#{bugContent.upDate}'%')
+            <if test="addDate != null and addDate != ''">
+                AND add_date LIKE concat('%',#{bugContent.addDate}'%')
             </if>
         </where>
     </select>
+
+    <select id="getBugContentListPageByTime" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
+        SELECT * FROM t_bugcontent WHERE TO_DAYS(add_date)&gt;=TO_DAYS(#{startTime}) AND TO_DAYS(add_date)  &lt;=TO_DAYS(#{endTime})
+    </select>
+
+    <select id="getBugContentListPageLaterWeek" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
+        SELECT * FROM t_bugcontent WHERE YEARWEEK(DATE_FORMAT(add_date,'%Y-%m-%d')) = YEARWEEK(NOW());
+    </select>
+
+
+
+
     <select id="getBugContentListPageNoSearch" resultType="cn.com.bugmanager.bugcontent.model.BugContent">
         SELECT bug_contentid,bug_reason,has_solved,add_date,user_id FROM t_bugcontent
     </select>

@@ -7,6 +7,11 @@
           values(#{user.userName},#{user.userPass},#{user.userState},#{user.email})
     </insert>
 
+
+    <select id="getUserByUsername" resultType="cn.com.bugmanager.security.model.User">
+        SELECT * FROM t_buguser WHERE user_name=#{username}
+    </select>
+
     <select  id="getUserById" resultType="cn.com.bugmanager.security.model.User" parameterType="int">
         SELECT * from  t_buguser  WHERE  user_id = #{userId}
     </select>

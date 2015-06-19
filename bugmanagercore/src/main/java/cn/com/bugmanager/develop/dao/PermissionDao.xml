@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanager.develop.dao.PermissionDao">
+
+    <sql id="permissionTree">
+        SELECT * FROM
+        (SELECT m.menu_id id, CONCAT(m.menu_name,'(',m.perm_token ,')')NAME,m.parent_id pId,m.perm_token FROM acl_menu m
+        WHERE m.enable=1
+        AND m.leaf=0
+        AND perm_token !='' ORDER BY m.sequence)temp
+        UNION
+        SELECT perm_token id,CONCAT(description,'(',perm_token,')')name,parent_id pId,perm_token FROM acl_permission
+    </sql>
+
+    <select id="getPermissionTree" resultType="cn.com.bugmanager.develop.model.PermissionTreeNode">
+        <include refid="permissionTree"/>
+    </select>
+
+    <select id="getPermissionListPage" resultType="cn.com.bugmanager.develop.model.Permission">
+        SELECT * FROM acl_permission
+        <where>
+            <if test="permToken!=null and permToken !=''">
+                and perm_token = #{permToken}
+            </if>
+            <if test="description!=null and description !=''">
+                and description like CONCAT('%',#{description},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="addPermission">
+        INSERT INTO acl_permission (perm_token,description,parent_id) VALUES (#{permToken},#{description},#{parentId})
+    </insert>
+
+    <select id="getPermissionByPermToken" resultType="cn.com.bugmanager.develop.model.Permission">
+        SELECT * FROM acl_permission WHERE perm_token=#{permToken}
+    </select>
+
+    <select id="getPermissionByDescription" resultType="cn.com.bugmanager.develop.model.Permission">
+        SELECT * FROM acl_permission WHERE description=#{description}
+    </select>
+
+    <delete id="deletePermission">
+        DELETE FROM acl_permission WHERE perm_token=#{permToken}
+    </delete>
+    <delete id="deleteRolePermissionByPermToken">
+        DELETE FROM acl_role_permission where perm_token=#{permToken}
+    </delete>
+    <delete id="deletePermissionByParentId">
+        DELETE arp.* , ap.* FROM acl_role_permission arp , acl_permission ap  where ap.perm_token = arp.perm_token
+        and ap.parent_id=#{parentId}
+    </delete>
+
+
+    <select id="getPermissionTreeByRoleName" resultType="cn.com.bugmanager.develop.model.PermissionTreeNode">
+        SELECT a.id,a.name,a.pId,a.perm_token,IF(b.perm_token IS NULL,'false','true')checked
+        FROM(
+        <include refid="permissionTree"/>
+        )a
+        LEFT JOIN
+        (SELECT * FROM acl_role_permission WHERE role_id=#{roleId})b
+        ON a.perm_token = b.perm_token
+    </select>
+
+    <update id="updatePermission">
+        UPDATE acl_permission SET description=#{description} , parent_id=#{parentId} WHERE perm_token=#{permToken}
+    </update>
+
+    <update id="updateRolePermissionPermToken">
+        UPDATE acl_role_permission SET perm_token=#{newPermToken} WHERE perm_token=#{oldPermToken}
+    </update>
+
+    <update id="updatePermissionByChangePermToken">
+        UPDATE
+              acl_permission p,
+              acl_role_permission arp
+        SET   p.perm_token=#{newPermission.permToken} ,
+              arp.perm_token = #{newPermissionToken}
+        WHERE
+              arp.perm_token = p.perm_token
+        AND   p.perm_token=#{oldPermToken}
+    </update>
+
+    <select id="getPermissionUsedByMenu" resultType="int">
+       SELECT count(*) as c FROM acl_permission p , acl_menu m WHERE m.`perm_token` = p.`perm_token` AND m.`parent_id` = p.`parent_id` AND m.`enable` = 1 AND p.perm_token=#{permToken}
+    </select>
+</mapper>

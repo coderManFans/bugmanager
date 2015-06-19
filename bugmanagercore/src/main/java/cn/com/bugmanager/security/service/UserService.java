@@ -1,7 +1,9 @@
 package cn.com.bugmanager.security.service;
 
 import cn.com.bugmanager.constant.Constant;
+import cn.com.bugmanager.security.dao.RoleDao;
 import cn.com.bugmanager.security.dao.UserDao;
+import cn.com.bugmanager.security.model.Role;
 import cn.com.bugmanager.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ import java.util.List;
 public class UserService {
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private RoleDao roleDao;
 
     public User getUserById(final  int userId){
         return userDao.getUserById(userId);
@@ -65,5 +70,32 @@ public class UserService {
        User user  = userDao.loginAuth(loginUser);
        return user == null ? null : user;
     }
+
+    public List<Role> getRolesByUsername(String username){
+        List<Role> roleList = roleDao.getRolesByUsername(username);
+        return roleList;
+    }
+
+    public List<String> getPermTokensByUsername(String username){
+        List<String> permTokenList = roleDao.getRolePermTokensByUsername(username);
+        return  permTokenList;
+    }
+
+    public User getUserByUsername(String username){
+        User user = userDao.getUserByUsername(username);
+        return user;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanager.log.dao.LogDao">
+    <insert id="save" parameterType="cn.com.bugmanager.log.model.Log">
+        insert into log (username,create_date,ip,request_uri,request_method,request_params,user_agent) VALUES
+        (#{username},#{createDate},#{ip},#{requestUri},#{requestMethod},#{requestParams},#{userAgent})
+        <selectKey keyProperty="id" resultType="string">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <delete id="delete" >
+        delete  from log where id=#{id}
+    </delete>
+
+    <select id="getLogPageList" resultType="cn.com.bugmanager.log.model.Log">
+        select * from log
+        where 1=1
+        <if test="username!=null and username!=''">
+          and username=#{username}
+        </if>
+        <if test="user_agent!= null and user_agent!=''">
+            and user_agent=#{userAgent}
+        </if>
+
+    </select>
+
+
+</mapper>

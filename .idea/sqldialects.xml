@@ -2,8 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/bugmanagercore/src/main/java/cn/com/bugsqlinfo/bugmanagersql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/bugmanagercore/src/test/java/cn/com/bugmanager/bugcontenttest/service/sql/TestAddBugAnswer.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/bugmanagercore/src/test/java/cn/com/bugmanager/bugcontenttest/service/sql/TestAddBugContent.sql" dialect="Sybase" />
     <file url="file://$PROJECT_DIR$/bugmanagercore/src/test/java/cn/com/bugmanager/securityTest/sql/TestAddUser.sql" dialect="Sybase" />
     <file url="file://$PROJECT_DIR$/bugmanagercore/src/test/java/cn/com/bugmanager/tagtest/service/sql/TestAddBugType.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/bugmanagercore/src/test/java/cn/com/bugmanager/tagtest/service/sql/TestAddTagType.sql" dialect="TSQL" />

@@ -97,4 +97,13 @@ public class BugContentService {
     public List<BugContent> getBugContentListPageNoSearch(){
         return bugContentDao.getBugContentListPage();
     }
+
+    public List<BugContent> getBugContentListPageByTime(String startTime,String endTime){
+        return bugContentDao.getBugContentListPageByTime(startTime,endTime);
+    }
+
+    public List<BugContent> getBugContentLaterWeek(){
+           return bugContentDao.getBugContentListPageLaterWeek();
+    }
+
 }

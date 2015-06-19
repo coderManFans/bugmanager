@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static  org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 /**
  * Created by fcs on 2015/3/20.
  */
@@ -71,4 +71,20 @@ public class BugContentServiceTest extends SpringTransactionalTestCase {
         int size = bugContentService.getBugContentListPage(null).size();
         assertTrue(size == 1);
     }
+
+    @Sql("sql/TestAddBugContent.sql")
+    @Test
+    public void testGetBugContentListByTime(){
+        List<BugContent> bugContentListPageByTime = bugContentService.getBugContentListPageByTime("2015-4-20","2015-6-1");
+        assertTrue(bugContentListPageByTime.size() == 1);
+    }
+
+    @Sql("sql/TestAddBugContent.sql")
+    @Test
+    public void testGetBugContentListLaterWeek(){
+        List<BugContent> bugContentListPageWeek = bugContentService.getBugContentLaterWeek();
+        System.out.println(bugContentListPageWeek.size());
+       // assertTrue(bugContentListPageByTime.size() == 1);
+    }
+
 }

@@ -1,21 +1,94 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanager.security.dao.RoleDao">
-    <insert id="addRole">
 
-    </insert>
-    <select id="">
-
+    <select id="getRolesByUsername" resultType="cn.com.bugmanager.security.model.Role">
+        SELECT r.* FROM acl_user_role ur,acl_user u,acl_role r
+        WHERE u.username=#{username} AND ur.user_id=u.user_id AND r.role_id=ur.role_id
     </select>
-    <update id="updateRole">
 
-    </update>
+    <select id="getUsernameByRoleId" resultType="string">
+        SELECT u.username FROM acl_user_role ur,acl_user u
+        WHERE u.user_id = ur.user_id
+        AND ur.role_id=#{roleId}
+    </select>
+
+    <select id="getUserByRoleId" resultType="cn.com.bugmanager.security.model.User">
+        SELECT u.* FROM acl_user_role ur,acl_user u
+        WHERE u.user_id = ur.user_id
+        AND ur.role_id=#{roleId}
+    </select>
+
+    <select id="getRolePermTokensByUsername" resultType="string">
+        SELECT p.perm_token FROM acl_role_permission p,acl_user_role ur,acl_user u
+        WHERE p.role_id=ur.role_id AND u.user_id = ur.user_id
+        AND u.username=#{username}
+    </select>
+
     <select id="getRoleList" resultType="cn.com.bugmanager.security.model.Role">
-
+        SELECT * FROM acl_role
     </select>
-    <delete id="deleteRoleById">
 
+    <select id="getRoleListPage" resultType="cn.com.bugmanager.security.model.Role">
+        SELECT * FROM acl_role
+        where 1=1
+        <if test="roleName!=null and roleName !=''">
+            and role_name = #{roleName}
+        </if>
+        <if test="description!=null and description !=''">
+            and description like CONCAT('%',#{description},'%')
+        </if>
+    </select>
+
+    <insert id="addRole">
+        INSERT INTO acl_role (role_name,description) VALUES (#{roleName},#{description})
+        <selectKey resultType="string" keyProperty="roleId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getRoleByRoleName" resultType="cn.com.bugmanager.security.model.Role">
+        select * from acl_role where role_name=#{roleName}
+    </select>
+
+    <insert id="addUserRole">
+        INSERT INTO acl_user_role (user_id,role_id) VALUES
+        <foreach collection="userList" item="user" separator=",">
+            (#{user.userId},#{roleId})
+        </foreach>
+    </insert>
+
+    <insert id="addRolePermission">
+        INSERT INTO acl_role_permission (role_id,perm_token)VALUES
+        <foreach collection="permTokenList" item="permToken" separator=",">
+            (#{roleId},#{permToken})
+        </foreach>
+    </insert>
+
+    <select id="getRole" resultType="cn.com.bugmanager.security.model.Role">
+        SELECT * FROM acl_role
+        WHERE role_id=#{roleId}
+    </select>
+
+    <select id="getRoleNameByPermissionToken" resultType="java.lang.String">
+        SELECT DISTINCT r.role_name FROM acl_role r,acl_role_permission rp
+        WHERE r.role_id=rp.role_id AND rp.perm_token=#{permissionToken}
+    </select>
+
+    <delete id="deleteUserRoleByRoleId">
+        DELETE FROM acl_user_role WHERE role_id=#{roleId}
     </delete>
 
+    <delete id="deleteRolePermissionByRoleId">
+        DELETE FROM acl_role_permission WHERE role_id=#{roleId}
+    </delete>
 
+    <delete id="deleteRole">
+        DELETE FROM acl_role WHERE role_id=#{roleId}
+    </delete>
+
+    <update id="updateRole">
+        UPDATE acl_role SET role_name=#{roleName},description=#{description}
+        WHERE role_id=#{roleId}
+    </update>
 </mapper>

@@ -27,8 +27,7 @@
 
 <link href="<c:url value="/static/js/global/plugins/uniform/css/uniform.default.min.css"/>" rel="stylesheet" type="text/css"/>
 
-<link href="<c:url value="/static/js/bower_components/toastr/toastr.min.css"/>" rel="stylesheet" type="text/css"/>
-
+<link href="<c:url value="/static/js/bower_components/toastr/toastr.min.css"/>" rel="stylesheet" type="text/css"/>\
 
 <link rel="shortcut icon" href="<c:url value="/static/media/image/favicon.ico"/>" />
 

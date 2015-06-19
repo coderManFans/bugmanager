@@ -25,7 +25,7 @@ public class RoleService {
     }
 
     public boolean deleteRoleById(int roleId){
-        int affectNum = roleDao.deleteRoleById(roleId);
+        int affectNum = roleDao.deleteRole(roleId+"");
         return Constant.AFFECTED_LINE_1 == affectNum;
     }
 }

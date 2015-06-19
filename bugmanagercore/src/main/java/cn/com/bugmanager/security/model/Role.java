@@ -10,11 +10,21 @@ public class Role extends DataTablesPage{
     private String roleName;   //目前只有超级管理员和系统用户
     private String description;
     private List<User>  userList;
+    private List<String> permTokenList;
     public Role(){
 
     }
+
     public Role(int roleId ){
         this.roleId = roleId;
+    }
+
+    public List<String> getPermTokenList() {
+        return permTokenList;
+    }
+
+    public void setPermTokenList(List<String> permTokenList) {
+        this.permTokenList = permTokenList;
     }
 
     public int getRoleId() {

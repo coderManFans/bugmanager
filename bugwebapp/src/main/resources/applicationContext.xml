@@ -23,17 +23,19 @@
     </context:component-scan>
 
 
-    <!-- 定义aspectj -->
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!--定义aspectj-->
+    <aop:aspectj-autoproxy />
+
     <aop:config>
         <aop:pointcut id="serviceTransactionProxy" expression="execution(* cn.com.bugmanager..service.*.*(..))"/>
         <aop:advisor pointcut-ref="serviceTransactionProxy" advice-ref="defaultTxAdvice"/>
     </aop:config>
 
 
+
     <tx:advice id="defaultTxAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <tx:method name="get*" read-only="true"/>
+            <tx:method name="get*" propagation="REQUIRED"/>
             <tx:method name="find*" read-only="true"/>
             <tx:method name="*" propagation="REQUIRED"/>
         </tx:attributes>
@@ -63,6 +65,7 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory1"/>
         <property name="annotationClass" value="cn.com.bugmanager.mybatis.annotation.mybatisRepository"/>
     </bean>
+
     <!-- hibernate validator -->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -76,6 +79,7 @@
         <property name="cacheSeconds" value="0"/>
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
+
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
     <context:property-placeholder ignore-resource-not-found="true" location="classpath*:/application.properties"/>

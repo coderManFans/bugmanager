@@ -13,7 +13,7 @@
 
 <script src="<c:url value="/static/media/js/jquery-ui-1.10.1.custom.min.js"/>" type="text/javascript"></script>
 
-<script src="<c:url value="/static/js/bower_components/bootstrap/dist/js/bootstrap.min.js"/>" type="text/javascript"></script>
+<script src="<c:url value="/static/js/bower_components/bootstrap/dist/js/bootstrap.js"/>" type="text/javascript"></script>
 
 <!-- BEGIN CORE PLUGINS -->
 <script src="<c:url value="/static/media/js/jquery.slimscroll.min.js"/>" type="text/javascript"></script>

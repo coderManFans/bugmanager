@@ -71,7 +71,7 @@ public class BugContentController {
         bugContent.setConsoleError(consoleError);
         bugContent.setBugCode(bugCode);
         bugContent.setBugReason(bugReason);
-        bugContent.setUpDate(upTime);
+        bugContent.setAddDate(upTime);
 
         String bugContentId = CalendarUtils.getDateUUID();
         bugContent.setUserId(userId);

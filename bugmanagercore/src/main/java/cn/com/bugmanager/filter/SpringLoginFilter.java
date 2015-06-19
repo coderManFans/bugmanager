@@ -16,13 +16,13 @@ public class SpringLoginFilter extends HandlerInterceptorAdapter {
     private final Logger log = LoggerFactory.getLogger(SpringLoginFilter.class);
 	/*
 	 * 利用正则映射到需要拦截的路径
-
+     */
     private String mappingURL;
 
     public void setMappingURL(String mappingURL) {
                this.mappingURL = mappingURL;
     }
-  */
+
     /**
      * 在业务处理器处理请求之前被调用
      * 如果返回false
@@ -41,16 +41,16 @@ public class SpringLoginFilter extends HandlerInterceptorAdapter {
         if ("GET".equalsIgnoreCase(request.getMethod())) {
             RequestUtil.saveRequest();
         }
-        //log.info("==============执行顺序: 1、preHandle================");
+        log.info("==============执行顺序: 1、preHandle================");
         String requestUri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String url = requestUri.substring(contextPath.length());
 
-        //log.info("requestUri:"+requestUri);
-        //log.info("contextPath:"+contextPath);
-        //log.info("url:"+url);
+        log.info("requestUri:"+requestUri);
+        log.info("contextPath:"+contextPath);
+        log.info("url:"+url);
 
-        /*String username =  (String)request.getSession().getAttribute("user");
+       /* String username =  (String)request.getSession().getAttribute("user");
         if(username == null){
             log.info("Interceptor：跳转到login页面！");
             request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
@@ -68,7 +68,7 @@ public class SpringLoginFilter extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request,
                            HttpServletResponse response, Object handler,
                            ModelAndView modelAndView) throws Exception {
-       // log.info("==============执行顺序: 2、postHandle================");
+        log.info("==============执行顺序: 2、postHandle================");
         if(modelAndView != null){  //加入当前时间
             modelAndView.addObject("var", "测试postHandle");
         }
@@ -83,7 +83,7 @@ public class SpringLoginFilter extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request,
                                 HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-      //  log.info("==============执行顺序: 3、afterCompletion================");
+        log.info("==============执行顺序: 3、afterCompletion================");
     }
 
 }

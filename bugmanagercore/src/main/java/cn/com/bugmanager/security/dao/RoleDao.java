@@ -1,18 +1,45 @@
 package cn.com.bugmanager.security.dao;
 
+
 import cn.com.bugmanager.mybatis.annotation.mybatisRepository;
 import cn.com.bugmanager.security.model.Role;
-import org.apache.ibatis.annotations.Param;
+import cn.com.bugmanager.security.model.User;
 
 import java.util.List;
-/**
- * Created by fcs on 2015/3/21.
- */
+
 @mybatisRepository
 public interface RoleDao {
-    int addRole(@Param("role") Role role);
-    int updateRole(@Param("role") Role role);
-    List<Role>  getRoleList();
-    int deleteRoleById(@Param("roleId") int roleId);
+
+    List<String> getUsernameByRoleId(String roleId);
+
+    List<User> getUserByRoleId(String roleId);
+
+    List<Role> getRolesByUsername(String username);
+
+    List<String> getRolePermTokensByUsername(String username);
+
+    List<Role> getRoleList();
+
+    List<Role> getRoleListPage(Role role);
+
+    int addRole(Role role);
+
+    Role getRoleByRoleName(String roleName);
+
+    int addUserRole(Role role);
+
+    int addRolePermission(Role role);
+
+    int deleteUserRoleByRoleId(String roleId);
+
+    int deleteRolePermissionByRoleId(String loginName);
+
+    int deleteRole(String roleId);
+
+    Role getRole(String roleId);
+
+    int updateRole(Role role);
+
+    List<String> getRoleNameByPermissionToken(String permissionToken);
 
 }

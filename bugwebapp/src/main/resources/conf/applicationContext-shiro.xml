@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
+       default-lazy-init="true">
+
+    <description>Shiro安全配置</description>
+
+
+    <!--shiro 相关博客：http://www.360doc.com/content/14/0529/09/11298474_381916189.shtml-->
+
+    <!-- Shiro's main business-tier object for web-enabled applications -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="shiroDbRealm"/>
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+    </bean>
+
+    <!-- 項目自定义的Realm -->
+    <!--,roleDao-->
+    <bean id="shiroDbRealm" class="cn.com.bugmanager.security.ShiroDbRealm" depends-on="userDao,roleDao" >
+        <property name="userService" ref="userService"/>
+    </bean>
+
+    <!-- Shiro Filter -->
+    <!--shiro主过滤器本身功能强大，其强大之处就在于它支持任何基于URL路径表达式的，自定义的过滤器的执行
+        web应用中，shiro可控制的web请求必须经过shiro主过滤器的拦截，shiro对基于spring的web应用提供了完美的支持
+    -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--shiro的核心安全接口，这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+
+        <!--要求登录时的链接（可根据项目中的URL进行替换），非必须属性，默认会自动寻找web工程目录下的'/login.jsp'页面 -->
+        <property name="loginUrl" value="/login"/>
+
+        <!--shiro连接约束配置，即过滤链的定义
+            下面value值得第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来说的
+            anon:它对应的过滤器里面是空的，什么都没做
+            authc: 该过滤器下的页面必须经过验证才能访问，它是shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFitler
+        -->
+       <property name="filterChainDefinitions">
+            <value>
+                /static/** = anon
+                /login/** = anon
+                /logout = logout
+                /** = user
+            </value>
+        </property>
+    </bean>
+
+    <!-- 用户授权信息Cache, 采用EhCache -->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:conf/ehcache-shiro.xml"/>
+    </bean>
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+</beans>

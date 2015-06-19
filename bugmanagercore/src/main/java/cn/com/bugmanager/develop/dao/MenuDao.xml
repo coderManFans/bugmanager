@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanager.develop.dao.MenuDao">
+    <insert id="addMenu">
+        INSERT INTO acl_menu(menu_name,icon,url,perm_token,parent_id,level,leaf,sequence,memo,enable) VALUES (
+        #{menuName},#{icon},#{url},#{permToken},#{parentId},#{level},#{leaf},#{sequence},#{memo},#{enable}
+        <selectKey resultType="string" keyProperty="menuId">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        )
+    </insert>
+
+    <update id="updateMenu">
+        UPDATE acl_menu SET menu_name=#{menuName},icon=#{icon},url=#{url},perm_token=#{permToken},parent_id=#{parentId},
+        level=#{level},leaf=#{leaf},sequence=#{sequence},memo=#{memo},enable=#{enable}
+        WHERE menu_id=#{menuId}
+    </update>
+    <update id="updateMenuOrder">
+        UPDATE acl_menu am
+        <if test="leaf==1">
+            ,acl_permission ap
+        </if>
+        SET am.parent_id=#{parentId},am.level=#{level},am.leaf=#{leaf},am.sequence=#{sequence},am.enable=#{enable}
+        <if test="leaf==1">
+            ,ap.parent_id=#{parentId}
+        </if>
+        WHERE am.menu_id=#{menuId}
+        <if test="leaf==1">
+            AND am.perm_token=ap.perm_token
+        </if>
+    </update>
+    <delete id="deleteMenu">
+        DELETE FROM acl_menu WHERE menu_id=#{menuId}
+    </delete>
+    <delete id="deleteMenuByParentId">
+        DELETE FROM acl_menu WHERE parent_id=#{parentId}
+    </delete>
+
+    <select id="getMenuListByLevel" resultType="cn.com.bugmanager.develop.model.Menu">
+        SELECT * FROM acl_menu m WHERE m.level=#{level} AND m.enable=1
+        ORDER BY m.sequence
+    </select>
+
+    <select id="getMenuTreeList" resultType="map">
+        SELECT m.menu_id id,m.menu_name name,m.parent_id pId,m.url menuUrl,
+        m.icon menuIcon,m.perm_token permToken,m.memo,m.enable checked,m.sequence sequence,
+        m.leaf leaf FROM acl_menu m
+        ORDER BY m.sequence
+    </select>
+
+    <select id="getMenuList" resultType="cn.com.bugmanager.develop.model.Menu">
+        SELECT * FROM acl_menu
+    </select>
+
+    <select id="getMenuLeafList" resultType="cn.com.bugmanager.develop.model.Menu">
+        SELECT * FROM acl_menu where leaf = 1
+    </select>
+
+    <select id="getMenu" resultType="cn.com.bugmanager.develop.model.Menu">
+        SELECT * FROM acl_menu WHERE menu_id=#{menuId}
+    </select>
+
+    <select id="getSubMenuById" resultType="cn.com.bugmanager.develop.model.Menu">
+        SELECT * FROM acl_menu WHERE parent_id=#{menuId}
+    </select>
+
+    <select id="getNewsMenu" resultType="cn.com.bugmanager.develop.model.Menu">
+        select * from acl_menu where level='0'
+    </select>
+    <select id="getMenusByPermToken" resultType="cn.com.bugmanager.develop.model.Menu">
+        SELECT * FROM acl_menu WHERE perm_token =#{permToken}
+    </select>
+</mapper>
