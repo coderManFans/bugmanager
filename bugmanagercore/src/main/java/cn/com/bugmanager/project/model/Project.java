@@ -5,4 +5,5 @@ package cn.com.bugmanager.project.model;
  */
 public class Project {
 
+
 }
