@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.com.bugmanager.project.dao.ProjectDao">
+    <insert id="addProject">
+        INSERT INTO t_project (project_name,language,createtime,user_id,is_private,is_createbc)
+        VALUES (#{projectname},#{language},#{createtime},#{userid},#{isprivate},#{createbugcollection})
+    </insert>
+    <update id="updateProject">
+        UPDATE t_project set
+        <if test="project.projectname!= null and project.projectname != ''">
+            project_name =#{projectname},
+        </if>
+        <if test="project.isprivate != null and project.isprivate != ''">
+            is_private =#{isprivate},
+        </if>
+        <if test="project.createbugcollection != null and project.createbugcollection != ''">
+            is_createbc =#{createbugcollection}
+        </if>
+        where project_id=#{projectid}
+
+    </update>
+    <delete id="deleteProjectById" parameterType="int">
+        DELETE FROM t_project where project_id = #{projectid}
+    </delete>
+    <select id="getProjectById" resultType="cn.com.bugmanager.project.model.Project">
+        SELECT * FROM t_project where  project_id = #{projectid}
+    </select>
+    <select id="getProjectList" resultType="cn.com.bugmanager.project.model.Project">
+        SELECT  * from t_project
+    </select>
+
+    <select id="getProjectListSize" resultType="int">
+        SELECT count(*) FROM t_project
+    </select>
+</mapper>

@@ -22,8 +22,8 @@
 
 
     <insert id="addBugContentWithAnswer">
-        insert into t_bugcontent (bug_contentid,bug_reason,console_error,bug_code,has_solved,add_date,user_id)
-         VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved},#{bugContent.addDate},#{bugContent.userId})
+        insert into t_bugcontent (bug_contentid,bug_reason,console_error,bug_code,has_solved,add_date,user_id,project_id)
+         VALUES (#{bugContent.bugcontentid},#{bugContent.bugReason},#{bugContent.consoleError},#{bugContent.bugCode},#{bugContent.hasSolved},#{bugContent.addDate},#{bugContent.userId},#{bugContent.project_id})
     </insert>
 
     <insert id="addBugContentNoAnswer" >

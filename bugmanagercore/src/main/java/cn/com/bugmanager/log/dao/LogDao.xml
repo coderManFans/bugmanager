@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD iBatis Mapper 3.0 //EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.com.bugmanager.log.dao.LogDao">
     <insert id="save" parameterType="cn.com.bugmanager.log.model.Log">
-        insert into log (username,create_date,ip,request_uri,request_method,request_params,user_agent) VALUES
+        insert into log (username,create_date,ip,request_uri,request_method,request_params,useragent) VALUES
         (#{username},#{createDate},#{ip},#{requestUri},#{requestMethod},#{requestParams},#{userAgent})
         <selectKey keyProperty="id" resultType="string">
             select LAST_INSERT_ID()

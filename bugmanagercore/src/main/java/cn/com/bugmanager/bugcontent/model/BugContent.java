@@ -16,6 +16,7 @@ public class BugContent extends DataTablesPage{
     private String bugCode;        //项目或者练习中的错误代码
     private boolean hasSolved;     //是否有解决方案
     private String addDate;          //提交时间
+    private int  project_id;         //项目id
     private List<BugType>  bugTypeList;   //错误类型列表
     private List<TagType>  tagTypeList;   //错误标签列表
     private List<BugAnswer>  bugAnswerList; //解决方案列表
@@ -23,6 +24,14 @@ public class BugContent extends DataTablesPage{
 
 
     public BugContent() {
+    }
+
+    public int getProject_id() {
+        return project_id;
+    }
+
+    public void setProject_id(int project_id) {
+        this.project_id = project_id;
     }
 
     public String getBugcontentid() {

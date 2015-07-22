@@ -16,8 +16,8 @@
         <context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
-    <!-- 定义aspectj -->
-    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 定义aspectj proxy-target-class="true":这个属性会使用cglib代理，导致框架错误-->
+    <aop:aspectj-autoproxy />
 
     <aop:config>
         <aop:pointcut id="serviceTransactionProxy" expression="execution(* cn.com.bugmanager..service.*.*(..))"/>

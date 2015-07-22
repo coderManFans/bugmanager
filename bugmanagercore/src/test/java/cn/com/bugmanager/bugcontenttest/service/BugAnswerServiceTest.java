@@ -12,7 +12,6 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static  org.junit.Assert.assertTrue;
 
 /**
@@ -41,7 +40,10 @@ public class BugAnswerServiceTest extends SpringTransactionalTestCase{
         bugContent.setBugCode("bug_code");
         bugContent.setConsoleError("console_error");
         bugContent.setBugReason("bug_reason");
-        bugContent.setBugcontentid(1+"");
+        bugContent.setBugcontentid(1+"10");
+        bugContent.setAddDate("2015-07-05");
+        bugContent.setHasSolved(true);
+        bugContent.setUserId(5);
         return  bugContent;
     }
 

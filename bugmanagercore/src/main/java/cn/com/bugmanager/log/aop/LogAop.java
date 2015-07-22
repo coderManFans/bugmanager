@@ -56,7 +56,7 @@ public class LogAop {
             log.setRequestParams(params.toString());
             System.out.println(request.getRequestURI()+"-------------------------------------------");
 
-            logService.saveLog(log);
+           // logService.saveLog(log);
 
             logger.info("save log {loginName: {}, uri: {}}, ", user.getPrincipal(), log.getRequestUri());
         }
